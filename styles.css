@@ -3,16 +3,13 @@ body {
   font-family: Arial, sans-serif;
   color: white;
   min-height: 100vh;
-
-  /* 올려주신 배경 이미지 적용 */
-  background: url("images/명조 뒤얽힌 별들 배경화면(AI 편집).jpg") no-repeat center center fixed;
+  background: url("images/wallpaper.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
 header {
   text-align: center;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.6);
 }
 
 main {
@@ -21,32 +18,87 @@ main {
   margin: 20px;
 }
 
-/* 좌측: 캐릭터/무기 선택 영역 */
-.left-panel {
-  flex: 1;
-  background: rgba(0, 0, 0, 0.6); /* 반투명 처리 */
-  padding: 20px;
-  border-radius: 12px;
+/* 탭 버튼 pill 스타일 */
+nav .tab {
+  background: rgba(255,255,255,0.2);
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 8px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-/* 우측: 계산 결과 영역 */
-.right-panel {
-  flex: 2;
-  background: rgba(0, 0, 0, 0.6); /* 반투명 처리 */
-  padding: 20px;
-  border-radius: 12px;
+nav .tab.active {
+  background: rgba(255,255,255,0.5);
+  color: black;
 }
 
-.character-card {
+/* 선택 화면 */
+#select-screen {
+  /*display: flex;*/
+  margin : auto;
+  justify-content: ;
+  align-items: center;
+  min-height: 50vh;
+}
+
+#select-screen .card-grid {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 10px;
-  text-align: center;
-  width: 120px;
-  transition: transform 0.2s;
-  margin-bottom: 10px;
+  padding: 30px;
+  border-radius: 16px;
 }
 
-.character-card:hover {
+/* 카드 그리드 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 150px);
+  gap: 20px;
+}
+
+.card {
+  background: rgba(0,0,0,0.6);
+  border-radius: 12px; /*라운딩*/
+  padding: 0px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 0px;
+}
+
+.card p {
+  margin: auto;
+  font-size: 1rem;   /* 원하는 크기로 조정 */
+  font-weight: bold;   /* 글씨 두껍게 */
+  color: white;        /* 색상 변경 가능 */
+  text-align: center;
+}
+
+/* 마우스 올려 있을 때 */
+.card:hover {
   transform: scale(1.05);
+  background: rgba(255,255,255,0.2);
+}
+/* 캐릭터 상세 화면 */
+#character-detail {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.detail-left, .detail-right {
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  border-radius: 12px;
 }

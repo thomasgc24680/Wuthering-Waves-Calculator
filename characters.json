@@ -1,0 +1,16 @@
+[
+  {
+    "name": "산화",
+    "img": "images/Resonator/산화.jpg"
+	"attribute": "응결"
+	"weapon": "images/weapon/straightsword.jpg"
+  },
+  {
+    "name": "캐릭터2",
+    "img": "images/char2.png"
+  },
+  {
+    "name": "캐릭터3",
+    "img": "images/char3.png"
+  }
+]
