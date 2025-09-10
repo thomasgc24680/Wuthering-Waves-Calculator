@@ -17,52 +17,54 @@
 
 	<main>
 		<!-- 🔽 캐릭터 탭 필터 -->
-		<div id="select-screen-wrapper">
-			<div class="filter-buttons character-filters">
-			  <button data-filter="전체">
-				<img src="images/attribute/all.jpg" alt="전체">
-			  </button>
-			  <button data-filter="응결">
-				<img src="images/attribute/glacio.jpg" alt="응결">
-			  </button>
-			  <button data-filter="용융">
-				<img src="images/attribute/fusion.jpg" alt="용융">
-			  </button>
-			  <button data-filter="전도">
-				<img src="images/attribute/conducto.jpg" alt="전도">
-			  </button>
-			  <button data-filter="기류">
-				<img src="images/attribute/aero.jpg" alt="기류">
-			  </button>
-			  <button data-filter="회절">
-				<img src="images/attribute/spectra.jpg" alt="회절">
-			  </button>
-			  <button data-filter="인멸">
-				<img src="images/attribute/havoc.jpg" alt="인멸">
-			  </button>
-			</div><!--
-				<div class="filter-row row2">
-					<button data-filter="전체">전체</button>
-					<button data-filter="한손검">한손검</button>
-					<button data-filter="양손검">양손검</button>
-					<button data-filter="활">활</button>
-					<button data-filter="법구">법구</button>
-					<button data-filter="장병기">장병기</button>
-				</div>-->
+		<section id="filter-screen">
+			<div class="filter-buttons">
+				<button data-filter="응결">
+					<img src="images/attribute/glacio.jpg" alt="응결">
+				</button>
+				<button data-filter="용융">
+					<img src="images/attribute/fusion.jpg" alt="용융">
+				</button>
+				<button data-filter="전도">
+					<img src="images/attribute/conducto.jpg" alt="전도">
+				</button>
+				<button data-filter="기류">
+					<img src="images/attribute/aero.jpg" alt="기류">
+				</button>
+				<button data-filter="회절">
+					<img src="images/attribute/spectra.jpg" alt="회절">
+				</button>
+				<button data-filter="인멸">
+					<img src="images/attribute/havoc.jpg" alt="인멸">
+				</button>
 			</div>
-
-			<!-- 무기군 버튼 (아래줄) -->
-			<div class="filter-row row2">
+			<div class="filter-buttons">
+				<button data-filter="대검">
+					<img src="images/weapon/greatsword.jpg" alt="대검">
+				</button>
+				<button data-filter="직검">
+					<img src="images/weapon/straightsword.jpg" alt="직검">
+				</button>
+				<button data-filter="권총">
+					<img src="images/weapon/gun.jpg" alt="권총">
+				</button>
+				<button data-filter="권갑">
+					<img src="images/weapon/fist.jpg" alt="권갑">
+				</button>
+				<button data-filter="증폭기">
+					<img src="images/weapon/amplifier.jpg" alt="증폭기">
+				</button>
 			</div>
+		</section>
 		
 			<!-- 캐릭터/무기 선택 화면 -->
 			<section id="select-screen" class="tab-content">
 				<div class="card-grid" id="character-list"></div>
-				<div class="card-grid hidden" id="weapon-list"></div>
 			</section>
 		</div>
-
+		
 		<!-- 캐릭터 상세 화면 -->
+		<!--
 		<section id="character-detail" class="hidden tab-content" style="display: none;">
 		<div class="detail-left">
 		  <img id="detail-image" src="" alt="캐릭터 이미지">
@@ -77,6 +79,7 @@
 			</div>
 			</div>
 		</section>
+		-->
 	</main>
 
 	<script src="script.js"></script>

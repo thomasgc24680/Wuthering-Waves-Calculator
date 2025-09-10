@@ -1,5 +1,5 @@
 //attribute : aero(기류), conducto(전도), fusion(용융), glacio(응결), havoc(인멸), spectra(회절)
-//weapon : amplifier(증폭기), fist(권갑), greatsword(대검), gun(권총), straightsword(직검)
+//weapon : greatsword(대검), straightsword(직검), gun(권총), fist(권갑), amplifier(증폭기)
 
 const attribute = ["ALL", "glacio", "fusion", "conducto", "aero", "spectra", "havoc"];
 
@@ -142,7 +142,6 @@ function renderSelectScreen() {
 
   // 선택 화면만 보이도록
   document.getElementById("select-screen").classList.remove("hidden");
-  document.getElementById("character-detail").classList.add("hidden");
 }
 
 
