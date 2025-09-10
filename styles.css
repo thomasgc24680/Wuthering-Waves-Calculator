@@ -54,11 +54,11 @@ nav .tab.active {
 /* 카드 그리드 */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(5, 150px);
+  grid-template-columns: repeat(6, 150px);
   gap: 20px;
 }
 
-.card {
+.select-card {
   background: rgba(0,0,0,0.6);
   border-radius: 12px; /*라운딩*/
   padding: 0px;
@@ -67,14 +67,14 @@ nav .tab.active {
   cursor: pointer;
   transition: transform 0.2s;
 }
-.card img {
+.select-card img {
   width: 120px;
   height: 120px;
   object-fit: cover;
   border-radius: 0px;
 }
 
-.card p {
+.select-card p {
   margin: auto;
   font-size: 1rem;   /* 원하는 크기로 조정 */
   font-weight: bold;   /* 글씨 두껍게 */
@@ -83,10 +83,12 @@ nav .tab.active {
 }
 
 /* 마우스 올려 있을 때 */
-.card:hover {
+.select-card:hover {
   transform: scale(1.05);
   background: rgba(255,255,255,0.2);
 }
+
+
 /* 캐릭터 상세 화면 */
 #character-detail {
   display: flex;

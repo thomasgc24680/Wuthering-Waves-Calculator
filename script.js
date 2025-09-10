@@ -10,6 +10,10 @@ const weapons = [
 
 let currentTab = "character";
 
+document.addEventListener("DOMContentLoaded", () => {
+  switchTab('character');
+});
+
 function switchTab(tabName) {
   document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
   document.querySelectorAll('.tab')[tabName === 'character' ? 0 : 1].classList.add('active');
@@ -26,13 +30,14 @@ function renderSelectScreen() {
 
   data.forEach(item => {
     const button = document.createElement("button");
-    button.classList.add("char-card");
+    button.classList.add("select-card");
     button.innerHTML = `
       <img src="${item.img}" alt="${item.name}">
       <p>${item.name}</p>
     `;
     if (currentTab === "character") {
-      button.onclick = () => showCharacterDetail(item);
+//      button.onclick = () => showCharacterDetail(item);
+        button.onclick = () => alert(`${item.name} 선택됨 (캐릭터)`); 
     } else {
       button.onclick = () => alert(`${item.name} 선택됨 (무기)`); 
     }
