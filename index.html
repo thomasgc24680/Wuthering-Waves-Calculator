@@ -1,29 +1,69 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>명조 계산기 (프로토타입)</title>
-  <link rel="stylesheet" href="styles.css">
+	<title>명조 계산기 (프로토타입)</title>
+	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>명조 계산기 (프로토타입)</h1>
-    <nav>
-      <button class="tab active" onclick="switchTab('character')">캐릭터</button>
-      <button class="tab" onclick="switchTab('weapon')">무기</button>
-    </nav>
-  </header>
+	<header>
+		<h1>명조 계산기 (프로토타입)</h1>
+		<nav>
+			<button class="tab active" onclick="switchTab('character')">캐릭터</button>
+			<button class="tab" onclick="switchTab('weapon')">무기</button>
+		</nav>
+	</header>
 
-  <main>
-	  <!-- 캐릭터/무기 선택 화면 -->
-	<section id="select-screen" class="tab-content">
-	  <div class="card-grid"></div>
-	</section>
+	<main>
+		<!-- 🔽 캐릭터 탭 필터 -->
+		<div id="select-screen-wrapper">
+			<div class="filter-buttons character-filters">
+			  <button data-filter="전체">
+				<img src="images/attribute/all.jpg" alt="전체">
+			  </button>
+			  <button data-filter="응결">
+				<img src="images/attribute/glacio.jpg" alt="응결">
+			  </button>
+			  <button data-filter="용융">
+				<img src="images/attribute/fusion.jpg" alt="용융">
+			  </button>
+			  <button data-filter="전도">
+				<img src="images/attribute/conducto.jpg" alt="전도">
+			  </button>
+			  <button data-filter="기류">
+				<img src="images/attribute/aero.jpg" alt="기류">
+			  </button>
+			  <button data-filter="회절">
+				<img src="images/attribute/spectra.jpg" alt="회절">
+			  </button>
+			  <button data-filter="인멸">
+				<img src="images/attribute/havoc.jpg" alt="인멸">
+			  </button>
+			</div><!--
+				<div class="filter-row row2">
+					<button data-filter="전체">전체</button>
+					<button data-filter="한손검">한손검</button>
+					<button data-filter="양손검">양손검</button>
+					<button data-filter="활">활</button>
+					<button data-filter="법구">법구</button>
+					<button data-filter="장병기">장병기</button>
+				</div>-->
+			</div>
 
-	  <!-- 캐릭터 상세 화면 -->
-	  <section id="character-detail" class="hidden tab-content" style="display: none;">
+			<!-- 무기군 버튼 (아래줄) -->
+			<div class="filter-row row2">
+			</div>
+		
+			<!-- 캐릭터/무기 선택 화면 -->
+			<section id="select-screen" class="tab-content">
+				<div class="card-grid" id="character-list"></div>
+				<div class="card-grid hidden" id="weapon-list"></div>
+			</section>
+		</div>
+
+		<!-- 캐릭터 상세 화면 -->
+		<section id="character-detail" class="hidden tab-content" style="display: none;">
 		<div class="detail-left">
 		  <img id="detail-image" src="" alt="캐릭터 이미지">
 		  <label>LV. <input type="number" min="1" max="90"></label>
@@ -34,11 +74,11 @@
 		<div class="detail-right">
 		  <div class="result-box">
 			<p>결과 출력 영역</p>
-		  </div>
-		</div>
-	  </section>
-  </main>
+			</div>
+			</div>
+		</section>
+	</main>
 
-  <script src="script.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>

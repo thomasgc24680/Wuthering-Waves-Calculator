@@ -18,6 +18,7 @@ main {
   margin: 20px;
 }
 
+
 /* 탭 버튼 pill 스타일 */
 nav .tab {
   background: rgba(255,255,255,0.2);
@@ -35,12 +36,45 @@ nav .tab.active {
   background: rgba(255,255,255,0.5);
   color: black;
 }
+/*////////////////////*/
 
-/* 선택 화면 */
+/* 필터 버튼 */
+#select-screen-wrapper {
+  width: 1030px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* 버튼과 컨테이너 사이 간격 */
+}
+
+.filter-buttons button{
+  background: rgba(255,255,255,0.2);
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-buttons button img {
+  width: 32px;   /* 아이콘 크기 */
+  height: 32px;
+}
+
+.filter-buttons button:hover {
+  background: rgba(255,255,255,0.5);
+}
+
+.filter-buttons button.active {
+  background: rgba(255,255,255,0.8);
+}
+
+/* 캐릭터/무기 선택 화면 */
 #select-screen {
-  /*display: flex;*/
   margin : auto;
-  justify-content: ;
   align-items: center;
   min-height: 50vh;
 }
@@ -50,43 +84,49 @@ nav .tab.active {
   padding: 30px;
   border-radius: 16px;
 }
+/*//////////////////////////*/
 
-/* 카드 그리드 */
+/* 캐릭터/무기 카드 그리드 */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(6, 150px);
-  gap: 20px;
+  grid-template-columns: repeat(6, 130px);
+  gap: 30px;
+  width : 930px;
+  max-height : 650px;
+  overflow : auto;
+  
+  scrollbar-width: thin;        /* 파이어폭스용 (얇게) */
+  scrollbar-color: rgba(255,255,255,0.4) transparent; /* 파이어폭스 색상 */
 }
 
 .select-card {
   background: rgba(0,0,0,0.6);
+  width : 130px;
+  height : 160px;
   border-radius: 12px; /*라운딩*/
-  padding: 0px;
-  text-align: center;
-  color: white;
   cursor: pointer;
   transition: transform 0.2s;
 }
+
 .select-card img {
   width: 120px;
   height: 120px;
   object-fit: cover;
-  border-radius: 0px;
 }
 
 .select-card p {
-  margin: auto;
+  margin: 0px;
   font-size: 1rem;   /* 원하는 크기로 조정 */
   font-weight: bold;   /* 글씨 두껍게 */
   color: white;        /* 색상 변경 가능 */
   text-align: center;
 }
 
-/* 마우스 올려 있을 때 */
-.select-card:hover {
+.select-card:hover { /* 마우스 올려 있을 때 */
   transform: scale(1.05);
   background: rgba(255,255,255,0.2);
 }
+/*//////////////////////*/
 
 
 /* 캐릭터 상세 화면 */

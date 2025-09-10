@@ -1,18 +1,37 @@
+//attribute : aero(기류), conducto(전도), fusion(용융), glacio(응결), havoc(인멸), spectra(회절)
+//weapon : amplifier(증폭기), fist(권갑), greatsword(대검), gun(권총), straightsword(직검)
+
+const attribute = ["ALL", "glacio", "fusion", "conducto", "aero", "spectra", "havoc"];
+
 const characters = [
-		{ "name": "산화", "img": "images/Resonator/Sanhua.jpg", "attribute": "Glacio", "weapon" : "straightsword"},
-		{ "name": "페비", "img": "images/Resonator/Phoebe.jpg", "attribute": "Spectra", "weapon" : "amplifier"},
-		{ "name": "카르티시아", "img": "images/Resonator/Cartethyia.jpg", "attribute": "Aero", "weapon" : "straightsword"},
+		{ "name": "산화", "attribute": "Glacio", "weapon" : "straightsword", "img": "images/Resonator/Sanhua.jpg"},
+		{ "name": "페비", "attribute": "Spectra", "weapon" : "amplifier", "img": "images/Resonator/Phoebe.jpg"},
+		{ "name": "카르티시아", "attribute": "Aero", "weapon" : "straightsword", "img": "images/Resonator/Cartethyia.jpg"},
+		{ "name": "아우구스타", "attribute": "conducto", "weapon" : "greatsword", "img": "images/Resonator/Augusta.jpg"},
+		{ "name": "카를로타", "attribute": "glacio", "weapon" : "gun", "img": "images/Resonator/Carlotta.jpg"},
+		{ "name": "갈브레나", "attribute": "fusion", "weapon" : "gun", "img": "images/Resonator/Galbrena.jpg"},
+		{ "name": "플로로", "attribute": "glacio", "weapon" : "amplifier", "img": "images/Resonator/Phrolova.jpg"},
 	];
 
 const weapons = [
-		{ "name": "천년의 회류", "img" : "images/weapon/천년의 회류.jpg"}
+		{ "name": "천년의 회류", "weaponType" : "straightsword", "img" : "images/weapon/천년의 회류.jpg"}
 	];
+	
+const filterSets = {
+	character: {
+		attribute: ["ALL", "glacio", "fusion", "conducto", "aero", "spectra", "havoc"],
+		weaponType: ["ALL", "greatsword", "gun", "fist", "amplifier"]
+	},
+	weapon: {
+		weaponType: ["ALL", "greatsword", "gun", "fist", "amplifier"]
+	}
+};
 
-let currentTab = "character";
-
+// 시작 화면 - 캐릭터 선택 화면
 document.addEventListener("DOMContentLoaded", () => {
   switchTab('character');
 });
+
 
 function switchTab(tabName) {
   document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
@@ -21,6 +40,83 @@ function switchTab(tabName) {
   currentTab = tabName;
   renderSelectScreen();
 }
+
+/*
+function switchTab(tabName) {
+  renderFilterButtons(tabName);
+  if (tabName === "character") {
+    renderCharacters(characters);
+  } else {
+    renderWeapons(weapons);
+  }
+}
+
+// 🔹 버튼 렌더링
+const row1 = document.querySelector(".row1");
+const row2 = document.querySelector(".row2");
+
+filters.forEach((filter, index) => {
+  const btn = document.createElement("button");
+  btn.textContent = filter;
+  btn.onclick = () => applyFilter(filter, btn);
+
+  if (index < 6) row1.appendChild(btn);
+  else row2.appendChild(btn);
+});
+
+function renderCharacters(list) {
+  const container = document.getElementById("character-list");
+  container.innerHTML = "";
+  list.forEach(char => {
+    const card = document.createElement("div");
+    card.classList.add("select-card");
+    card.innerHTML = `
+      <img src="${char.img}" alt="${char.name}">
+      <p>${char.name}</p>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function renderWeapons(list) {
+  const container = document.getElementById("weapon-list");
+  container.innerHTML = "";
+  list.forEach(weapon => {
+    const card = document.createElement("div");
+    card.classList.add("select-card");
+    card.innerHTML = `
+      <img src="${weapon.img}" alt="${weapon.name}">
+      <p>${weapon.name}</p>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function applyFilter(type, filter, button) {
+  // 버튼 active 표시
+  document.querySelectorAll(".filter-buttons button").forEach(btn => btn.classList.remove("active"));
+  button.classList.add("active");
+
+  if (type === "character") {
+    if (filter === "전체") {
+      renderCharacters(characters);
+    } else {
+      const filtered = characters.filter(c =>
+        c.element === filter || c.weaponType === filter
+      );
+      renderCharacters(filtered);
+    }
+  } else if (type === "weapon") {
+    if (filter === "전체") {
+      renderWeapons(weapons);
+    } else {
+      const filtered = weapons.filter(w => w.weaponType === filter);
+      renderWeapons(filtered);
+    }
+  }
+}
+*/
+
 
 function renderSelectScreen() {
   const container = document.querySelector(".card-grid");
@@ -49,6 +145,7 @@ function renderSelectScreen() {
   document.getElementById("character-detail").classList.add("hidden");
 }
 
+
 /*
 //JSON 파일 사용 시 활성화
 async function renderCharacterSelect() {
@@ -76,7 +173,7 @@ async function renderCharacterSelect() {
 }
 */
 
-// 캐릭터 상세 화면 표시
+// 캐릭터 상세 화면 표시(개발 대기)
 function showCharacterDetail(char) {
   document.getElementById("select").classList.add("hidden");
   document.getElementById("character-detail").classList.remove("hidden");
