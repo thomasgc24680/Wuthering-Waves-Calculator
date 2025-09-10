@@ -111,18 +111,43 @@ nav .tab.active {
   border: none;
   outline: none;
 }
-#select-screen .select-card img {
+
+/* 이미지 전용 박스 */
+#select-screen .img-wrapper {
   width: 120px;
   height: 120px;
-  border-radius: 0px;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 등급별 배경 (이미지 뒷부분만 색 입힘) */
+#select-screen .img-wrapper.star-5 {
+  background: rgba(255, 215, 0, 0.5); /* 황금빛 */
+}
+#select-screen .img-wrapper.star-4 {
+  background: rgba(128, 0, 128, 0.5); /* 보라빛 */
+}
+
+#select-screen .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
 }
 
 #select-screen .select-card p {
-  margin: auto;
-  font-size: 1rem;   /* 원하는 크기로 조정 */
-  font-weight: bold;   /* 글씨 두껍게 */
-  color: white;        /* 색상 변경 가능 */
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
   text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 120px; /* 이미지 폭과 맞추기 */
 }
 
 /* 마우스 올려 있을 때 */
@@ -130,4 +155,3 @@ nav .tab.active {
   transform: scale(1.05);
   background: rgba(255,255,255,0.2);
 }
-/*//////////////////////*/

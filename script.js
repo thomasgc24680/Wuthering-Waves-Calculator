@@ -4,13 +4,13 @@
 const attribute = ["ALL", "glacio", "fusion", "conducto", "aero", "spectra", "havoc"];
 
 const characters = [
-		{ "name": "산화", "attribute": "Glacio", "weapon" : "straightsword", "img": "images/Resonator/Sanhua.jpg"},
-		{ "name": "페비", "attribute": "Spectra", "weapon" : "amplifier", "img": "images/Resonator/Phoebe.jpg"},
-		{ "name": "카르티시아", "attribute": "Aero", "weapon" : "straightsword", "img": "images/Resonator/Cartethyia.jpg"},
-		{ "name": "아우구스타", "attribute": "conducto", "weapon" : "greatsword", "img": "images/Resonator/Augusta.jpg"},
-		{ "name": "카를로타", "attribute": "glacio", "weapon" : "gun", "img": "images/Resonator/Carlotta.jpg"},
-		{ "name": "갈브레나", "attribute": "fusion", "weapon" : "gun", "img": "images/Resonator/Galbrena.jpg"},
-		{ "name": "플로로", "attribute": "glacio", "weapon" : "amplifier", "img": "images/Resonator/Phrolova.jpg"},
+		{ "name": "산화", "star": 4, "attribute": "Glacio", "weapon" : "straightsword", "img": "images/Resonator/Sanhua.jpg"},
+		{ "name": "페비", "star": 5, "attribute": "Spectra", "weapon" : "amplifier", "img": "images/Resonator/Phoebe.jpg"},
+		{ "name": "카르티시아", "star": 5, "attribute": "Aero", "weapon" : "straightsword", "img": "images/Resonator/Cartethyia.jpg"},
+		{ "name": "아우구스타", "star": 5, "attribute": "conducto", "weapon" : "greatsword", "img": "images/Resonator/Augusta.jpg"},
+		{ "name": "카를로타", "star": 5, "attribute": "glacio", "weapon" : "gun", "img": "images/Resonator/Carlotta.jpg"},
+		{ "name": "갈브레나", "star": 5, "attribute": "fusion", "weapon" : "gun", "img": "images/Resonator/Galbrena.jpg"},
+		{ "name": "플로로", "star": 5, "attribute": "glacio", "weapon" : "amplifier", "img": "images/Resonator/Phrolova.jpg"},
 	];
 
 const weapons = [
@@ -39,6 +39,36 @@ function switchTab(tabName) {
 
   currentTab = tabName;
   renderSelectScreen();
+}
+
+function renderSelectScreen() {
+  const container = document.querySelector(".card-grid");
+  container.innerHTML = "";
+
+  const data = currentTab === "character" ? characters : weapons;
+
+  data.forEach(item => {
+    const button = document.createElement("button");
+    button.classList.add("select-card");
+	
+	const starClass = item.star === 5 ? "star-5" : "star-4";
+    button.innerHTML = `
+		<div class="img-wrapper ${starClass}">
+			<img src="${item.img}" alt="${item.name}">
+		</div>
+		<p>${item.name}</p>
+    `;
+    if (currentTab === "character") {
+//      button.onclick = () => showCharacterDetail(item);
+        button.onclick = () => alert(`${item.name} 선택됨 (캐릭터)`); 
+    } else {
+      button.onclick = () => alert(`${item.name} 선택됨 (무기)`); 
+    }
+    container.appendChild(button);
+  });
+
+  // 선택 화면만 보이도록
+  document.getElementById("select-screen").classList.remove("hidden");
 }
 
 /*
@@ -116,33 +146,6 @@ function applyFilter(type, filter, button) {
   }
 }
 */
-
-
-function renderSelectScreen() {
-  const container = document.querySelector(".card-grid");
-  container.innerHTML = "";
-
-  const data = currentTab === "character" ? characters : weapons;
-
-  data.forEach(item => {
-    const button = document.createElement("button");
-    button.classList.add("select-card");
-    button.innerHTML = `
-      <img src="${item.img}" alt="${item.name}">
-      <p>${item.name}</p>
-    `;
-    if (currentTab === "character") {
-//      button.onclick = () => showCharacterDetail(item);
-        button.onclick = () => alert(`${item.name} 선택됨 (캐릭터)`); 
-    } else {
-      button.onclick = () => alert(`${item.name} 선택됨 (무기)`); 
-    }
-    container.appendChild(button);
-  });
-
-  // 선택 화면만 보이도록
-  document.getElementById("select-screen").classList.remove("hidden");
-}
 
 
 /*
