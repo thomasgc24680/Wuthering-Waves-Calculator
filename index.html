@@ -8,7 +8,7 @@
 </head>
 <body>
 	<header>
-		<h1>명조 계산기 (프로토타입)</h1>
+		<h1>명조 육성 계산기(개발 중)</h1>
 		<nav>
 			<button class="tab active" onclick="switchTab('character')">캐릭터</button>
 			<button class="tab" onclick="switchTab('weapon')">무기</button>
@@ -18,68 +18,67 @@
 	<main>
 		<!-- 🔽 캐릭터 탭 필터 -->
 		<section id="filter-screen">
-			<div class="filter-buttons">
-				<button data-filter="응결">
-					<img src="images/attribute/glacio.jpg" alt="응결">
+			<div class="filter-buttons attribute-filters">
+				<button data-type="attribute" data-filter="glacio">
+					<img src="images/Filter/attribute/glacio.jpg" alt="glacio">
 				</button>
-				<button data-filter="용융">
-					<img src="images/attribute/fusion.jpg" alt="용융">
+				<button data-type="attribute" data-filter="fusion">
+					<img src="images/Filter/attribute/fusion.jpg" alt="fusion">
 				</button>
-				<button data-filter="전도">
-					<img src="images/attribute/conducto.jpg" alt="전도">
+				<button data-type="attribute" data-filter="conducto">
+					<img src="images/Filter/attribute/conducto.jpg" alt="conducto">
 				</button>
-				<button data-filter="기류">
-					<img src="images/attribute/aero.jpg" alt="기류">
+				<button data-type="attribute" data-filter="aero">
+					<img src="images/Filter/attribute/aero.jpg" alt="aero">
 				</button>
-				<button data-filter="회절">
-					<img src="images/attribute/spectra.jpg" alt="회절">
+				<button data-type="attribute" data-filter="spectra">
+					<img src="images/Filter/attribute/spectra.jpg" alt="spectra">
 				</button>
-				<button data-filter="인멸">
-					<img src="images/attribute/havoc.jpg" alt="인멸">
+				<button data-type="attribute" data-filter="havoc">
+					<img src="images/Filter/attribute/havoc.jpg" alt="havoc">
 				</button>
 			</div>
-			<div class="filter-buttons">
-				<button data-filter="대검">
-					<img src="images/weapon/greatsword.jpg" alt="대검">
+			<div class="filter-buttons weapon-filters">
+				<button data-type="weapon" data-filter="greatsword">
+					<img src="images/Filter/weapon/greatsword.jpg" alt="greatsword">
 				</button>
-				<button data-filter="직검">
-					<img src="images/weapon/straightsword.jpg" alt="직검">
+				<button data-type="weapon" data-filter="straightsword">
+					<img src="images/Filter/weapon/straightsword.jpg" alt="straightsword">
 				</button>
-				<button data-filter="권총">
-					<img src="images/weapon/gun.jpg" alt="권총">
+				<button data-type="weapon" data-filter="gun">
+					<img src="images/Filter/weapon/gun.jpg" alt="gun">
 				</button>
-				<button data-filter="권갑">
-					<img src="images/weapon/fist.jpg" alt="권갑">
+				<button data-type="weapon" data-filter="fist">
+					<img src="images/Filter/weapon/fist.jpg" alt="fist">
 				</button>
-				<button data-filter="증폭기">
-					<img src="images/weapon/amplifier.jpg" alt="증폭기">
+				<button data-type="weapon" data-filter="amplifier">
+					<img src="images/Filter/weapon/amplifier.jpg" alt="amplifier">
+				</button>
+			</div>
+			<div class="filter-buttons star-filters">
+				<button class="weapon-only" data-type="star" data-filter="1">
+					<img src="images/Filter/star-1.jpg" alt="1">
+				</button>
+				<button class="weapon-only" data-type="star" data-filter="2">
+					<img src="images/Filter/star-2.jpg" alt="2">
+				</button>
+				<button class="weapon-only" data-type="star" data-filter="3">
+					<img src="images/Filter/star-3.jpg" alt="3">
+				</button>
+				<button data-type="star" data-filter="4">
+					<img src="images/Filter/star-4.jpg" alt="star-4">
+				</button>
+				<button data-type="star" data-filter="5">
+					<img src="images/Filter/star-5.jpg" alt="star-5">
 				</button>
 			</div>
 		</section>
 		
 			<!-- 캐릭터/무기 선택 화면 -->
 			<section id="select-screen" class="tab-content">
-				<div class="card-grid" id="character-list"></div>
+				<div class="card-grid"></div>
 			</section>
 		</div>
-		
-		<!-- 캐릭터 상세 화면 -->
-		<!--
-		<section id="character-detail" class="hidden tab-content" style="display: none;">
-		<div class="detail-left">
-		  <img id="detail-image" src="" alt="캐릭터 이미지">
-		  <label>LV. <input type="number" min="1" max="90"></label>
-		  <label>RANK. <input type="number" min="1" max="6"></label>
-		  <div class="skill-box">스킬 이미지</div>
-		  <div class="skill-priority">스킬 중요도</div>
-		</div>
-		<div class="detail-right">
-		  <div class="result-box">
-			<p>결과 출력 영역</p>
-			</div>
-			</div>
-		</section>
-		-->
 	</main>
 
 	<script src="script.js"></script>

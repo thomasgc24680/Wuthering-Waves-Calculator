@@ -82,6 +82,23 @@ nav .tab.active {
   background: rgba(255,255,255,0.8);
 }
 
+/* 필터 숨김 — 공간 유지, 즉시 안 보이고 클릭 불가 */
+.invisible {
+  visibility: hidden !important;    /* 즉시 안 보이게 */
+  pointer-events: none !important;  /* 클릭 불가 */
+}
+
+/* invisible이 적용된 요소와 그 자식들에게 transition 제거 (애니메이션 없음) */
+.invisible, .invisible * {
+  transition: none !important;
+  -webkit-transition: none !important;
+}
+
+.hidden {
+	display: none !important;
+}
+
+
 /* 캐릭터/무기 선택 화면 */
 #select-screen {
   margin : auto;
@@ -100,12 +117,13 @@ nav .tab.active {
 }
 
 #select-screen .select-card {
-  justify-content: flex-start;
+  display: flex;
   background: rgba(0,0,0,0.6);
   border-radius: 12px; /*라운딩*/
   padding: 0px;
   flex-direction: column;
   text-align: center;
+  justify-content: flex-start; /* 위쪽 기준 */
   cursor: pointer;
   transition: transform 0.2s;
   border: none;
@@ -114,21 +132,28 @@ nav .tab.active {
 
 /* 이미지 전용 박스 */
 #select-screen .img-wrapper {
+  align-self: flex-start; /* 부모 flex 안에서 위쪽 고정 */
   width: 120px;
   height: 120px;
   border-radius: 8px 8px 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
 /* 등급별 배경 (이미지 뒷부분만 색 입힘) */
 #select-screen .img-wrapper.star-5 {
-  background: rgba(255, 215, 0, 0.5); /* 황금빛 */
+  background: rgba(255, 215, 0, 0.5);
 }
 #select-screen .img-wrapper.star-4 {
-  background: rgba(128, 0, 128, 0.5); /* 보라빛 */
+  background: rgba(128, 0, 128, 0.5);
+}
+#select-screen .img-wrapper.star-3 {
+  background: rgba(135, 190, 225, 0.6);
+}
+#select-screen .img-wrapper.star-2 {
+  background: rgba(140, 200, 140, 0.5);
+}
+#select-screen .img-wrapper.star-1 {
+  background: rgba(128, 128, 128, 0.5);
 }
 
 #select-screen .img-wrapper img {
@@ -144,7 +169,9 @@ nav .tab.active {
   font-weight: bold;
   color: white;
   text-align: center;
-  white-space: nowrap;
+    white-space: normal;   /* 한 줄 강제 금지 → 여러 줄 허용 */
+  word-wrap: break-word; /* 긴 단어도 자동 줄바꿈 */
+
   text-overflow: ellipsis;
   overflow: hidden;
   width: 120px; /* 이미지 폭과 맞추기 */
