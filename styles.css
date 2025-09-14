@@ -102,32 +102,59 @@ nav .tab.active {
 /* 캐릭터/무기 선택 화면 */
 #select-screen {
   margin : auto;
-  align-items: center;
+  align-items: flex-start;
   min-height: 50vh;
+  height : 540px;
+  
+  display: flex;
+  justify-content: center;
 }
 
 /* 카드 그리드 */
 #select-screen .card-grid {
+  align-self: start;
+	
   background: rgba(255, 255, 255, 0.1);
   padding: 30px;
   border-radius: 16px;
   display: grid;
   grid-template-columns: repeat(6, 120px);
   gap: 30px;
+  
+  overflow-y: auto;       /* 카드가 많으면 여기서 스크롤 발생 */
+  align-items: start;     /* 각 grid cell 내부 아이템 세로 stretch 방지 */
+  align-content: start;   /* 행들이 컨테이너 높이에 맞춰 늘어나지 않음 */
+  height: auto;           /* 내용 크기만 차지 */
+}
+
+#select-screen .select-card p {
+  margin: 6px 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word; /* 긴 단어도 자동 줄바꿈 */
+
+  /*text-overflow: ellipsis;*/
+  overflow: visible;
+  width: 120px; /* 이미지 폭과 맞추기 */
 }
 
 #select-screen .select-card {
   display: flex;
   background: rgba(0,0,0,0.6);
-  border-radius: 12px; /*라운딩*/
+  border-radius: 12px;
   padding: 0px;
   flex-direction: column;
   text-align: center;
-  justify-content: flex-start; /* 위쪽 기준 */
+  justify-content: flex-start;
   cursor: pointer;
   transition: transform 0.2s;
   border: none;
   outline: none;
+  
+  height: auto;
 }
 
 /* 이미지 전용 박스 */
@@ -137,6 +164,37 @@ nav .tab.active {
   height: 120px;
   border-radius: 8px 8px 0 0;
   overflow: hidden;
+  position: relative;  /* 오버레이 기준점 */  
+  flex-shrink: 0;   /* 이미지 높이는 줄어들지 않음 */
+}
+
+#select-screen .img-wrapper .attr-icon {
+  position: absolute;
+  top: 4px;   /* 이미지 하단에서 약간 위 */
+  left: 4px;    /* 이미지 오른쪽에서 약간 안쪽 */
+  width: 28px;   /* 아이콘 크기 */
+  height: 28px;
+  border-radius: 50%;   /* 원형 마크 */
+  border: 2px solid white; /* 테두리로 구분 */
+  background: rgba(0,0,0,0.5); /* 반투명 배경 (가독성↑) */
+}
+
+#select-screen .img-wrapper .weap-icon {
+  position: absolute;
+  top: 4px;   /* 이미지 하단에서 약간 위 */
+  right: 4px;    /* 이미지 오른쪽에서 약간 안쪽 */
+  width: 28px;   /* 아이콘 크기 */
+  height: 28px;
+  border-radius: 50%;   /* 원형 마크 */
+  border: 2px solid white; /* 테두리로 구분 */
+  background: rgba(0,0,0,0.5); /* 반투명 배경 (가독성↑) */
+}
+
+#select-screen .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
 }
 
 /* 등급별 배경 (이미지 뒷부분만 색 입힘) */
@@ -154,27 +212,6 @@ nav .tab.active {
 }
 #select-screen .img-wrapper.star-1 {
   background: rgba(128, 128, 128, 0.5);
-}
-
-#select-screen .img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 0;
-}
-
-#select-screen .select-card p {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-    white-space: normal;   /* 한 줄 강제 금지 → 여러 줄 허용 */
-  word-wrap: break-word; /* 긴 단어도 자동 줄바꿈 */
-
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 120px; /* 이미지 폭과 맞추기 */
 }
 
 /* 마우스 올려 있을 때 */
