@@ -1,0 +1,129 @@
+/* 전체 레이아웃 */
+body {
+  margin: 0;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  background-color: #111c34;
+  color: white;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+.left, .right {
+  flex:1;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.left {
+  padding-left: 200px; /* 구분선과 떨어뜨리기 */
+}
+.right {
+  padding-left: 40px;  /* 구분선과 떨어뜨리기 */
+}
+
+/* 구분선 */
+.divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;                 /* 화면 정중앙 */
+  width: 2px;                /* 선 두께 */
+  
+  background: #ffffff;
+  transform: translateX(-50%);
+}
+
+/* 캐릭터 정보 전체 영역 (이미지 + Lv + Rank) */
+.character-info {
+  display: flex;              /* 가로 배치 */
+  align-items: flex-start;        /* 세로 가운데 정렬 */
+  gap: 20px;                  /* 이미지와 텍스트 간격 */
+}
+
+/* 캐릭터 이미지 */
+.character-image img {
+  width: 400px;               /* 원하는 크기로 조정 */
+  border-radius: 8px;
+  display: block;
+}
+
+/* Lv과 Rank 묶음 */
+.status {
+  margin-top: 130px;
+  display: flex;
+  flex-direction: column;     /* 세로로 배치 (Lv 위, Rank 아래) */
+  gap: 30px;
+}
+
+.level, .rank {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.label {
+  display: inline-block;
+  width: 60px;   /* 글자 폭 고정 */
+  font-weight: bold;
+}
+
+.level select,
+.rank select {
+  width: 50px;   /* 글자 폭 고정 */
+  padding: 4px 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* 스킬 */
+.skill-image img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-right: 8px;
+}
+
+.skill-image {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-priority {
+  display : flex;
+  font-size: 14px;
+  padding: 8px;
+  background: #f0f8ff;
+  border-radius: 6px;
+  border: 1px solid #cce;
+}
+
+.required-items {
+  display: grid;
+  grid-template-columns: repeat(4, 120px);
+  gap: 12px;
+  justify-content: start;
+}
+
+.required-items img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  padding: 6px;
+}
