@@ -60,20 +60,21 @@ header {
   gap: 30px;
 }
 
-.level, .rank {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
 .label {
   display: inline-block;
-  width: 60px;   /* 글자 폭 고정 */
+  width: 80px;   /* 글자 폭 고정 */
   font-weight: bold;
+  text-align : center;
 }
 
-.level select,
-.rank select {
+.character_level,
+.character_rank,
+.skill {
+  display: flex;
+  align-items: center;
+}	
+
+select {
   width: 50px;   /* 글자 폭 고정 */
   padding: 4px 6px;
   font-size: 14px;
@@ -83,8 +84,8 @@ header {
 }
 
 .inner-divider {
-  display: block;
-  width: 20px;
+  display: inline-block;
+  width: 10px;
   height: 1px;       /* select 높이에 맞춤 */
   background: #fff;
   margin: 0 8px;
