@@ -19,26 +19,27 @@
 				<div class="status">
 					<div class="level">
 						<span class="label">LV.</span>
-						<select>
-							<option value="curr lv_1">1</option>
-							<option value="curr lv_2">20</option>
-							<option value="curr lv_3">40</option>
-							<option value="curr lv_4">50</option>
-							<option value="curr lv_5">60</option>
-							<option value="curr lv_6">70</option>
-							<option value="curr lv_7">80</option>
-							<option value="curr lv_8">90</option>
-						</select>
-						<select>
-							<option value="goal lv_1">1</option>
-							<option value="goal lv_2">20</option>
-							<option value="goal lv_3">40</option>
-							<option value="goal lv_4">50</option>
-							<option value="goal lv_5">60</option>
-							<option value="goal lv_6">70</option>
-							<option value="goal lv_7">80</option>
-							<option value="goal lv_8">90</option>
-						</select>
+						<input list="currentlevel" id="currentlevel" name="currentlevel">
+						<datalist id="currentlevel">
+							<option value="1">
+							<option value="20">
+							<option value="40">
+							<option value="50">
+							<option value="60">
+							<option value="80">
+							<option value="90">
+						</datalist>
+						<span class="inner-divider"></span>
+						<input list="goallevel" id="goallevel" name="goallevel">
+						<datalist id="goallevel">
+							<option value="1">
+							<option value="20">
+							<option value="40">
+							<option value="50">
+							<option value="60">
+							<option value="80">
+							<option value="90">
+						</datalist>
 					</div>
 					<div class="rank">
 						<span class="label">RANK.</span>
@@ -50,6 +51,7 @@
 							<option value="curr rank_5">5</option>
 							<option value="curr rank_6">6</option>
 						</select>
+						<span class="inner-divider"></span>
 						<select>
 							<option value="goal rank_1">1</option>
 							<option value="goal rank_2">2</option>
@@ -73,5 +75,27 @@
 		  <div class="required-items">필요 아이템</div>
 		</div>
 	</div>
+	<script>
+		function bindValidation(inputId, datalistId) {
+		  const input = document.getElementById(inputId);
+		  const options = document.querySelectorAll(`#${datalistId} option`);
+
+		  if (!input) return; // 안전장치
+
+		  input.addEventListener("change", () => {
+			const validValues = Array.from(options).map(opt => opt.value);
+			if (!validValues.includes(input.value)) {
+			  alert("목록에 있는 값만 입력할 수 있습니다!");
+			  input.value = "";
+			}
+		  });
+		}
+
+		// 현재 레벨 입력 검증
+		bindValidation("currentlevel", "currentlevel");
+
+		// 목표 레벨 입력 검증
+		bindValidation("goallevel", "goallevel");
+	</script>
 </body>
 </html>
