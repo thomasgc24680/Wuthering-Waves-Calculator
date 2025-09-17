@@ -136,7 +136,7 @@ function applyFilter(filter) {
 			<img class="attr-icon" src="images/attribute/${item.attribute}.jpg" alt="${item.attribute}">
 			<img class="weap-icon" src="images/filter/weapon/${item.weapon}.jpg" alt="${item.weapon}">
 		  </div>
-		  <p>${item.name}</p>
+		  <p>${item.KR_name}</p>
 		`;
 		button.onclick = () => goToDetail(item.name);
     }
@@ -146,7 +146,7 @@ function applyFilter(filter) {
 			<img src="${item.img}" alt="${item.name}">
 			<img class="weap-icon" src="images/filter/weapon/${item.weapon}.jpg" alt="${item.weapon}">
 		  </div>
-		  <p>${item.name}</p>
+		  <p>${item.KR_name}</p>
 		`;
       button.onclick = () => goToDetail(item.name);
     }

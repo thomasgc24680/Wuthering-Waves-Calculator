@@ -59,5 +59,55 @@ window.onload = function() {
 	const detailImg = character.img.replace(".jpg", "-detail.jpg");
     document.querySelector(".character-image").innerHTML =
       `<img src="${detailImg}" alt="${character.name}">`;
+	  
+	createSkillButtons(character);
   }
 };
+
+function createSkillButtons(character) {
+  const container = document.getElementById("skill-buttons");
+  container.innerHTML = "";
+
+  // 버튼 이미지 규칙
+  const btnImages = [
+    character["skill bonus2"],                        // 1번째
+    character["skill bonus1"],                        // 2번째
+    `${character.name}_skill1.jpg`,                   // 3번째 (하단)
+    character["skill bonus1"],                        // 4번째
+    character["skill bonus2"],                        // 5번째
+  ];
+
+  // 2줄 x 5칸
+  for (let row = 0; row < 2; row++) {
+    for (let col = 0; col < 5; col++) {
+      const btn = document.createElement("button");
+
+      // 상단(row=0), 하단(row=1) 구분
+      let imgSrc;
+      if (col === 2) { // 가운데 버튼만 skill1/skill2 구분
+        imgSrc = row === 0
+          ? `images/skill/${character.name}_skill2.jpg`
+          : `images/skill/${character.name}_skill1.jpg`;
+      } else {
+        imgSrc = `images/skill/link/${btnImages[col]}.jpg`; 
+      }
+
+      btn.innerHTML = `<img src="${imgSrc}" alt="skill">`;
+
+      // 클릭 동작
+      btn.addEventListener("click", () => {
+        if (row === 0) {
+          // 상단 버튼 → 바로 아래 버튼 활성화
+          const belowBtn = container.children[5 + col];
+          belowBtn.classList.add("active");
+        } else {
+          // 하단 버튼 → 자기 자신만 활성화
+          container.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+        }
+      });
+
+      container.appendChild(btn);
+    }
+  }
+}
