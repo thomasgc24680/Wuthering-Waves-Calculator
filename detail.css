@@ -8,7 +8,7 @@ body {
 
 header {
   text-align: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 .container {
@@ -97,7 +97,7 @@ select {
   grid-template-columns: repeat(5, auto); /* 5개씩 */
   gap: 50px;
   width: 500px; /* character-info 이미지 폭에 맞춤 */
-  margin: 0px auto;       /* 중앙 정렬 */
+  margin: 0px auto 20px;       /*top right bottom left*/
   justify-items: center;
 }
 
@@ -169,31 +169,25 @@ select {
   opacity: 1;
 }
 
-
-
-
-/* 스킬 */
-.skill-image {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* 버튼 위 텍스트 */
+.skill-title {
+  /*text-align: left;*/
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  /*margin-left: 80px;*/
+  margin-bottom: 10px;
+  color: #fff;
+  position: relative;
 }
 
-.skill-image img {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-  margin-right: 8px;
+/* 스킬 이미지 영역 */
+#skill-image {
+  text-align: center;   /* 가운데 정렬 */
 }
 
-.skill-priority {
-  width : 600px;
-  font-size: 14px;
-  padding: 8px;
-  background: #f0f8ff;
-  border-radius: 6px;
-  border: 1px solid #cce;
+.skill-lv-up {
+  width: 500px;         /* 크기 조절 */
 }
 
 

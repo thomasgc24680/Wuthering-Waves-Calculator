@@ -3,7 +3,7 @@
 
 //캐릭터
 const characters = [
-		{ "name": "sanhua", "star": 4, "attribute": "glacio", "weapon" : "straightsword", "img": "images/resonator/sanhua.jpg",
+		{ "name": "sanhua", "star": 4, "attribute": "glacio", "weapon" : "straightsword",
 		  "grow item": "", "skill bonus1" : "atk", "skill bonus2" : "glacio dmg",
 		  "KR_name" : "산화"},
 		{ "name": "phoebe", "star": 5, "attribute": "spectra", "weapon" : "amplifier", "img": "images/resonator/phoebe.jpg",

@@ -132,7 +132,7 @@ function applyFilter(filter) {
 	if (currentTab === "character") {	
 		button.innerHTML = `
 		  <div class="img-wrapper ${starClass}">
-			<img src="${item.img}" alt="${item.name}">
+			<img src="images/resonator/${item.name}.jpg" alt="${item.name}">
 			<img class="attr-icon" src="images/attribute/${item.attribute}.jpg" alt="${item.attribute}">
 			<img class="weap-icon" src="images/filter/weapon/${item.weapon}.jpg" alt="${item.weapon}">
 		  </div>
@@ -143,7 +143,7 @@ function applyFilter(filter) {
 	else {
 		button.innerHTML = `
 		  <div class="img-wrapper ${starClass}">
-			<img src="${item.img}" alt="${item.name}">
+			<img src="images/weapon/${item.name}.jpg" alt="${item.name}">
 			<img class="weap-icon" src="images/filter/weapon/${item.weapon}.jpg" alt="${item.weapon}">
 		  </div>
 		  <p>${item.KR_name}</p>

@@ -1,15 +1,23 @@
 const skills = ["basic", "skill", "circuit", "liberation", "intro"];
-const skills_KR = ["일반공격", "공명스킬", "공명회로", "공명해방", "변주스킬"];
+const skills_languege = [
+		["basic", "skill", "circuit", "liberation", "intro"],
+		["일반공격", "공명스킬", "공명회로", "공명해방", "변주스킬"],
+	];
+	
+const skills_button_title = ["Skill Connection Points", "스킬 연결점", "", ""];
+const skills_image_title = ["Skill level up order", "스킬 레벨 업 순서", "", ""];
+
+
 const container = document.getElementById("status-container");
 
-skills.forEach((skill, index) => {
+skills_languege[0].forEach((skill, index) => {
   const wrapper = document.createElement("div");
   wrapper.classList.add("skill");
 
   //라벨
   const label = document.createElement("span");
   label.classList.add("label");
-  label.textContent = skills_KR[index];
+  label.textContent = skills_languege[1][index];
   
   const skillId = skill.toLowerCase().replace(/\s+/g, "_");
 
@@ -56,11 +64,17 @@ window.onload = function() {
   const character = characters.find(c => c.name === characterName);
   if (character) {
 	document.title = `${characterName} - 육성 계산기`;
-	const detailImg = character.img.replace(".jpg", "-detail.jpg");
+	const detailImg = `images/resonator/${character.name}-detail.jpg`;
     document.querySelector(".character-image").innerHTML =
       `<img src="${detailImg}" alt="${character.name}">`;
-	  
+	
+	const skillBtnTitle = document.getElementById("skill-button-title");
+    skillBtnTitle.textContent = skills_button_title[1];
 	createSkillButtons(character);
+	
+	const skillImgTitle = document.getElementById("skill-image-title");
+    skillImgTitle.textContent = skills_image_title[1];
+	createSkillImage(character);
   }
 };
 
@@ -136,4 +150,16 @@ function createSkillButtons(character) {
 
     container.appendChild(colDiv);
   }
+}
+
+function createSkillImage(character) {
+  const imageContainer = document.getElementById("skill-image");
+  imageContainer.innerHTML = ""; // 초기화
+
+  const skillLvUpImg = document.createElement("img");
+  skillLvUpImg.classList.add("skill-lv-up");
+  skillLvUpImg.src = `images/skill/${character.name}_skill_lv_up.jpg`;
+  skillLvUpImg.alt = `${character.name} 스킬 레벨업`;
+
+  imageContainer.appendChild(skillLvUpImg);
 }
