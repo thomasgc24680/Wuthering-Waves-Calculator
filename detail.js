@@ -70,44 +70,70 @@ function createSkillButtons(character) {
 
   // 버튼 이미지 규칙
   const btnImages = [
-    character["skill bonus2"],                        // 1번째
-    character["skill bonus1"],                        // 2번째
-    `${character.name}_skill1.jpg`,                   // 3번째 (하단)
-    character["skill bonus1"],                        // 4번째
-    character["skill bonus2"],                        // 5번째
+    character["skill bonus2"], // 1번째
+    character["skill bonus1"], // 2번째
+    `${character.name}_skill1.jpg`, // 3번째 (하단)
+    character["skill bonus1"], // 4번째
+    character["skill bonus2"], // 5번째
   ];
 
-  // 2줄 x 5칸
-  for (let row = 0; row < 2; row++) {
-    for (let col = 0; col < 5; col++) {
-      const btn = document.createElement("button");
+  // 5열 반복
+  for (let col = 0; col < 5; col++) {
+    const colDiv = document.createElement("div");
+    colDiv.classList.add("skill-col");
 
-      // 상단(row=0), 하단(row=1) 구분
-      let imgSrc;
-      if (col === 2) { // 가운데 버튼만 skill1/skill2 구분
-        imgSrc = row === 0
-          ? `images/skill/${character.name}_skill2.jpg`
-          : `images/skill/${character.name}_skill1.jpg`;
-      } else {
-        imgSrc = `images/skill/link/${btnImages[col]}.jpg`; 
-      }
-
-      btn.innerHTML = `<img src="${imgSrc}" alt="skill">`;
-
-      // 클릭 동작
-      btn.addEventListener("click", () => {
-        if (row === 0) {
-          // 상단 버튼 → 바로 아래 버튼 활성화
-          const belowBtn = container.children[5 + col];
-          belowBtn.classList.add("active");
-        } else {
-          // 하단 버튼 → 자기 자신만 활성화
-          container.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-        }
-      });
-
-      container.appendChild(btn);
+    // === 상단 버튼 ===
+    const topBtn = document.createElement("button");
+    let topImg;
+    if (col === 2) {
+      topImg = `images/skill/${character.name}_skill2.jpg`;
+    } else {
+      topImg = `images/skill/link/${btnImages[col]}.jpg`;
     }
+    topBtn.innerHTML = `<img src="${topImg}" alt="skill">`;
+
+    // === 연결선 ===
+    const connector = document.createElement("div");
+    connector.classList.add("connector");
+
+    // === 하단 버튼 ===
+    const bottomBtn = document.createElement("button");
+    let bottomImg;
+    if (col === 2) {
+      bottomImg = `images/skill/${character.name}_skill1.jpg`;
+    } else {
+      bottomImg = `images/skill/link/${btnImages[col]}.jpg`;
+    }
+    bottomBtn.innerHTML = `<img src="${bottomImg}" alt="skill">`;
+
+    // === 클릭 동작 ===
+    // 상단 버튼 → 상단+하단 둘 다 활성화
+    topBtn.addEventListener("click", () => {
+	  const isActive = topBtn.classList.contains("active");
+      if (isActive) {
+        topBtn.classList.remove("active");
+      } else {
+        topBtn.classList.add("active");
+        bottomBtn.classList.add("active");
+      }
+    });
+
+    // 하단 버튼 → 자기 자신만 활성화
+    bottomBtn.addEventListener("click", () => {
+      const isActive = bottomBtn.classList.contains("active");
+      if (isActive) {
+        bottomBtn.classList.remove("active");
+		topBtn.classList.remove("active");
+      } else {
+        bottomBtn.classList.add("active");
+      }
+    });
+
+    // colDiv 조립
+    colDiv.appendChild(topBtn);
+    colDiv.appendChild(connector);
+    colDiv.appendChild(bottomBtn);
+
+    container.appendChild(colDiv);
   }
 }
