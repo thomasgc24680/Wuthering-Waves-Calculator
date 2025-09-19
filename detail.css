@@ -12,27 +12,32 @@ header {
 }
 
 .container {
-  display: flex;
-  justify-content: center;
   position: relative;
+  display: flex;
+  justify-content: flex-start;
   max-width : 1400px;
   width : 100%;
   margin: 0 auto;
+  flex-wrap: nowrap;
 }
 
 .left, .right {
-  flex:1;
+  flex: 0 0 50%;
   padding: 20px;
   border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* 내부 중앙 정렬 */
 }
 
 /* 구분선 */
 .divider {
   position: absolute;
-  top: 0;
+  top: 20px;
   bottom: 0;
   left: 50%;                 /* 화면 정중앙 */
   width: 2px;                /* 선 두께 */
+  height : 95%;
   
   background: #ffffff;
   transform: translateX(-50%);
@@ -43,6 +48,7 @@ header {
   display: flex;              /* 가로 배치 */
   align-items: flex-start;        /* 세로 가운데 정렬 */
   gap: 10px;                  /* 이미지와 텍스트 간격 */
+  margin-right: 50px;
 }
 
 /* 캐릭터 이미지 */
@@ -96,7 +102,8 @@ select {
   display: grid;
   grid-template-columns: repeat(5, auto); /* 5개씩 */
   gap: 50px;
-  width: 500px; /* character-info 이미지 폭에 맞춤 */
+  width: 100%; /* character-info 이미지 폭에 맞춤 */
+  max-width: 500px;
   margin: 0px auto 20px;       /*top right bottom left*/
   justify-items: center;
 }
@@ -171,43 +178,83 @@ select {
 
 /* 버튼 위 텍스트 */
 .skill-title {
-  /*text-align: left;*/
+  width: 100%
   text-align: center;
   font-weight: bold;
   font-size: 16px;
-  /*margin-left: 80px;*/
   margin-bottom: 10px;
   color: #fff;
   position: relative;
 }
 
 /* 스킬 이미지 영역 */
-#skill-image {
-  text-align: center;   /* 가운데 정렬 */
+.skill-upgrade-container {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #1c1c1c;
+  border-radius: 10px;
+  text-align: center;
 }
 
-.skill-lv-up {
-  width: 500px;         /* 크기 조절 */
+.skill-upgrade {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* left 컨테이너 안에서 가운데 정렬 */
+  gap: 8px;
+  width: 100%;             /* left 컨테이너 폭 기준 */
+  max-width: 500px;        /* 필요시 최대 폭 제한 */
+  margin: 0 auto;          /* left 컨테이너 안에서 가운데 */
 }
 
-
-
-
-/* 필요 아이템 */
-.required-items {
-  margin-left:40px;
-  display: grid;
-  grid-template-columns: repeat(4, 120px);
-  gap: 12px;
-  justify-content: start;
-}
-
-.required-items img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+.skill-icon {
+  width: 48px;
+  height: 48px;
   border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #555;
+}
+
+.skill-arrow {
+  font-size: 20px;
+  color: #ddd;
+  font-weight: bold;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;  /* 세로 배치 */
+  align-items: center;     /* 중앙 정렬 */
+  gap: 4px;                /* 이미지와 텍스트 간격 */
+}
+
+.skill-label {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+}
+
+
+
+
+
+
+/* Right 컨테이너 스타일 */
+#right-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* 줄 간격 */
+}
+
+.item-row {
+  display: flex;
+  gap: 10px; /* 이미지 간격 */
+}
+
+.item-img {
+  width: 60px;   /* 이미지 크기 */
+  height: 60px;  /* 이미지 크기 */
+  object-fit: cover;
+  border-radius: 6px; /* 살짝 둥글게 */
   border: 1px solid #ccc;
-  background: #fafafa;
-  padding: 6px;
 }

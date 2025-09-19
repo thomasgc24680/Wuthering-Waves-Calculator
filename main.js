@@ -1,28 +1,3 @@
-//attribute : glacio(응결), fusion(용융), conducto(전도), aero(기류), spectra(회절), havoc(인멸)
-//weapon : greatsword(대검), straightsword(직검), gun(권총), fist(권갑), amplifier(증폭기)
-
-//속성
-const attribute = ["ALL", "glacio", "fusion", "conducto", "aero", "spectra", "havoc"];
-
-//필터
-const filterSets = {
-	character: {
-		attribute: ["ALL", "glacio", "fusion", "conducto", "aero", "spectra", "havoc"],
-		weaponType: ["ALL", "greatsword", "gun", "fist", "amplifier"]
-	},
-	weapon: {
-		weaponType: ["ALL", "greatsword", "gun", "fist", "amplifier"]
-	}
-};
-////////////////////////////
-
-let currentTab = 'character';
-let currentAttributeFilter = "ALL";
-let currentWeaponFilter = "ALL";
-let currentStarFilter = "ALL";
-
-
-
 // 시작 화면 - 캐릭터 선택 화면
 document.addEventListener("DOMContentLoaded", () => {
   // 필터 버튼 이벤트 바인딩 (동적으로 추가되어도 문제없게)
@@ -34,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   switchTab('character');
 });
 
+//탭 변경(캐릭터 / 무기)
 function switchTab(tabName) {
 	const tabIndex = tabName === 'character' ? 0 : 1;
 	document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
@@ -68,6 +44,7 @@ function switchTab(tabName) {
 	console.log("switchTab");
 }
 
+//필터 버튼 클릭 동작
 function onFilterButtonClick(e) {
   const btn = e.currentTarget;
   const type = btn.dataset.type;
@@ -92,65 +69,65 @@ function onFilterButtonClick(e) {
   applyFilter();
 }
 
+//필터
 function applyFilter(filter) {
   const container = document.querySelector(".card-grid");
   container.innerHTML = "";
 
   const data = currentTab === "character" ? characters : weapons;
 
-  const filtered = data.filter(item => {
+  const filtered = data.filter(card => {
     if (currentTab === "character") {
       const attrMatch = currentAttributeFilter === "ALL" || 
-                        item.attribute.toLowerCase() === currentAttributeFilter.toLowerCase();
+                        card.attribute.toLowerCase() === currentAttributeFilter.toLowerCase();
       const weaponMatch = currentWeaponFilter === "ALL" || 
-                          item.weapon.toLowerCase() === currentWeaponFilter.toLowerCase();
+                          card.weapon.toLowerCase() === currentWeaponFilter.toLowerCase();
 	  const starMatch = currentStarFilter === "ALL" || 
-                          String(item.star) === currentStarFilter;
+                          String(card.star) === currentStarFilter;
       return attrMatch && weaponMatch && starMatch; // ✅ AND 조건
     } else {
       const weaponMatch = currentWeaponFilter === "ALL" ||
-             item.weaponType.toLowerCase() === currentWeaponFilter.toLowerCase();
+             card.weaponType.toLowerCase() === currentWeaponFilter.toLowerCase();
 	  const starMatch = currentStarFilter === "ALL" || 
-                          String(item.star) === currentStarFilter;
+                          String(card.star) === currentStarFilter;
 	  return weaponMatch && starMatch; // ✅ AND 조건
     }
   });
 
   container.innerHTML = "";
-  filtered.forEach(item => {
+  filtered.forEach(card => {
     const button = document.createElement("button");
     button.classList.add("select-card");
 
 	let starClass;
 	
-	if(item.star === 5) starClass = "star-5"
-	else if(item.star === 4) starClass = "star-4";
-	else if(item.star === 3) starClass = "star-3";
-	else if(item.star === 2) starClass = "star-2";
+	if(card.star === 5) starClass = "star-5"
+	else if(card.star === 4) starClass = "star-4";
+	else if(card.star === 3) starClass = "star-3";
+	else if(card.star === 2) starClass = "star-2";
 	else starClass = "star-1";
 	
 	if (currentTab === "character") {	
 		button.innerHTML = `
 		  <div class="img-wrapper ${starClass}">
-			<img src="images/resonator/${item.name}.jpg" alt="${item.name}">
-			<img class="attr-icon" src="images/attribute/${item.attribute}.jpg" alt="${item.attribute}">
-			<img class="weap-icon" src="images/filter/weapon/${item.weapon}.jpg" alt="${item.weapon}">
+			<img src="images/resonator/${card.name}/main.jpg" alt="${card.name}">
+			<img class="attr-icon" src="images/icon/attribute/${card.attribute}.jpg" alt="${card.attribute}">
+			<img class="weap-icon" src="images/icon/weapon/${card.weapon}.jpg" alt="${card.weapon}">
 		  </div>
-		  <p>${item.KR_name}</p>
+		  <p>${card.KR_name}</p>
 		`;
-		button.onclick = () => goToDetail(item.name);
+		button.onclick = () => goToDetail(card.name);
     }
 	else {
 		button.innerHTML = `
 		  <div class="img-wrapper ${starClass}">
-			<img src="images/weapon/${item.name}.jpg" alt="${item.name}">
-			<img class="weap-icon" src="images/filter/weapon/${item.weapon}.jpg" alt="${item.weapon}">
+			<img src="images/weapon/${card.name}.jpg" alt="${card.name}">
+			<img class="weap-icon" src="images/icon/weapon/${card.weapon}.jpg" alt="${card.weapon}">
 		  </div>
-		  <p>${item.KR_name}</p>
+		  <p>${card.KR_name}</p>
 		`;
-      button.onclick = () => goToDetail(item.name);
+      button.onclick = () => goToDetail(card.name);
     }
-	
 	
     container.appendChild(button);
   });
@@ -158,6 +135,7 @@ function applyFilter(filter) {
 
 const searchInput = document.getElementById("filter-input");
 
+//검색
 searchInput.addEventListener("input", () => {
   const query = searchInput.value.toLowerCase().trim();
 

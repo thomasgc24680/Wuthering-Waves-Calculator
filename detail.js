@@ -1,5 +1,5 @@
 const skills = ["basic", "skill", "circuit", "liberation", "intro"];
-const skills_languege = [
+const skills_language = [
 		["basic", "skill", "circuit", "liberation", "intro"],
 		["일반공격", "공명스킬", "공명회로", "공명해방", "변주스킬"],
 	];
@@ -10,14 +10,14 @@ const skills_image_title = ["Skill level up order", "스킬 레벨 업 순서", 
 
 const container = document.getElementById("status-container");
 
-skills_languege[0].forEach((skill, index) => {
+skills_language[0].forEach((skill, index) => {
   const wrapper = document.createElement("div");
   wrapper.classList.add("skill");
 
   //라벨
   const label = document.createElement("span");
   label.classList.add("label");
-  label.textContent = skills_languege[1][index];
+  label.textContent = skills_language[1][index];
   
   const skillId = skill.toLowerCase().replace(/\s+/g, "_");
 
@@ -64,7 +64,7 @@ window.onload = function() {
   const character = characters.find(c => c.name === characterName);
   if (character) {
 	document.title = `${characterName} - 육성 계산기`;
-	const detailImg = `images/resonator/${character.name}-detail.jpg`;
+	const detailImg = `images/resonator/${character.name}/detail.jpg`;
     document.querySelector(".character-image").innerHTML =
       `<img src="${detailImg}" alt="${character.name}">`;
 	
@@ -74,7 +74,8 @@ window.onload = function() {
 	
 	const skillImgTitle = document.getElementById("skill-image-title");
     skillImgTitle.textContent = skills_image_title[1];
-	createSkillImage(character);
+	
+	renderSkillUpgrade(character);
   }
 };
 
@@ -100,9 +101,9 @@ function createSkillButtons(character) {
     const topBtn = document.createElement("button");
     let topImg;
     if (col === 2) {
-      topImg = `images/skill/${character.name}_skill2.jpg`;
+      topImg = `images/resonator/${character.name}/special_skill2.jpg`;
     } else {
-      topImg = `images/skill/link/${btnImages[col]}.jpg`;
+      topImg = `images/icon/skill/${btnImages[col]}.jpg`;
     }
     topBtn.innerHTML = `<img src="${topImg}" alt="skill">`;
 
@@ -114,9 +115,9 @@ function createSkillButtons(character) {
     const bottomBtn = document.createElement("button");
     let bottomImg;
     if (col === 2) {
-      bottomImg = `images/skill/${character.name}_skill1.jpg`;
+      bottomImg = `images/resonator/${character.name}/special_skill1.jpg`;
     } else {
-      bottomImg = `images/skill/link/${btnImages[col]}.jpg`;
+      bottomImg = `images/icon/skill/${btnImages[col]}.jpg`;
     }
     bottomBtn.innerHTML = `<img src="${bottomImg}" alt="skill">`;
 
@@ -152,14 +153,45 @@ function createSkillButtons(character) {
   }
 }
 
-function createSkillImage(character) {
-  const imageContainer = document.getElementById("skill-image");
-  imageContainer.innerHTML = ""; // 초기화
+function renderSkillUpgrade(character) {
+  const pathContainer = document.getElementById("skill-upgrade");
+  pathContainer.innerHTML = ""; // 초기화
 
-  const skillLvUpImg = document.createElement("img");
-  skillLvUpImg.classList.add("skill-lv-up");
-  skillLvUpImg.src = `images/skill/${character.name}_skill_lv_up.jpg`;
-  skillLvUpImg.alt = `${character.name} 스킬 레벨업`;
+  const skills = [
+    character.first_skill,
+    character.second_skill,
+    character.third_skill,
+    character.fourth_skill,
+    character.fifth_skill
+  ];
 
-  imageContainer.appendChild(skillLvUpImg);
+  skills.forEach((skillKey, index) => {
+    // 이미지 + 텍스트 묶음
+    const skillWrapper = document.createElement("div");
+    skillWrapper.classList.add("skill-item");
+
+    // 스킬 아이콘
+    const img = document.createElement("img");
+    img.src = `images/resonator/${character.name}/${skillKey}.jpg`;
+    img.alt = skillKey;
+    img.classList.add("skill-icon");
+
+    // 스킬 이름
+    const skillNameIndex = skills_language[0].indexOf(skillKey); // 키값 기준 인덱스
+    const label = document.createElement("span");
+    label.textContent = skills_language[1][skillNameIndex] || skillKey;
+    label.classList.add("skill-label");
+
+    skillWrapper.appendChild(img);
+    skillWrapper.appendChild(label);
+    pathContainer.appendChild(skillWrapper);
+
+    // 마지막이 아니면 > 기호 추가
+    if (index < skills.length - 1) {
+      const arrow = document.createElement("span");
+      arrow.textContent = ">";
+      arrow.classList.add("skill-arrow");
+      pathContainer.appendChild(arrow);
+    }
+  });
 }
