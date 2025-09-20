@@ -21,13 +21,17 @@ header {
   flex-wrap: nowrap;
 }
 
+.left {
+  align-items: center;      /* 내부 중앙 정렬 */
+}
+
 .left, .right {
-  flex: 0 0 50%;
+  flex: 0 0 699px;
   padding: 20px;
+  box-sizing: border-box;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  align-items: center;      /* 내부 중앙 정렬 */
 }
 
 /* 구분선 */
@@ -35,7 +39,7 @@ header {
   position: absolute;
   top: 20px;
   bottom: 0;
-  left: 50%;                 /* 화면 정중앙 */
+  left: 699px;                 /* 화면 정중앙 */
   width: 2px;                /* 선 두께 */
   height : 95%;
   
@@ -43,12 +47,13 @@ header {
   transform: translateX(-50%);
 }
 
+
+
 /* 캐릭터 정보 전체 영역 (이미지 + Lv + Rank) */
 .character-info {
   display: flex;              /* 가로 배치 */
   align-items: flex-start;        /* 세로 가운데 정렬 */
   gap: 10px;                  /* 이미지와 텍스트 간격 */
-  margin-right: 50px;
 }
 
 /* 캐릭터 이미지 */
@@ -237,24 +242,110 @@ select {
 
 
 
+/* 부모 섹션 조정 */
+#right-screen {
+  display: block;       /* flex였다면 제거 */
+  width: auto;          /* grid 내용만 차지 */
+}
 
+/* 그리드 컨테이너 */
+#right-container.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 120px); /* 카드 가로 수 자동 */
+  gap: 20px; /* 카드 간 간격 */
+  padding: 10px;
+  justify-content: start; /* 왼쪽 정렬 */
+  width: max-content;     /* 내용 폭만 차지 */
+}
 
-/* Right 컨테이너 스타일 */
-#right-container {
+/* 카드 기본 스타일 */
+.img-card {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* 줄 간격 */
+  align-items: center;
 }
 
-.item-row {
-  display: flex;
-  gap: 10px; /* 이미지 간격 */
+/* 이미지 영역 */
+.img-wrapper {
+  width: 120px;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
-.item-img {
-  width: 60px;   /* 이미지 크기 */
-  height: 60px;  /* 이미지 크기 */
+/* 이미지 크기 맞춤 */
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 6px; /* 살짝 둥글게 */
-  border: 1px solid #ccc;
+}
+
+/* 필요/현재 개수 영역 */
+.need-count {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  align-items: center;       /* 세로 가운데 */
+  justify-content: center;   /* 가로 가운데 */
+}
+
+.have-count {
+  display: flex;
+  align-items: center;        /* 세로 중앙 */
+  justify-content: center;    /* 가운데 정렬 */
+  width: 120px;               /* 이미지 폭과 동일 */
+  height: 30px;
+  gap: 2px;                   /* 버튼과 input 간격 */
+}
+
+.have-count button {
+  width: 24px;
+  height: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.have-count input {
+  flex: 1;
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 1);
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.have-count input::-webkit-inner-spin-button,
+.have-count input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* 등급별 배경색 */
+.img-wrapper.star-5 {
+  background: rgba(255, 215, 0, 0.5);
+}
+
+.img-wrapper.star-4 {
+  background: rgba(128, 0, 128, 0.5);
+}
+
+.img-wrapper.star-3 {
+  background: rgba(135, 190, 225, 0.6);
+}
+
+.img-wrapper.star-2 {
+  background: rgba(140, 200, 140, 0.5);
+}
+
+.img-wrapper.star-1 {
+  background: rgba(128, 128, 128, 0.5);
 }
