@@ -1,6 +1,6 @@
-const skills = ["basic", "skill", "circuit", "liberation", "intro"];
+const skills = ["attack", "skill", "circuit", "liberation", "intro"];
 const skills_language = [
-		["basic", "skill", "circuit", "liberation", "intro"],
+		["attack", "skill", "circuit", "liberation", "intro"],
 		["일반공격", "공명스킬", "공명회로", "공명해방", "변주스킬"],
 	];
 	
@@ -87,11 +87,11 @@ function createSkillButtons(character) {
 
   // 버튼 이미지 규칙
   const btnImages = [
-    character["skill bonus2"], // 1번째
-    character["skill bonus1"], // 2번째
+    character["stat bonus2"], // 1번째
+    character["stat bonus1"], // 2번째
     `${character.name}_skill1.jpg`, // 3번째 (하단)
-    character["skill bonus1"], // 4번째
-    character["skill bonus2"], // 5번째
+    character["stat bonus1"], // 4번째
+    character["stat bonus2"], // 5번째
   ];
 
   // 5열 반복
@@ -103,7 +103,7 @@ function createSkillButtons(character) {
     const topBtn = document.createElement("button");
     let topImg;
     if (col === 2) {
-      topImg = `images/resonator/${character.name}/special_skill2.jpg`;
+      topImg = `images/resonator/${character.name}/inherent2.jpg`;
     } else {
       topImg = `images/icon/skill/${btnImages[col]}.jpg`;
     }
@@ -117,7 +117,7 @@ function createSkillButtons(character) {
     const bottomBtn = document.createElement("button");
     let bottomImg;
     if (col === 2) {
-      bottomImg = `images/resonator/${character.name}/special_skill1.jpg`;
+      bottomImg = `images/resonator/${character.name}/inherent1.jpg`;
     } else {
       bottomImg = `images/icon/skill/${btnImages[col]}.jpg`;
     }
