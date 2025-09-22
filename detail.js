@@ -158,7 +158,10 @@ function createSkillButtons(character) {
 function renderSkillUpgrade(character) {
   const pathContainer = document.getElementById("skill-upgrade");
   pathContainer.innerHTML = ""; // 초기화
+  
+  const skills = character.skillLevelUpOrder.match(/[\w]+|＞|≥|=/g);
 
+/*
   const skills = [
     character.first_skill,
     character.second_skill,
@@ -166,6 +169,7 @@ function renderSkillUpgrade(character) {
     character.fourth_skill,
     character.fifth_skill
   ];
+  */
 
   skills.forEach((skillKey, index) => {
     // 이미지 + 텍스트 묶음
@@ -174,32 +178,32 @@ function renderSkillUpgrade(character) {
 	
 	const img = document.createElement("img");
     // 스킬 아이콘
-	if (skillKey === "attack") {	// attack만 무기 아이콘 경로 사용
-      img.src = `images/icon/weapon/${character.weapon}_attack.jpg`;
-    } else {
-      // 그 외 스킬은 원래 경로
-      img.src = `images/resonator/${character.name}/${skillKey}.jpg`;
-    }
-    img.alt = skillKey;
-    img.classList.add("skill-icon");
+	if (skillKey === "＞" || skillKey === "≥" || skillKey === "=") {
+		const arrow = document.createElement("span");
+		arrow.textContent = skillKey;
+		arrow.classList.add("skill-arrow");
+		pathContainer.appendChild(arrow);
+	}
+	else {
+		if (skillKey === "attack") {	// attack만 무기 아이콘 경로 사용
+		  img.src = `images/icon/weapon/${character.weapon}_attack.jpg`;
+		} else {
+		  // 그 외 스킬은 원래 경로
+		  img.src = `images/resonator/${character.name}/${skillKey}.jpg`;
+		}
+		img.alt = skillKey;
+		img.classList.add("skill-icon");
 
-    // 스킬 이름
-    const skillNameIndex = skills_language[0].indexOf(skillKey); // 키값 기준 인덱스
-    const label = document.createElement("span");
-    label.textContent = skills_language[1][skillNameIndex] || skillKey;
-    label.classList.add("skill-label");
-
-    skillWrapper.appendChild(img);
-    skillWrapper.appendChild(label);
-    pathContainer.appendChild(skillWrapper);
-
-    // 마지막이 아니면 > 기호 추가
-    if (index < skills.length - 1) {
-      const arrow = document.createElement("span");
-      arrow.textContent = "＞";
-      arrow.classList.add("skill-arrow");
-      pathContainer.appendChild(arrow);
-    }
+		// 스킬 이름
+		const skillNameIndex = skills_language[0].indexOf(skillKey); // 키값 기준 인덱스
+		const label = document.createElement("span");
+		label.textContent = skills_language[1][skillNameIndex] || skillKey;
+		label.classList.add("skill-label");
+		
+		skillWrapper.appendChild(img);
+		skillWrapper.appendChild(label);
+		pathContainer.appendChild(skillWrapper);
+	}
   });
 }
 

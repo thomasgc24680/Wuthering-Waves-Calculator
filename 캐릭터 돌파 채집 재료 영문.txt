@@ -1,20 +1,21 @@
 붓꽃 - iris
-검은 연꽃 - terraspawn fungus
+검은 연꽃 - terraspawn_fungus
 등롱초 - lanternberry
-공작화 - pecok flower
-개양귀비 - belle poppy
+공작화 - pecok_flower
+개양귀비 - belle_poppy
 구름버섯 - coriolus
-인동국화 - wintry bell
-보라색 산호 - violet coral
-작령 열매 - pavo plum
-클레로덴드론 - loong's peart
+인동국화 - wintry_bell
+보라색 산호 - violet_coral
+작령 열매 - pavo_plum
+클레로덴드론 - loong's_peart
 신성 - nova
-황금 양모 - golden fleece
-검창포꽃 - sword acorus
+황금 양모 - golden_fleece
+검창포꽃 - sword_acorus
 폭죽 봉선화 - firecracker
-아이리스 - bamboo iris
-블러드 바이버넘 - bloodleaf viburnum
-다음 생 - after life
-빛나는 금잔 - luminous calendula
-달맞이 꽃 - sliveglow bloom
-돌장미 - stone rose
+아이리스 - bamboo_iris
+블러드 바이버넘 - bloodleaf_viburnum
+다음 생 - after_life
+빛나는 금잔 - luminous_calendula
+달맞이 꽃 - sliveglow_bloom
+돌장미 - stone_rose
+부유 바다꽃 - 

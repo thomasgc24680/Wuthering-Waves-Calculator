@@ -55,6 +55,7 @@ header {
   display: flex;              /* 가로 배치 */
   align-items: flex-end;        /* 세로 가운데 정렬 */
   gap: 10px;                  /* 이미지와 텍스트 간격 */
+  margin-bottom: 20px;
 }
 
 /* 캐릭터 이미지 */
@@ -107,7 +108,6 @@ select {
 .skill-buttons {
   display: grid;
   grid-template-columns: repeat(5, auto); /* 5개씩 */
-  gap: 50px;
   width: 100%; /* character-info 이미지 폭에 맞춤 */
   max-width: 500px;
   margin: 0px auto 20px;       /*top right bottom left*/
@@ -224,6 +224,7 @@ select {
   font-size: 20px;
   color: #ddd;
   font-weight: bold;
+  margin-bottom: 30px;
 }
 
 .skill-item {
