@@ -171,10 +171,15 @@ function renderSkillUpgrade(character) {
     // 이미지 + 텍스트 묶음
     const skillWrapper = document.createElement("div");
     skillWrapper.classList.add("skill-item");
-
+	
+	const img = document.createElement("img");
     // 스킬 아이콘
-    const img = document.createElement("img");
-    img.src = `images/resonator/${character.name}/${skillKey}.jpg`;
+	if (skillKey === "attack") {	// attack만 무기 아이콘 경로 사용
+      img.src = `images/icon/weapon/${character.weapon}_attack.jpg`;
+    } else {
+      // 그 외 스킬은 원래 경로
+      img.src = `images/resonator/${character.name}/${skillKey}.jpg`;
+    }
     img.alt = skillKey;
     img.classList.add("skill-icon");
 
@@ -191,7 +196,7 @@ function renderSkillUpgrade(character) {
     // 마지막이 아니면 > 기호 추가
     if (index < skills.length - 1) {
       const arrow = document.createElement("span");
-      arrow.textContent = ">";
+      arrow.textContent = "＞";
       arrow.classList.add("skill-arrow");
       pathContainer.appendChild(arrow);
     }
