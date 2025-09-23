@@ -32,8 +32,9 @@ skills_language[0].forEach((skill, index) => {
   }
   
   // 구분선
-  const divider = document.createElement("span");
-  divider.classList.add("inner-divider");
+  const arrow = document.createElement("span");
+  arrow.textContent = ">>";
+  arrow.classList.add("arrow");
 
   // 목표 값 select
   const selectGoal = document.createElement("select");
@@ -47,7 +48,7 @@ skills_language[0].forEach((skill, index) => {
 
   wrapper.appendChild(label);
   wrapper.appendChild(selectCurrent);
-  wrapper.appendChild(divider);
+  wrapper.appendChild(arrow);
   wrapper.appendChild(selectGoal);
 
   container.appendChild(wrapper);

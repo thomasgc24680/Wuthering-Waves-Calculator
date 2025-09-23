@@ -96,12 +96,11 @@ select {
   background: #fff;
 }
 
-.inner-divider {
-  display: inline-block;
-  width: 10px;
-  height: 1px;       /* select 높이에 맞춤 */
-  background: #fff;
+.arrow {
+  display: inline-block;  /* flex 말고 텍스트용 */
   margin: 0 8px;
+  color: #fff;            /* >> 색상 */
+  font-weight: bold;      /* 필요하면 강조 */
 }
 
 /* 스킬 연결점 버튼 */
