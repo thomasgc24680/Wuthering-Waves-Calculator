@@ -1,14 +1,16 @@
-const skills = ["attack", "skill", "circuit", "liberation", "intro"];
-const skills_language = [
-		["attack", "skill", "circuit", "liberation", "intro"],
-		["일반공격", "공명스킬", "공명회로", "공명해방", "변주스킬"],
-	];
-	
-const skills_button_title = ["Skill Connection Points", "스킬 연결점", "", ""];
-const skills_image_title = ["Skill level up order", "스킬 레벨 업 순서", "", ""];
-
-
 const container = document.getElementById("status-container");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const characterName = params.get("name");
+  
+  const character = characters.find(c => c.name === characterName);
+
+  if (character) {
+    const titleEl = document.getElementById("detail-title");
+    titleEl.textContent = `${character.KR_name} 육성 계산기`;
+  }
+});
 
 skills_language[0].forEach((skill, index) => {
   const wrapper = document.createElement("div");
@@ -31,7 +33,7 @@ skills_language[0].forEach((skill, index) => {
     selectCurrent.appendChild(option);
   }
   
-  // 구분선
+  // 화살표
   const arrow = document.createElement("span");
   arrow.textContent = ">>";
   arrow.classList.add("arrow");
@@ -63,7 +65,7 @@ window.onload = function() {
   // 이후 캐릭터 데이터를 찾을 때 활용 가능
   const character = characters.find(c => c.name === characterName);
   if (character) {
-	document.title = `${characterName} - 육성 계산기`;
+	document.title = `${character.KR_name} - 육성 계산기`;
 	const detailImg = `images/resonator/${character.name}/detail.jpg`;
     document.querySelector(".character-image").innerHTML =
       `<img src="${detailImg}" alt="${character.name}">`;
@@ -162,16 +164,6 @@ function renderSkillUpgrade(character) {
   
   const skills = character.skillLevelUpOrder.match(/[\w]+|＞|≥|=/g);
 
-/*
-  const skills = [
-    character.first_skill,
-    character.second_skill,
-    character.third_skill,
-    character.fourth_skill,
-    character.fifth_skill
-  ];
-  */
-
   skills.forEach((skillKey, index) => {
     // 이미지 + 텍스트 묶음
     const skillWrapper = document.createElement("div");
@@ -229,10 +221,10 @@ function renderRightContainer(character, containerId) {
     { name: "weapon 3", path: `images/item/weapon/${character.weapon}_3.jpg`, star : 3 },
     { name: "weapon 2", path: `images/item/weapon/${character.weapon}_2.jpg`, star : 2 },
 
-    { name: "foster 5", path: `images/item/foster/${character.foster}_5.jpg`, star : 5 },
-    { name: "foster 4", path: `images/item/foster/${character.foster}_4.jpg`, star : 4 },
-    { name: "foster 3", path: `images/item/foster/${character.foster}_3.jpg`, star : 3 },
-    { name: "foster 2", path: `images/item/foster/${character.foster}_2.jpg`, star : 2 },
+    { name: "foster 5", path: `images/item/material/${character.material}_5.jpg`, star : 5 },
+    { name: "foster 4", path: `images/item/material/${character.material}_4.jpg`, star : 4 },
+    { name: "foster 3", path: `images/item/material/${character.material}_3.jpg`, star : 3 },
+    { name: "foster 2", path: `images/item/material/${character.material}_2.jpg`, star : 2 },
   ];
 
   itemList.forEach(item => {

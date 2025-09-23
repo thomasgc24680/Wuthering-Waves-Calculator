@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   switchTab('character');
 });
 
+function goToDetail(select_card_name) {
+	window.location.href = `detail.html?name=${encodeURIComponent(select_card_name)}`;
+}
+
 //탭 변경(캐릭터 / 무기)
 function switchTab(tabName) {
 	const tabIndex = tabName === 'character' ? 0 : 1;

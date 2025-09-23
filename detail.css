@@ -268,7 +268,8 @@ select {
 
 /* 이미지 영역 */
 .img-wrapper {
-  width: 120px;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
   border-radius: 8px;
 }
@@ -293,7 +294,7 @@ select {
   display: flex;
   align-items: center;        /* 세로 중앙 */
   justify-content: center;    /* 가운데 정렬 */
-  width: 120px;               /* 이미지 폭과 동일 */
+  width: 100%;               /* 이미지 폭과 동일 */
   height: 30px;
   gap: 2px;                   /* 버튼과 input 간격 */
 }
