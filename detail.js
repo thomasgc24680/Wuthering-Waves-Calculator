@@ -1,16 +1,96 @@
-const container = document.getElementById("status-container");
+window.onload = function() {
+  const params = new URLSearchParams(window.location.search);
+  const characterName = params.get("name"); // 캐릭터 이름 가져오기
+
+  console.log("선택한 캐릭터:", characterName);
+
+  // 이후 캐릭터 데이터를 찾을 때 활용 가능
+  const character = characters.find(c => c.name === characterName);
+  if (character) {
+	  
+	document.title = `${character.KR_name} - 육성 계산기`;
+	const detailImg = `images/resonator/${character.name}/detail.jpg`;
+    document.querySelector(".character-image").innerHTML =
+      `<img src="${detailImg}" alt="${character.name}">`;
+	
+	const skillBtnTitle = document.getElementById("skill-button-title");
+    skillBtnTitle.textContent = skills_button_title[1];
+	createSkillButtons(character);
+	
+	const skillImgTitle = document.getElementById("skill-image-title");
+    skillImgTitle.textContent = skills_image_title[1];
+	
+	renderSkillUpgrade(character);
+	
+	// 우측 재료 화면 생성
+    renderRightContainer(character, "right-container");
+  }
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
-  const characterName = params.get("name");
+  const type = params.get("type");
+  const name = params.get("name");
   
-  const character = characters.find(c => c.name === characterName);
-
-  if (character) {
-    const titleEl = document.getElementById("detail-title");
-    titleEl.textContent = `${character.KR_name} 육성 계산기`;
+  console.log("addEventListener");
+  
+  if (type === "character") {
+	  const character = characters.find(c => c.name === characterName);
+	  if (character) {
+		  document.title = `${character.KR_name} - 육성 계산기`;
+		  document.getElementById("detail-title").textContent = `${character.KR_name} 육성 계산기`;
+		  
+		  renderCharacterUI(character, type);
+	  }
+  }
+  
+  else if (type === "weapon") {
+	  const weapon = weapons.find(w => w.name === weaponName);
+	  if (weapon) {
+		  document.title = `${weapon.KR_name} - 육성 계산기`;
+		  document.getElementById("detail-title").textContent = `${weapon.KR_name} 육성 계산기`;
+		  
+		  renderWeaponUI(weapon, type);
+	  }
   }
 });
+
+
+function renderCharacterUI(character, type) {
+	// 캐릭터 이미지
+	document.querySelector(".character-image").innerHTML = 
+		`<img src="images/resonator/${character.name}/detila.jpg" alt="${character.name}">`;
+		
+	createDetailInfo(character, type);
+		
+	createSkiilButtons(character);
+	renderSkillUpgrade(character);
+	
+	renderRightContainer(character, "right-container");
+}
+
+function renderWeaponUI(weapon) {
+  // 무기 이미지
+  document.querySelector(".character-image").innerHTML =
+    `<img src="images/weapon/${weapon.name}.jpg" alt="${weapon.name}">`;
+
+  // 무기는 스킬/랭크 같은 게 필요 없으면 → 관련 DOM 숨기기
+  document.getElementById("skill-buttons").style.display = "none";
+  document.getElementById("skill-upgrade").style.display = "none";
+  document.getElementById("skill-button-title").style.display = "none";
+  document.getElementById("skill-image-title").style.display = "none";
+
+  // 무기 재료 UI 따로 만들기 (예시)
+  renderWeaponMaterials(weapon, "right-container");
+}
+
+function createDetailInfo(){
+}
+
+function createSkiilButtons(chara){
+}
+
+const container = document.getElementById("status-container");
 
 skills_language[0].forEach((skill, index) => {
   const wrapper = document.createElement("div");
@@ -55,34 +135,6 @@ skills_language[0].forEach((skill, index) => {
 
   container.appendChild(wrapper);
 });
-
-window.onload = function() {
-  const params = new URLSearchParams(window.location.search);
-  const characterName = params.get("name"); // 캐릭터 이름 가져오기
-
-  console.log("선택한 캐릭터:", characterName);
-
-  // 이후 캐릭터 데이터를 찾을 때 활용 가능
-  const character = characters.find(c => c.name === characterName);
-  if (character) {
-	document.title = `${character.KR_name} - 육성 계산기`;
-	const detailImg = `images/resonator/${character.name}/detail.jpg`;
-    document.querySelector(".character-image").innerHTML =
-      `<img src="${detailImg}" alt="${character.name}">`;
-	
-	const skillBtnTitle = document.getElementById("skill-button-title");
-    skillBtnTitle.textContent = skills_button_title[1];
-	createSkillButtons(character);
-	
-	const skillImgTitle = document.getElementById("skill-image-title");
-    skillImgTitle.textContent = skills_image_title[1];
-	
-	renderSkillUpgrade(character);
-	
-	// 우측 재료 화면 생성
-    renderRightContainer(character, "right-container");
-  }
-};
 
 function createSkillButtons(character) {
   const container = document.getElementById("skill-buttons");
