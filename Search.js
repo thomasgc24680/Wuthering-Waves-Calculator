@@ -1,24 +1,16 @@
-//필터 버튼 클릭 동작
-function onFilterButtonClick(e) {
-  const btn = e.currentTarget;
-  const type = btn.dataset.type;
-  const filter = btn.dataset.filter;
-  const alreadyActive = btn.classList.contains("active");
+export function Search(){
+	const searchInput = document.getElementById("Search-tool");
 
-  // 같은 그룹 버튼들 active 해제
-  document.querySelectorAll(`#filter-screen .filter-buttons button[data-type="${type}"]`)
-    .forEach(b => b.classList.remove("active"));
+	searchInput.addEventListener("input", () => {
+		const query = searchInput.value.toLowerCase().trim();
 
-  if (alreadyActive) {
-    if (type === "attribute") currentAttributeFilter = "ALL";
-    if (type === "weapon") currentWeaponFilter = "ALL";
-	if (type === "star") currentStarFilter = "ALL";
-  } else {
-    btn.classList.add("active");
-    if (type === "attribute") currentAttributeFilter = filter;
-    if (type === "weapon") currentWeaponFilter = filter;
-	if (type === "star") currentStarFilter = filter;
-  }
-
-  applyFilter();
+		document.querySelectorAll("#select-screen .select-card").forEach(card => {
+			const name = card.querySelector("p").textContent.toLowerCase();
+			if (name.includes(query)) {
+				card.style.display = "";   // 검색어 포함 → 보이기
+			} else {
+				card.style.display = "none"; // 불일치 → 숨기기
+			}
+		});
+	});
 }
