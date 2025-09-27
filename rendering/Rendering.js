@@ -7,8 +7,16 @@ function mainPageInitRender() {
 	console.log("mainPageInitRender");
 	
 	createSwitchTab();
-	createFilterButton();
-	initialCardGrid();
+	
+	//필터 그리기
+	const FilterScreen = document.getElementById("filter-screen");
+	FilterScreen.innerHTML = "";
+	
+	createAttrFilter(FilterScreen, "character");
+	createWeapFilter(FilterScreen, "character");
+	createStarFilter(FilterScreen, "character");
+	
+	CardGrid("character", "ALL", "ALL", "ALL");
 }
 
 function detialPageRender() {

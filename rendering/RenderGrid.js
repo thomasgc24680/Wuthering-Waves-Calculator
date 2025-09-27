@@ -11,15 +11,32 @@ import * as ButtonClick from './ButtonClickEvent.js';
  - detail 페이지의 우측 컨테이너(재화 모음)
 */
 
-function initialCardGrid(){
-	const currentTab = "character";
+function CardGrid(currentTab, currentAttrFilter, currentWeapFilter, currentStarFilter) {
+	console.log("CardGrid-", currentTab);
 	
 	const SelectScreen = document.getElementById("select-screen");
+	SelectScreen.innerHTML = "";
 	
 	const SelectCardGrid = document.createElement("div");
 	SelectCardGrid.classList.add("card-grid");
 	
-	characterData.forEach(card => {
+	let CardData;
+	
+	if(currentTab === "character") CardData = characterData;
+	else CardData = weaponData;
+	
+	const filterdData = CardData.filter(card => {
+        if (currentTab === "character") {
+            return (currentAttrFilter === "ALL" || card.attribute.toLowerCase() === currentAttrFilter.toLowerCase())
+                && (currentWeapFilter === "ALL" || card.weapon.toLowerCase() === currentWeapFilter.toLowerCase())
+                && (currentStarFilter === "ALL" || String(card.star) === currentStarFilter);
+        } else {
+            return (currentWeapFilter === "ALL" || card.weapon.toLowerCase() === currentWeapFilter.toLowerCase())
+                && (currentStarFilter === "ALL" || String(card.star) === currentStarFilter);
+        }
+    });
+	
+	filterdData.forEach(card => {
 		const CardBtn = document.createElement("button");
 		CardBtn.classList.add("select-card");
 		
@@ -30,15 +47,26 @@ function initialCardGrid(){
 		else if(card.star === 2) star = "star-2";
 		else star = "star-1";
 		
-		CardBtn.innerHTML = 
-			`<div class="img-wrapper ${star}">
-				<img src="images/resonator/${card.name}/main.jpg" alt="${card.name}">
-				<img class="attr-icon" src="images/icon/attribute/${card.attribute}.jpg" alt="${card.attribute}">
-				<img class="weap-icon" src="images/icon/weapon/${card.weapon}.jpg" alt="${card.weapon}">
-			</div>
-			<p>${card.KR_name}</p>
-		`;
-		CardBtn.onclick = () => MainToDetail(card.type, card.name);
+		if(currentTab === "character") {
+			CardBtn.innerHTML = 
+				`<div class="img-wrapper ${star}">
+					<img src="images/resonator/${card.name}/main.jpg" alt="${card.name}">
+					<img class="attr-icon" src="images/icon/attribute/${card.attribute}.jpg" alt="${card.attribute}">
+					<img class="weap-icon" src="images/icon/weapon/${card.weapon}.jpg" alt="${card.weapon}">
+				</div>
+				<p>${card.KR_name}</p>
+			`;
+		}
+		else {
+			CardBtn.innerHTML = 
+				`<div class="img-wrapper ${star}">
+					<img src="images/weapon/${card.name}.jpg" alt="${card.name}">
+					<img class="weap-icon" src="images/icon/weapon/${card.weapon}.jpg" alt="${card.weapon}">
+				</div>
+				<p>${card.name}</p>
+			`;
+		}
+		CardBtn.onclick = () => MainToDetail(currentTab, card.name);
 		
 		SelectCardGrid.appendChild(CardBtn);
 	});

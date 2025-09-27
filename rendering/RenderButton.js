@@ -20,9 +20,9 @@ function createSwitchTab() {
 	const characterTab = document.createElement("button");
 	characterTab.classList.add("tab");
 	characterTab.classList.add("active");
-	
+	characterTab.dataset.tab = "character";
 	characterTab.textContent = "캐릭터" //추후 언어 추가 예정.
-	characterTab.addEventListener("click", () => ButtonEvents.SwitchTabClickEvent("character"));
+	characterTab.addEventListener("click", () => SwitchTabClickEvent("character"));
 	
 	nav.appendChild(characterTab);
 	
@@ -30,19 +30,16 @@ function createSwitchTab() {
 	//무기 탭 버튼
 	const weaponTab = document.createElement("button");
 	weaponTab.classList.add("tab");
-	
+	weaponTab.dataset.tab = "weapon";
 	weaponTab.textContent = "무기" //추후 언어 추가 예정.
-	weaponTab.addEventListener("click", () => ButtonEvents.SwitchTabClickEvent("weapon"));
+	weaponTab.addEventListener("click", () => SwitchTabClickEvent("weapon"));
 
 	nav.appendChild(weaponTab);
 }
 
-function createFilterButton() {
-	console.log("createFilterButton");
+function createAttrFilter(container, currentTab) {	//무기 필터 버튼 생성
+	console.log("createAttrFilter");
 	
-	const filterScreen = document.getElementById("filter-screen");
-	
-	//속성 필터 버튼 생성
 	const attributeFilter = document.createElement("div");
 	attributeFilter.classList.add("filter-buttons", "attribute-filters");
 	attribute.forEach(attr => {
@@ -55,12 +52,15 @@ function createFilterButton() {
 		img.alt = attr;
 		
 		Btn.appendChild(img);
-		
+		Btn.addEventListener("click", () => FilterButtonClickEvent(Btn, currentTab));
 		attributeFilter.appendChild(Btn);
 	});
-	filterScreen.appendChild(attributeFilter);
+	container.appendChild(attributeFilter);
+}
+
+function createWeapFilter(container, currentTab){	//무기 필터 버튼 생성
+	console.log("createWeapFilter");
 	
-	//무기 필터 버튼 생성
 	const weaponFilter = document.createElement("div");
 	weaponFilter.classList.add("filter-buttons", "weapon-filters");
 	weapon.forEach(weap => {
@@ -73,14 +73,23 @@ function createFilterButton() {
 		img.alt = weap;
 		
 		Btn.appendChild(img);
+		Btn.addEventListener("click", () => FilterButtonClickEvent(Btn, currentTab));
 		weaponFilter.appendChild(Btn);
 	});
-	filterScreen.appendChild(weaponFilter);
+	container.appendChild(weaponFilter);
+}
+
+function createStarFilter(container, currentTab) {	//등급 필터 버튼 생성
+	console.log("createStarFilter");
 	
-	//무기 필터 버튼 생성
 	const starFilter = document.createElement("div");
 	starFilter.classList.add("filter-buttons", "star-filters");
 	star.forEach(star => {
+		
+		if(currentTab === "character" && star >= 1 && star <= 3) {
+			return;
+		}
+		
 		const Btn = document.createElement("button");
 		Btn.dataset.type = "star";
 		Btn.dataset.filter = star;
@@ -90,9 +99,9 @@ function createFilterButton() {
 		img.alt = star;
 		
 		Btn.appendChild(img);
+		Btn.addEventListener("click", () => FilterButtonClickEvent(Btn, currentTab));
 		starFilter.appendChild(Btn);
 	});
-	
 	
 	console.log("createFilterButton-searchInput");
 	
@@ -108,13 +117,10 @@ function createFilterButton() {
 	searchInput.appendChild(Input);	
 	starFilter.appendChild(searchInput);
 	
-	filterScreen.appendChild(starFilter);
-	
-	
+	container.appendChild(starFilter);
 	
 	Search();
 }
-
 
 
 
