@@ -1,5 +1,11 @@
-export function Search(){
-	const searchInput = document.getElementById("Search-tool");
+function Search(){
+	console.log("Search");
+	const searchInput = document.getElementById("SearchTool");
+	
+	if(!searchInput) {
+		console.log("don't find searchInput");
+		return;
+	}
 
 	searchInput.addEventListener("input", () => {
 		const query = searchInput.value.toLowerCase().trim();

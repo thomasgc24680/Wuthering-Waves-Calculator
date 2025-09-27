@@ -15,7 +15,7 @@
 //			stone_rose(돌장미), seaside_cendretis(부유 바다꽃),
 
 //캐릭터
-export const characterData = [
+const characterData = [
 	{ "name": "sanhua", "star": 4, "attribute": "glacio", "weapon": "straightsword",
 	"rankup": "lampylumen_myriad", "collect": "wintry_bell", "material": "whisperin", "weekly_boss": "scar",
 	"skillLevelUpOrder": "liberation＞circuit＞skill＞attack＞intro",

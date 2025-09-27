@@ -36,18 +36,18 @@ function SwitchTabClickEvent(currentTab) {
 }
 
 //main 페이지에서 카드 클릭 시 카드 type과 name detail 페이지로 넘기기.
-export function CardClickEvent(select_card_name) {
+function CardClickEvent(select_card_name) {
 	window.location.href = `detail.html?type=${currentTab}&name=${encodeURIComponent(select_card_name)}`;
 }
 
 // 스킬 버튼 활성/비활성 확인
-export function toggleSkillButton(buttonElement, isActive) {
+function toggleSkillButton(buttonElement, isActive) {
     if (isActive) buttonElement.classList.add("active");
     else buttonElement.classList.remove("active");
 }
 
 //필터 버튼 클릭 동작
-export function FilterButtonClickEvent(ClickBtn) {
+function FilterButtonClickEvent(ClickBtn) {
   const type = ClickBtn.dataset.type;
   const filter = ClickBtn.dataset.filter;
   const alreadyActive = ClickBtn.classList.contains("active");
