@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>캐릭터 상세</title>
+  <link rel="stylesheet" href="detail.css">
+  <script src="data.js"></script>
+  <script defer src="detail.js"></script>
+</head>
+<body>
+	<header>
+		<h1 id="detail-title">명조 육성 계산기(개발 중)</h1>
+	</header>
+	<div class="container">
+		<!-- 좌측 영역 -->
+		<div class="left">
+			<div class="character-info">
+				<div class="character-image"></div>
+				<div class="status" id="status-container">
+					<div class="character_level">
+						<span class="label">LV.</span>
+						<select id="character_current_lv">
+							<option value="1">1</option>
+							<option value="20">20</option>
+							<option value="40">40</option>
+							<option value="50">50</option>
+							<option value="60">60</option>
+							<option value="70">70</option>
+							<option value="80">80</option>
+							<option value="90">90</option>
+						</select>
+						<span class="arrow">>></span>
+						
+						<select id="character_goal_lv">
+							<option value="1">1</option>
+							<option value="20">20</option>
+							<option value="40">40</option>
+							<option value="50">50</option>
+							<option value="60">60</option>
+							<option value="70">70</option>
+							<option value="80">80</option>
+							<option value="90">90</option>
+						</select>
+					</div>
+					<div class="character_rank">
+						<span class="label">RANK.</span>
+						<select id="character_current_rank">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+						</select>
+						<span class="arrow">>></span>
+						<select id="character_goal_rank">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="skill-title" id="skill-button-title"></div>
+			<div class="skill-buttons" id="skill-buttons"></div>
+			<div class="skill-title" id="skill-image-title"></div>
+			<div id="skill-upgrade" class="skill-upgrade"></div>
+		</div>
+
+		<!-- 구분선 -->
+		<div class="divider"></div>
+
+		<!-- 우측 영역 -->
+		<div class="right">
+			<!-- 우측 재료 화면 -->
+			<section id="right-screen">
+			  <div id="right-container" class="card-grid"></div>
+			</section>
+		</div>
+	</div>
+	<script>
+		function bindValidation(inputId, datalistId) {
+		  const input = document.getElementById(inputId);
+		  const options = document.querySelectorAll(`#${datalistId} option`);
+
+		  if (!input) return; // 안전장치
+
+		  input.addEventListener("change", () => {
+			const validValues = Array.from(options).map(opt => opt.value);
+			if (!validValues.includes(input.value)) {
+			  alert("목록에 있는 값만 입력할 수 있습니다!");
+			  input.value = "";
+			}
+		  });
+		}
+
+		// 현재 레벨 입력 검증
+		bindValidation("currentlevel", "currentlevel");
+
+		// 목표 레벨 입력 검증
+		bindValidation("goallevel", "goallevel");
+	</script>
+</body>
+</html>
