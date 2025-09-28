@@ -20,5 +20,5 @@ function mainPageInitRender() {
 }
 
 function detialPageRender() {
-	
+	createSelectCardInfo
 }

@@ -123,30 +123,41 @@ function createStarFilter(container, currentTab) {	//등급 필터 버튼 생성
 }
 
 
-
-
-
-
-
-
-
-
-/*
-// 필터 버튼 생성 + 이벤트 연결
-export function createFilterButton(containerSelector, configArray, clickHandler) {
-    const container = document.querySelector("#filter-screen .filter-buttons button");
-    container.innerHTML = "";
+//detail screen SelectCardInfo
+function createSelectCardInfo(type, name) {
+	console.log("createSelectCardInfo");
 	
-    configArray.forEach(cfg => {
-        const btn = document.createElement("button");
-        btn.dataset.type = cfg.type;
-        btn.dataset.filter = cfg.filter;
-        const img = document.createElement("img");
-        img.src = cfg.img;
-        img.alt = cfg.filter;
-        btn.appendChild(img);
-        btn.addEventListener("click", FilterButtonClickEvent);
-        container.appendChild(btn);
-    });
+	const container = document.getElementById("left-container");
+	container.innerHTML = "";
+	
+	const SelectCardInfo = document.createElement("div");
+	SelectCardInfo.classList.add("character-info");
+	
+	if(type === "character") {
+		const img = document.createElement("img");
+		img.src = `images/resonator/${name}/detail.jpg`;
+		img.alt = name;
+		SelectCardInfo.appendChild(img);
+	}
+	else {
+		const img = document.createElement("img");
+		img.src = `images/weapon/${name}.jpg`;
+		img.alt = name;
+		SelectCardInfo.appendChild(img);
+	}
+	
+	const CardOption = document.createElement("div");
+	CardOption.classList.add("status");
+	CardOption.id = "status-container";
+	
+	const LvOption = document.createElement("div");
+	LvOption.classList.add("level");
+	const LvSpan = document.createElement("span");
+	LvSpan.classList.add("label");
+	LvSpan.textContent = "LV";
+	LvOption.appendChild(LvSpan);
+	const LvSelect = document.createElement("select");
+	LvSelect.id = "current_lv";
+	
+	
 }
-*/
