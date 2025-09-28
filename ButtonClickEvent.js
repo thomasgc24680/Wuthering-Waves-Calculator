@@ -40,7 +40,16 @@ function SwitchTabClickEvent(SwitchingTab) {
 
 //main 페이지에서 카드 클릭 시 카드 type과 name detail 페이지로 넘기기. - 완료
 function MainToDetail(currentTab, select_card_name) {
-	window.location.href = `detail.html?type=${currentTab}&name=${encodeURIComponent(select_card_name)}`;
+	// 기본 동작 막기
+	event.preventDefault();  
+
+	// JS로 detail 화면을 보여줌
+	document.getElementById("main-screen").style.display = "none";
+	document.getElementById("tab-nav").style.display = "none";
+	document.getElementById("detail-screen").style.display = "flex";
+	
+	detialPageRender(currentTab, select_card_name);
+//	window.location.href = `detail.html?type=${currentTab}&name=${encodeURIComponent(select_card_name)}`;
 }
 
 // 스킬 버튼 활성/비활성 확인

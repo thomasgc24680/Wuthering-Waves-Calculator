@@ -19,6 +19,7 @@ function mainPageInitRender() {
 	CardGrid("character", "ALL", "ALL", "ALL");
 }
 
-function detialPageRender() {
-	createSelectCardInfo
+function detialPageRender(type, name) {
+	document.title = `${name} - 육성 계산기`;
+	createSelectCardInfo(type, name);
 }

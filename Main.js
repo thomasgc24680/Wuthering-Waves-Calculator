@@ -11,10 +11,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	mainPageInitRender(); //화면 그리기
 });
 
-function main_rendering() {
-	rendering_switchTab();
-	rendering_filterBtn();
-	rendering_cardGrid();
-}
 
-
+//function detail_rendering()

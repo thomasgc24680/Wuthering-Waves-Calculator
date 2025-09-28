@@ -11,7 +11,7 @@ header {
   padding: 10px;
 }
 
-.container {
+.detail-screen {
   position: relative;
   display: flex;
   justify-content: flex-start;
@@ -21,12 +21,12 @@ header {
   flex-wrap: nowrap;
 }
 
-.left {
+.left-container {
   align-items: center;      /* 내부 중앙 정렬 */
   margin-left: 30px;
 }
 
-.left, .right {
+.left-container, .right-container {
   flex: 0 0 699px;
   padding: 20px;
   box-sizing: border-box;
@@ -59,7 +59,7 @@ header {
 }
 
 /* 캐릭터 이미지 */
-.character-image img {
+.select-card-image img {
   height: 400px;
   border-radius: 8px;
   display: block;
