@@ -14,7 +14,7 @@ header {
 
 main {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 10px;
   align-items: center;    /* 가운데 정렬 */
 }
@@ -31,12 +31,10 @@ nav .tab {
   font-weight: bold;
   transition: 0.3s;
 }
-
 nav .tab.active {
   background: rgba(255,255,255,0.5);
   color: black;
 }
-/*////////////////////*/
 
 
 #main-screen {
@@ -51,7 +49,6 @@ nav .tab.active {
   flex-direction: column;
   justify-content: center;  
 }
-
 .filter-buttons {
   margin-bottom: 10px;
   display: flex;
@@ -59,12 +56,10 @@ nav .tab.active {
   gap: 10px;
   align-items: center;
 }
-
 #filter-screen .filter-row {
   display: grid;
   gap: 10px;
 }
-
 #filter-screen .filter-buttons button{
   background: rgba(255,255,255,0.2);
   border-radius: 8px;
@@ -75,36 +70,16 @@ nav .tab.active {
   align-items: center;
   justify-content: center;
 }
-
 #filter-screen .filter-buttons img {
   width: 32px;   /* 아이콘 크기 */
   height: 32px;
 }
-
 #filter-screen .filter-buttons button:hover {
   background: rgba(255,255,255,0.5);
 }
-
 #filter-screen .filter-buttons button.active {
   background: rgba(255,255,255,0.8);
 }
-
-/* 필터 숨김 — 공간 유지, 즉시 안 보이고 클릭 불가 */
-.invisible {
-  visibility: hidden !important;    /* 즉시 안 보이게 */
-  pointer-events: none !important;  /* 클릭 불가 */
-}
-
-/* invisible이 적용된 요소와 그 자식들에게 transition 제거 (애니메이션 없음) */
-.invisible, .invisible * {
-  transition: none !important;
-  -webkit-transition: none !important;
-}
-
-.hidden {
-	display: none !important;
-}
-
 /* 검색창 */
 #filter-screen .filter-search {
   margin-left: auto;   /* ✅ 오른쪽 끝으로 밀기 */
@@ -125,11 +100,6 @@ nav .tab.active {
 #filter-screen .filter-search input::placeholder {
   color: #bbb;
 }
-
-
-
-
-
 
 /* 캐릭터/무기 선택 화면 */
 #select-screen {
@@ -238,4 +208,23 @@ nav .tab.active {
 #select-screen .select-card:hover {
   transform: scale(1.05);
   background: rgba(255,255,255,0.2);
+}
+
+
+#detail-screen {
+	display: flex;
+	flex-direction: row;
+	width : 80%;
+}
+
+#left-container, #right-container {
+	flex: 1;
+}
+
+#divider {
+  top: 20px;
+  width: 2px;                /* 선 두께 */
+  height : 95%;
+  position: relative;
+  background: #ffffff;
 }

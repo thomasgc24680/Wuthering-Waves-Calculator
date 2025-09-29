@@ -1,7 +1,7 @@
-const skillLang = [
+export const skillLang = {
 	en : ["attack", "skill", "circuit", "liberation", "intro"],	//English
 	ko : ["일반공격", "공명스킬", "공명회로", "공명해방", "변주스킬"],	//Korean
-];
+};
 	
 export const skills_connection_title = [
 	"Skill Connection Points",	//English

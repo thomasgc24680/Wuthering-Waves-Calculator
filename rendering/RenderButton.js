@@ -1,8 +1,6 @@
-/*
-import * as Data from './data/data.js';
-import { Search } from './Search.js';
-import * as ButtonClick from './ButtonClickEvent.js';
-*/
+import * as Data from '../data/Data.js';
+import { Search } from '../Search.js';
+import * as BtnClickEvt from '../ButtonClickEvent.js';
 
 /*
 추가할 함수
@@ -11,7 +9,7 @@ import * as ButtonClick from './ButtonClickEvent.js';
  - 스킬 연결점 버튼 생성
 */
 
-function createSwitchTab() {
+export function createSwitchTab() {
 	console.log("createSwitchTab");
 	
 	const nav = document.getElementById("tab-nav");
@@ -22,7 +20,7 @@ function createSwitchTab() {
 	characterTab.classList.add("active");
 	characterTab.dataset.tab = "character";
 	characterTab.textContent = "캐릭터" //추후 언어 추가 예정.
-	characterTab.addEventListener("click", () => SwitchTabClickEvent("character"));
+	characterTab.addEventListener("click", () => BtnClickEvt.SwitchTabClickEvent("character"));
 	
 	nav.appendChild(characterTab);
 	
@@ -32,17 +30,17 @@ function createSwitchTab() {
 	weaponTab.classList.add("tab");
 	weaponTab.dataset.tab = "weapon";
 	weaponTab.textContent = "무기" //추후 언어 추가 예정.
-	weaponTab.addEventListener("click", () => SwitchTabClickEvent("weapon"));
+	weaponTab.addEventListener("click", () => BtnClickEvt.SwitchTabClickEvent("weapon"));
 
 	nav.appendChild(weaponTab);
 }
 
-function createAttrFilter(container, currentTab) {	//무기 필터 버튼 생성
+export function createAttrFilter(container, currentTab) {	//무기 필터 버튼 생성
 	console.log("createAttrFilter");
 	
 	const attributeFilter = document.createElement("div");
 	attributeFilter.classList.add("filter-buttons", "attribute-filters");
-	attribute.forEach(attr => {
+	Data.attribute.forEach(attr => {
 		const Btn = document.createElement("button");
 		Btn.dataset.type = "attribute";
 		Btn.dataset.filter = attr;
@@ -52,18 +50,18 @@ function createAttrFilter(container, currentTab) {	//무기 필터 버튼 생성
 		img.alt = attr;
 		
 		Btn.appendChild(img);
-		Btn.addEventListener("click", () => FilterButtonClickEvent(Btn, currentTab));
+		Btn.addEventListener("click", () => BtnClickEvt.FilterButtonClickEvent(Btn, currentTab));
 		attributeFilter.appendChild(Btn);
 	});
 	container.appendChild(attributeFilter);
 }
 
-function createWeapFilter(container, currentTab){	//무기 필터 버튼 생성
+export function createWeapFilter(container, currentTab){	//무기 필터 버튼 생성
 	console.log("createWeapFilter");
 	
 	const weaponFilter = document.createElement("div");
 	weaponFilter.classList.add("filter-buttons", "weapon-filters");
-	weapon.forEach(weap => {
+	Data.weapon.forEach(weap => {
 		const Btn = document.createElement("button");
 		Btn.dataset.type = "weapon";
 		Btn.dataset.filter = weap;
@@ -73,18 +71,18 @@ function createWeapFilter(container, currentTab){	//무기 필터 버튼 생성
 		img.alt = weap;
 		
 		Btn.appendChild(img);
-		Btn.addEventListener("click", () => FilterButtonClickEvent(Btn, currentTab));
+		Btn.addEventListener("click", () => BtnClickEvt.FilterButtonClickEvent(Btn, currentTab));
 		weaponFilter.appendChild(Btn);
 	});
 	container.appendChild(weaponFilter);
 }
 
-function createStarFilter(container, currentTab) {	//등급 필터 버튼 생성
+export function createStarFilter(container, currentTab) {	//등급 필터 버튼 생성
 	console.log("createStarFilter");
 	
 	const starFilter = document.createElement("div");
 	starFilter.classList.add("filter-buttons", "star-filters");
-	star.forEach(star => {
+	Data.star.forEach(star => {
 		
 		if(currentTab === "character" && star >= 1 && star <= 3) {
 			return;
@@ -99,7 +97,7 @@ function createStarFilter(container, currentTab) {	//등급 필터 버튼 생성
 		img.alt = star;
 		
 		Btn.appendChild(img);
-		Btn.addEventListener("click", () => FilterButtonClickEvent(Btn, currentTab));
+		Btn.addEventListener("click", () => BtnClickEvt.FilterButtonClickEvent(Btn, currentTab));
 		starFilter.appendChild(Btn);
 	});
 	

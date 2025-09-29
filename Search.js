@@ -1,4 +1,4 @@
-function Search(){
+export function Search(){
 	console.log("Search");
 	const searchInput = document.getElementById("SearchTool");
 	

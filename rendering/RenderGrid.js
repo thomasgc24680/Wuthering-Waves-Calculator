@@ -1,7 +1,5 @@
-/*
-import * as Data from './data/Data.js';
-import * as ButtonClick from './ButtonClickEvent.js';
-*/
+import * as Data from '../data/Data.js';
+import * as BtnClickEvt from '../ButtonClickEvent.js';
 
 /*
 추가할 함수
@@ -11,7 +9,7 @@ import * as ButtonClick from './ButtonClickEvent.js';
  - detail 페이지의 우측 컨테이너(재화 모음)
 */
 
-function CardGrid(currentTab, currentAttrFilter, currentWeapFilter, currentStarFilter) {
+export function CardGrid(currentTab, currentAttrFilter, currentWeapFilter, currentStarFilter) {
 	console.log("CardGrid-", currentTab);
 	
 	const SelectScreen = document.getElementById("select-screen");
@@ -22,8 +20,8 @@ function CardGrid(currentTab, currentAttrFilter, currentWeapFilter, currentStarF
 	
 	let CardData;
 	
-	if(currentTab === "character") CardData = characterData;
-	else CardData = weaponData;
+	if(currentTab === "character") CardData = Data.characterData;
+	else CardData = Data.weaponData;
 	
 	const filterdData = CardData.filter(card => {
         if (currentTab === "character") {
@@ -66,7 +64,7 @@ function CardGrid(currentTab, currentAttrFilter, currentWeapFilter, currentStarF
 				<p>${card.name}</p>
 			`;
 		}
-		CardBtn.onclick = () => MainToDetail(currentTab, card.name);
+		CardBtn.onclick = () => BtnClickEvt.MainToDetail(currentTab, card.name);
 		
 		SelectCardGrid.appendChild(CardBtn);
 	});
@@ -74,7 +72,7 @@ function CardGrid(currentTab, currentAttrFilter, currentWeapFilter, currentStarF
 	SelectScreen.appendChild(SelectCardGrid);
 }
 
-function CardGridWithFilter(currentTab, currentAttributeFilter, currentWeaponFilter, currentStarFilter, dataArray, containerSelector) {
+export function CardGridWithFilter(currentTab, currentAttributeFilter, currentWeaponFilter, currentStarFilter, dataArray, containerSelector) {
     const container = document.querySelector(containerSelector);
     container.innerHTML = "";
 
@@ -98,7 +96,7 @@ function CardGridWithFilter(currentTab, currentAttributeFilter, currentWeaponFil
 }
 
 // 캐릭터/무기 선택 버튼 생성
-function createSelectCard(containerSelector, cardDataArray, currentTab, clickHandler) {
+export function createSelectCard(containerSelector, cardDataArray, currentTab, clickHandler) {
     const container = document.querySelector(containerSelector);
     container.innerHTML = "";
 

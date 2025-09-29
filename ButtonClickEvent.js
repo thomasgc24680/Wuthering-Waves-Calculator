@@ -1,3 +1,5 @@
+import * as Render from './rendering/Rendering.js';
+
 /*
 추가할 함수
  - 필터 버튼 클릭 동작
@@ -8,7 +10,7 @@
 
 
 //탭 변경(캐릭터 / 무기) - 완료
-function SwitchTabClickEvent(SwitchingTab) {
+export function SwitchTabClickEvent(SwitchingTab) {
 	console.log("SwitchTabClickEvent-", SwitchingTab);
 	
 	// 탭 active 상태 업데이트
@@ -25,41 +27,69 @@ function SwitchTabClickEvent(SwitchingTab) {
 	
 	if(SwitchingTab === "character"){
 		console.log("SwitchingTab-character");
-		createAttrFilter(FilterScreen, SwitchingTab);
-		createWeapFilter(FilterScreen, SwitchingTab);
-		createStarFilter(FilterScreen, SwitchingTab);
+		Render.RenderButton.createAttrFilter(FilterScreen, SwitchingTab);
+		Render.RenderButton.createWeapFilter(FilterScreen, SwitchingTab);
+		Render.RenderButton.createStarFilter(FilterScreen, SwitchingTab);
 	}
 	else {
 		console.log("SwitchingTab-character");
-		createWeapFilter(FilterScreen, SwitchingTab);
-		createStarFilter(FilterScreen, SwitchingTab);		
+		Render.RenderButton.createWeapFilter(FilterScreen, SwitchingTab);
+		Render.RenderButton.createStarFilter(FilterScreen, SwitchingTab);		
 	}
 	
-	CardGrid(SwitchingTab, "ALL", "ALL", "ALL");
+	Render.RenderGrid.CardGrid(SwitchingTab, "ALL", "ALL", "ALL");
 }
 
 //main 페이지에서 카드 클릭 시 카드 type과 name detail 페이지로 넘기기. - 완료
-function MainToDetail(currentTab, select_card_name) {
+export function MainToDetail(currentTab, select_card_name) {
 	// 기본 동작 막기
-	event.preventDefault();  
+	if(event) event.preventDefault();  
 
-	// JS로 detail 화면을 보여줌
+	// JS로 detail 화면을 보여줌, main 화면 
 	document.getElementById("main-screen").style.display = "none";
-	document.getElementById("tab-nav").style.display = "none";
 	document.getElementById("detail-screen").style.display = "flex";
 	
-	detialPageRender(currentTab, select_card_name);
-//	window.location.href = `detail.html?type=${currentTab}&name=${encodeURIComponent(select_card_name)}`;
+	//
+	const tabBtn = document.querySelectorAll(".tab");
+	tabBtn.forEach(btn => {
+		btn.remove();
+	});
+	
+	//detail Page Rendering
+	Render.detialPageRender(currentTab, select_card_name);
+	
+	history.pushState( { page : "detail", currentTab, select_card_name }, "Detail", `#detail`);
 }
 
+// 브라우저 뒤로/앞으로 버튼 처리
+window.addEventListener("popstate", (event) => {
+    if (!event.state || event.state.page === "main") {
+        // Main 화면 보여주기
+        document.getElementById("main-screen").style.display = "flex";
+        document.getElementById("detail-screen").style.display = "none";
+
+        // 필요하면 카드 그리드 다시 렌더링
+        // Render.CardGrid(...); // 필터/탭 상태에 맞춰 호출
+		Render.mainPageInitRender();
+    } 
+    else if (event.state.page === "detail") {
+        // Detail 화면 보여주기
+        document.getElementById("main-screen").style.display = "none";
+        document.getElementById("detail-screen").style.display = "flex";
+
+        // 이전 선택 카드 렌더링
+        Render.detialPageRender(event.state.currentTab, event.state.select_card_name);
+    }
+});
+
 // 스킬 버튼 활성/비활성 확인
-function toggleSkillButton(buttonElement, isActive) {
+export function toggleSkillButton(buttonElement, isActive) {
     if (isActive) buttonElement.classList.add("active");
     else buttonElement.classList.remove("active");
 }
 
 //필터 버튼 클릭 동작
-function FilterButtonClickEvent(ClickBtn, currentTab) {
+export function FilterButtonClickEvent(ClickBtn, currentTab) {
   const type = ClickBtn.dataset.type;
   const filter = ClickBtn.dataset.filter;
   const alreadyActive = ClickBtn.classList.contains("active");
@@ -89,5 +119,5 @@ function FilterButtonClickEvent(ClickBtn, currentTab) {
   } 
   
   console.log(currentAttrFilter, currentWeapFilter, currentStarFilter);
-  CardGrid(currentTab, currentAttrFilter, currentWeapFilter, currentStarFilter);
+  Render.RenderGrid.CardGrid(currentTab, currentAttrFilter, currentWeapFilter, currentStarFilter);
 }
