@@ -21,34 +21,6 @@ header {
   flex-wrap: nowrap;
 }
 
-.left-container {
-  align-items: center;      /* 내부 중앙 정렬 */
-  margin-left: 30px;
-}
-
-.left-container, .right-container {
-  flex: 0 0 699px;
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 구분선 */
-.divider {
-  position: absolute;
-  top: 20px;
-  bottom: 0;
-  left: 699px;                 /* 화면 정중앙 */
-  width: 2px;                /* 선 두께 */
-  height : 95%;
-  
-  background: #ffffff;
-  transform: translateX(-50%);
-}
-
-
 
 /* 캐릭터 정보 전체 영역 (이미지 + Lv + Rank) */
 .character-info {

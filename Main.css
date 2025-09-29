@@ -221,10 +221,8 @@ nav .tab.active {
 	flex: 1;
 }
 
-#divider {
-  top: 20px;
+.divider {
   width: 2px;                /* 선 두께 */
-  height : 95%;
-  position: relative;
   background: #ffffff;
+  flex-shrink: 0; /* divider가 축소되지 않도록 */
 }
