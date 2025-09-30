@@ -11,23 +11,42 @@ header {
   padding: 10px;
 }
 
-.detail-screen {
-  position: relative;
+main {
   display: flex;
-  justify-content: flex-start;
-  max-width : 1400px;
-  width : 100%;
-  margin: 0 auto;
-  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;    /* 가운데 정렬 */
 }
 
+#detail-screen {
+	display: flex;
+	flex-direction: row;
+	width : 80%;
+}
+
+#left-container, #right-container {
+	flex: 1;
+}
+
+.divider {
+  width: 2px;                /* 선 두께 */
+  background: #ffffff;
+  flex-shrink: 0; /* divider가 축소되지 않도록 */
+}
+
+
+
+#left-container {
+	gap : 10px;
+	display: flex;
+	flex-direction: column;
+}
 
 /* 캐릭터 정보 전체 영역 (이미지 + Lv + Rank) */
 .character-info {
   display: flex;              /* 가로 배치 */
-  align-items: flex-end;        /* 세로 가운데 정렬 */
+  align-items: center;        /* 세로 가운데 정렬 */
   gap: 10px;                  /* 이미지와 텍스트 간격 */
-  margin-bottom: 20px;
 }
 
 /* 캐릭터 이미지 */
@@ -39,7 +58,6 @@ header {
 
 /* Lv과 Rank 묶음 */
 .status {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;     /* 세로로 배치 (Lv 위, Rank 아래) */
   gap: 30px;

@@ -1,14 +1,24 @@
 //개발 환경에 따른 코드 주석 처리
 import * as render from './rendering/Rendering.js';
 import * as Data from './data/Data.js';
-import { Search } from './Search.js';
 
-// 시작 화면 - 캐릭터 선택 화면
 document.addEventListener("DOMContentLoaded", () => {
-	console.log("Main");
-	render.mainPageInitRender(); //화면 그리기
-});
+  const path = window.location.pathname;
+  console.log("addEventListener");
 
-window.addEventListener("DOMContentLoaded", () => {
-    history.replaceState({ page: "main" }, "Main", "#main");
+  if (path.endsWith("Main.html")) {
+    // 메인 페이지
+	console.log("Main");
+    render.mainPageInitRender();
+  } 
+  else if (path.endsWith("Detail.html")) {
+    // 디테일 페이지
+	console.log("Detail");
+	
+    const params = new URLSearchParams(window.location.search);
+    const currentTab = params.get("tab");
+    const select_card_name = params.get("name");
+
+    render.detailPageRender(currentTab, select_card_name);
+  }
 });

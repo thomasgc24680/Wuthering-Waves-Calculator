@@ -9,9 +9,9 @@ export { CharacterData, WeaponData, CalculatorData, Language };
 */
 
 //모든 파일 export
-export * from './DataCharacter.js';
-export * from './DataWeapon.js';
-export * from './DataCalculator.js';
+export * from './Character.js';
+export * from './Weapon.js';
+export * from './Calculator.js';
 export * from '../Language.js';
 
 export const attribute = ["glacio", "fusion", "conducto", "aero", "spectra", "havoc"];

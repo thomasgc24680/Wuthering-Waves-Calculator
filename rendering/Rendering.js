@@ -1,26 +1,26 @@
-import * as RenderGrid from './RenderGrid.js';
-import * as RenderButton from './RenderButton.js';
-import * as RenderCardInfo from './RenderCardInfo.js';
+import * as Grid from './Grid.js';
+import * as Button from './Button.js';
+import * as CardInfo from './CardInfo.js';
 
-export { RenderGrid, RenderButton, RenderCardInfo };
+export { Grid, Button, CardInfo };
 
 export function mainPageInitRender() {
 	console.log("mainPageInitRender");
 	
-	RenderButton.createSwitchTab();
+	Button.createSwitchTab();
 	
 	//필터 그리기
 	const FilterScreen = document.getElementById("filter-screen");
 	FilterScreen.innerHTML = "";
 	
-	RenderButton.createAttrFilter(FilterScreen, "character");
-	RenderButton.createWeapFilter(FilterScreen, "character");
-	RenderButton.createStarFilter(FilterScreen, "character");
+	Button.createAttrFilter(FilterScreen, "character");
+	Button.createWeapFilter(FilterScreen, "character");
+	Button.createStarFilter(FilterScreen, "character");
 	
-	RenderGrid.CardGrid("character", "ALL", "ALL", "ALL");
+	Grid.CardGrid("character", "ALL", "ALL", "ALL");
 }
 
-export function detialPageRender(type, name) {
+export function detailPageRender(type, name) {
 	document.title = `${name} - 육성 계산기`;
-	RenderCardInfo.createSelectCardInfo(type, name);
+	CardInfo.createSelectCardInfo(type, name);
 }

@@ -209,20 +209,3 @@ nav .tab.active {
   transform: scale(1.05);
   background: rgba(255,255,255,0.2);
 }
-
-
-#detail-screen {
-	display: flex;
-	flex-direction: row;
-	width : 80%;
-}
-
-#left-container, #right-container {
-	flex: 1;
-}
-
-.divider {
-  width: 2px;                /* 선 두께 */
-  background: #ffffff;
-  flex-shrink: 0; /* divider가 축소되지 않도록 */
-}
