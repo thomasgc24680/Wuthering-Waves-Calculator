@@ -83,12 +83,14 @@ export function createCardImg(type, name, container){
 	SelectCardImg.classList.add("select-card-image");
 	
 	if(type === "character") {
+		SelectCardImg.id = "character-image";
 		const img = document.createElement("img");
 		img.src = `images/resonator/${name}/detail.jpg`;
 		img.alt = name;
 		SelectCardImg.appendChild(img);
 	}
 	else {
+		SelectCardImg.id = "weapon-image";
 		const img = document.createElement("img");
 		img.src = `images/weapon/${name}.jpg`;
 		img.alt = name;

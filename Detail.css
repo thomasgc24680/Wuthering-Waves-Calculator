@@ -37,9 +37,11 @@ main {
 
 
 #left-container {
-	gap : 10px;
-	display: flex;
-	flex-direction: column;
+  gap : 10px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  align-items: flex-end;
 }
 
 /* 캐릭터 정보 전체 영역 (이미지 + Lv + Rank) */
@@ -50,8 +52,21 @@ main {
 }
 
 /* 캐릭터 이미지 */
+/*
 .select-card-image img {
   height: 400px;
+  border-radius: 8px;
+  display: block;
+}*/
+
+#character-image img {
+  height: 400px;
+  border-radius: 8px;
+  display: block;
+}
+
+#weapon-image img {
+  height: 300px;
   border-radius: 8px;
   display: block;
 }
@@ -237,6 +252,7 @@ select {
 #right-screen {
   display: block;       /* flex였다면 제거 */
   width: auto;          /* grid 내용만 차지 */
+  align-items: flex-start;
 }
 
 /* 그리드 컨테이너 */

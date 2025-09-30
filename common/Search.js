@@ -1,5 +1,17 @@
-export function Search(){
-	console.log("Search");
+export function createSearchInput(container) {
+	const searchInput = document.createElement("div");
+	searchInput.classList.add("filter-search");
+	
+	const Input = document.createElement("input");
+	Input.type = "text";
+	Input.id = "SearchTool";
+	Input.placeholder = "검색어를 입력하세요.";
+	
+	searchInput.appendChild(Input);	
+	container.appendChild(searchInput);
+}
+
+export function createSearchFunc() {
 	const searchInput = document.getElementById("SearchTool");
 	
 	if(!searchInput) {

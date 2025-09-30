@@ -19,6 +19,7 @@ main {
   align-items: center;    /* 가운데 정렬 */
 }
 
+
 /* 탭 버튼 pill 스타일 */
 nav .tab {
   background: rgba(255,255,255,0.2);
@@ -41,10 +42,11 @@ nav .tab.active {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap : 10px;
 }
 
 /* 필터 컨테이너 */
-#filter-screen {
+.filter-screen {
   width: 1100px;  /* 카드랑 같은 폭으로 고정 */
   flex-direction: column;
   justify-content: center;  
@@ -56,11 +58,11 @@ nav .tab.active {
   gap: 10px;
   align-items: center;
 }
-#filter-screen .filter-row {
+.filter-screen .filter-row {
   display: grid;
   gap: 10px;
 }
-#filter-screen .filter-buttons button{
+.filter-screen .filter-buttons button{
   background: rgba(255,255,255,0.2);
   border-radius: 8px;
   padding: 5px;
@@ -70,22 +72,22 @@ nav .tab.active {
   align-items: center;
   justify-content: center;
 }
-#filter-screen .filter-buttons img {
+.filter-screen .filter-buttons img {
   width: 32px;   /* 아이콘 크기 */
   height: 32px;
 }
-#filter-screen .filter-buttons button:hover {
+.filter-screen .filter-buttons button:hover {
   background: rgba(255,255,255,0.5);
 }
-#filter-screen .filter-buttons button.active {
+.filter-screen .filter-buttons button.active {
   background: rgba(255,255,255,0.8);
 }
 /* 검색창 */
-#filter-screen .filter-search {
+.filter-screen .filter-search {
   margin-left: auto;   /* ✅ 오른쪽 끝으로 밀기 */
 }
 
-#filter-screen .filter-search input {
+.filter-screen .filter-search input {
   width: 300px;
   height : 20px;
   padding: 6px 12px;
@@ -97,33 +99,22 @@ nav .tab.active {
   font-size: 14px;
 }
 
-#filter-screen .filter-search input::placeholder {
+.filter-screen .filter-search input::placeholder {
   color: #bbb;
 }
 
 /* 캐릭터/무기 선택 화면 */
 #select-screen {
-  display: flex;
-  justify-content: center;
-  height : 540px;
-  width : 1200px;
-}
-
-/* 카드 그리드 */
-#select-screen .card-grid {
-  align-self: start;
   display: grid;
   grid-template-columns: repeat(8, 120px);
-  gap: 20px;
-  
-  
+  gap : 20px;
+  justify-content: center;
   overflow: visible;
-  align-items: start;     /* 각 grid cell 내부 아이템 세로 stretch 방지 */
-  align-content: start;   /* 행들이 컨테이너 높이에 맞춰 늘어나지 않음 */
-  height: 100%;           /* 내용 크기만 차지 */
+  height : 100%;
+  width : 100%;
 }
 
-#select-screen .select-card p {
+#select-screen .main-card p {
   margin: 6px 0;
   font-size: 1rem;
   font-weight: bold;
@@ -137,7 +128,7 @@ nav .tab.active {
   width: 120px; /* 이미지 폭과 맞추기 */
 }
 
-#select-screen .select-card {
+#select-screen .main-card {
   display: flex;
   background: rgba(0,0,0,0.6);
   border-radius: 12px;

@@ -1,27 +1,37 @@
 import * as Data from '../data/Data.js';
+import { FilterButtonClickEvent } from './ButtonClickEvent.js';
 
-export function Filter(currentTab, currentAttributeFilter, currentWeaponFilter, currentStarFilter) {
-  const container = document.querySelector(".card-grid");
-  container.innerHTML = "";
-
-  const data = currentTab === "character" ? Data.characters : Data.weapons;
-
-  const filtered = data.filter(card => {
-    if (currentTab === "character") { //캐릭터 조건
-      const attrMatch = currentAttributeFilter === "ALL" || //속성 필터
-                        card.attribute.toLowerCase() === currentAttributeFilter.toLowerCase();
-      const weaponMatch = currentWeaponFilter === "ALL" ||  //무기 필터
-                          card.weapon.toLowerCase() === currentWeaponFilter.toLowerCase();
-	  const starMatch = currentStarFilter === "ALL" ||      //등급 필터
-                          String(card.star) === currentStarFilter;
-      return attrMatch && weaponMatch && starMatch;
-    }
-	else { //무기 조건
-		const weaponMatch = currentWeaponFilter === "ALL" || //속성 필터
-			 card.weaponType.toLowerCase() === currentWeaponFilter.toLowerCase();
-		const starMatch = currentStarFilter === "ALL" ||   //무기 필터
-						  String(card.star) === currentStarFilter;
-		return weaponMatch && starMatch;
-    }
-  });
+export function Filtering(currentTab) {
+	console.log("Filtering-", currentTab);
+    const CardData = currentTab === "character" ? Data.characterData : Data.weaponData;
+	
+	const { currAttrFilter, currWeapFilter, currStarFilter } = FilterButtonStateCheck();
+	console.log(currAttrFilter, currWeapFilter, currStarFilter);
+	
+    const FilterData = CardData.filter(card => {
+        if (currentTab === "character") {
+            return (currAttrFilter === "ALL" || card.attribute.toLowerCase() === currAttrFilter.toLowerCase())
+                && (currWeapFilter === "ALL" || card.weapon.toLowerCase() === currWeapFilter.toLowerCase())
+                && (currStarFilter === "ALL" || String(card.star) === currStarFilter);
+        } else {
+            return (currWeapFilter === "ALL" || card.weapon.toLowerCase() === currWeapFilter.toLowerCase())
+                && (currStarFilter === "ALL" || String(card.star) === currStarFilter);
+        }
+    });
+	
+	console.log(FilterData);
+	
+	return FilterData;
 }
+
+function FilterButtonStateCheck() {
+	const DOMattrFilter = document.querySelector('.filter-screen .attribute-filters button.active');
+	const DOMweapFilter = document.querySelector('.filter-screen .weapon-filters button.active');
+	const DOMstarFilter = document.querySelector('.filter-screen .star-filters button.active');
+
+	let currAttrFilter = DOMattrFilter ? DOMattrFilter.dataset.filter : "ALL";
+	let currWeapFilter = DOMweapFilter ? DOMweapFilter.dataset.filter : "ALL";
+	let currStarFilter = DOMstarFilter ? DOMstarFilter.dataset.filter : "ALL";
+	
+	return { currAttrFilter, currWeapFilter, currStarFilter };
+}	
