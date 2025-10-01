@@ -8,31 +8,31 @@ import * as Common from '../common/Common.js';
  - 스킬 연결점 버튼 생성
 */
 
-export function createFilterButton(currentTab, currentPage) {
-	//필터 그리기
+export function createFilterButton(currentTab, containerId) {
+	console.log("createFilterButton-",currentTab, containerId);
 	
-	const container = document.querySelector(`${currentPage} .filter-screen`);
+	//필터 그릴 페이지 가져오기
+	const screen = document.getElementById(containerId);
+	const container = screen.querySelector(".filter-screen");
 	container.innerHTML = "";
 	
-	console.log(container);
-	
-	/*
-	const FilterScreen = document.getElementById("filter-screen");
-	FilterScreen.innerHTML = "";
-	*/
-	
+	//필터 버튼 추가
 	if(currentTab === "character"){
-		createAttrFilter(currentTab, container);
-		createWeapFilter(currentTab, container);
-		createStarFilter(currentTab, container);
+		createAttrFilter(currentTab, container, containerId);
+		createWeapFilter(currentTab, container, containerId);
+		createStarFilter(currentTab, container, containerId);
 	}
 	else {
-		createWeapFilter(currentTab, container);
-		createStarFilter(currentTab, container);
+		createWeapFilter(currentTab, container, containerId);
+		createStarFilter(currentTab, container, containerId);
 	}
+	
+	screen.appendChild(container);
+		
+	Common.Search.createSearchFunc(); //검색창이 DOM에 포함된 후 기능 연결.
 }
 
-export function createAttrFilter(currentTab, container) {	//무기 필터 버튼 생성
+export function createAttrFilter(currentTab, container, containerId) {	//무기 필터 버튼 생성
 	console.log("createAttrFilter");
 	
 	const attributeFilter = document.createElement("div");
@@ -47,13 +47,13 @@ export function createAttrFilter(currentTab, container) {	//무기 필터 버튼
 		img.alt = attr;
 		
 		Btn.appendChild(img);
-		Btn.addEventListener("click", () => Common.BtnClickEvt.FilterButtonClickEvent(Btn, currentTab));
+		Btn.addEventListener("click", () => Common.BtnClickEvt.FilterButtonClickEvent(Btn, currentTab, containerId));
 		attributeFilter.appendChild(Btn);
 	});
 	container.appendChild(attributeFilter);
 }
 
-export function createWeapFilter(currentTab, container){	//무기 필터 버튼 생성
+export function createWeapFilter(currentTab, container, containerId){	//무기 필터 버튼 생성
 	console.log("createWeapFilter");
 	
 	const weaponFilter = document.createElement("div");
@@ -68,13 +68,13 @@ export function createWeapFilter(currentTab, container){	//무기 필터 버튼 
 		img.alt = weap;
 		
 		Btn.appendChild(img);
-		Btn.addEventListener("click", () => Common.BtnClickEvt.FilterButtonClickEvent(Btn, currentTab));
+		Btn.addEventListener("click", () => Common.BtnClickEvt.FilterButtonClickEvent(Btn, currentTab, containerId));
 		weaponFilter.appendChild(Btn);
 	});
 	container.appendChild(weaponFilter);
 }
 
-export function createStarFilter(currentTab, container) {	//등급 필터 버튼 생성
+export function createStarFilter(currentTab, container, containerId) {	//등급 필터 버튼 생성
 	console.log("createStarFilter");
 	
 	const starFilter = document.createElement("div");
@@ -94,7 +94,7 @@ export function createStarFilter(currentTab, container) {	//등급 필터 버튼
 		img.alt = star;
 		
 		Btn.appendChild(img);
-		Btn.addEventListener("click", () => Common.BtnClickEvt.FilterButtonClickEvent(Btn, currentTab));
+		Btn.addEventListener("click", () => Common.BtnClickEvt.FilterButtonClickEvent(Btn, currentTab, containerId));
 		starFilter.appendChild(Btn);
 	});
 	
@@ -103,6 +103,4 @@ export function createStarFilter(currentTab, container) {	//등급 필터 버튼
 	Common.Search.createSearchInput(starFilter); //검색창 생성
 	
 	container.appendChild(starFilter);
-	
-	Common.Search.createSearchFunc(); //검색창이 DOM에 포함된 후 기능 연결.
 }

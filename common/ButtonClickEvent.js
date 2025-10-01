@@ -22,25 +22,23 @@ export function SwitchTabClickEvent(SwitchingTab) {
 	
 	const currentTab = document.querySelector(`#tab-nav .tab[data-tab="${SwitchingTab}"]`);
 	currentTab.classList.add("active");
-
-	// 필터 초기화
-	const FilterScreen = document.querySelector(`#main-screen`);
-	FilterScreen.innerHTML = "";
 	
 	if(SwitchingTab === "character"){
 		console.log("SwitchingTab-character");
-		Rendering.FilterButton.createFilterButton(SwitchingTab, "#main-screen");
+		Rendering.FilterButton.createFilterButton(SwitchingTab, "main-screen");
 	}
 	else {
 		console.log("SwitchingTab-character");
-		Rendering.FilterButton.createFilterButton(SwitchingTab, "#main-screen");
+		Rendering.FilterButton.createFilterButton(SwitchingTab, "main-screen");
 	}
 	
-	Rendering.GridButton.renderCardButton(SwitchingTab, "ALL", "ALL", "ALL", "select-screen");
+	Rendering.GridButton.renderCardButton(SwitchingTab, "main-screen");
 }
 
 //필터 버튼 클릭 동작
-export function FilterButtonClickEvent(ClickBtn, currentTab) {
+export function FilterButtonClickEvent(ClickBtn, currentTab, containerId) {
+  console.log("FilterButtonClickEvent-", containerId);
+
   const type = ClickBtn.dataset.type;
   const filter = ClickBtn.dataset.filter;
   const alreadyActive = ClickBtn.classList.contains("active"); 
@@ -55,7 +53,7 @@ export function FilterButtonClickEvent(ClickBtn, currentTab) {
 	ClickBtn.classList.add("active");
   }
   
-  Rendering.GridButton.renderCardButton(currentTab, "select-screen");
+  Rendering.GridButton.renderCardButton(currentTab, containerId);
 }
 
 //main 페이지에서 카드 클릭 시 카드 type과 name detail 페이지로 넘기기. - 완료

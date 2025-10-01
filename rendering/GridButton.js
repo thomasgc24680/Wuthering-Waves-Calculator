@@ -12,13 +12,10 @@ import * as Common from '../common/Common.js';
 export function renderCardButton(currentTab, containerId) {
 	console.log("renderCardButton-", currentTab, containerId);
 	
-	const container = document.getElementById(containerId);
-	if(container) 
-	{
-		container.innerHTML = "";
-	console.log(container);
-	}
-	console.log(container);
+	const screen = document.getElementById(containerId);	
+	
+	const container = screen.querySelector(".select-screen");
+	container.innerHTML = "";
 	
 	const CardData = Common.Filtering(currentTab);
 	
@@ -26,11 +23,13 @@ export function renderCardButton(currentTab, containerId) {
 		const btn = createCardButton(currentTab, card);
 		container.appendChild(btn);
 	});
+	
+	screen.appendChild(container);
 }
 
 export function createCardButton(currentTab, card){
 	const btn = document.createElement("button");
-	btn.classList.add("main-card");
+	btn.classList.add("card");
 	
 	const star = `star-${card.star}`;
 
@@ -53,128 +52,6 @@ export function createCardButton(currentTab, card){
 			<p>${card.name}</p>
 		`;
 	}
-	btn.onclick = () => Common.BtnClickEvt.MaintoDetail(currentTab, card.name);
+	btn.onclick = () => Common.BtnClickEvt.MainToDetail(currentTab, card.name);
 	return btn;
 }
-
-
-export function CardGrid(currentTab, currentAttrFilter, currentWeapFilter, currentStarFilter) {
-	console.log("CardGrid-", currentTab);
-	
-	const SelectScreen = document.getElementById("select-screen");
-	SelectScreen.innerHTML = "";
-	
-	const SelectCardGrid = document.createElement("div");
-	SelectCardGrid.classList.add("card-grid");
-	
-	let CardData;
-	
-	if(currentTab === "character") CardData = Data.characterData;
-	else CardData = Data.weaponData;
-	
-	const filterdData = CardData.filter(card => {
-        if (currentTab === "character") {
-            return (currentAttrFilter === "ALL" || card.attribute.toLowerCase() === currentAttrFilter.toLowerCase())
-                && (currentWeapFilter === "ALL" || card.weapon.toLowerCase() === currentWeapFilter.toLowerCase())
-                && (currentStarFilter === "ALL" || String(card.star) === currentStarFilter);
-        } else {
-            return (currentWeapFilter === "ALL" || card.weapon.toLowerCase() === currentWeapFilter.toLowerCase())
-                && (currentStarFilter === "ALL" || String(card.star) === currentStarFilter);
-        }
-    });
-	
-	filterdData.forEach(card => {
-		const CardBtn = document.createElement("button");
-		CardBtn.classList.add("select-card");
-		
-		let star;
-		if(card.star === 5) star = "star-5";
-		else if(card.star === 4) star = "star-4";
-		else if(card.star === 3) star = "star-3";
-		else if(card.star === 2) star = "star-2";
-		else star = "star-1";
-		
-		if(currentTab === "character") {
-			CardBtn.innerHTML = 
-				`<div class="img-wrapper ${star}">
-					<img src="images/resonator/${card.name}/main.jpg" alt="${card.name}">
-					<img class="attr-icon" src="images/icon/attribute/${card.attribute}.jpg" alt="${card.attribute}">
-					<img class="weap-icon" src="images/icon/weapon/${card.weapon}.jpg" alt="${card.weapon}">
-				</div>
-				<p>${card.KR_name}</p>
-			`;
-		}
-		else {
-			CardBtn.innerHTML = 
-				`<div class="img-wrapper ${star}">
-					<img src="images/weapon/${card.name}.jpg" alt="${card.name}">
-					<img class="weap-icon" src="images/icon/weapon/${card.weapon}.jpg" alt="${card.weapon}">
-				</div>
-				<p>${card.name}</p>
-			`;
-		}
-		CardBtn.onclick = () => Common.BtnClickEvt.MainToDetail(currentTab, card.name);
-		
-		SelectCardGrid.appendChild(CardBtn);
-	});
-	
-	SelectScreen.appendChild(SelectCardGrid);
-}
-	
-	/*
-	const SelectCardGrid = document.createElement("div");
-	SelectCardGrid.classList.add("card-grid");
-	
-	if(currentTab === "character") CardData = Data.characterData;
-	else CardData = Data.weaponData;
-	
-	const filterdData = CardData.filter(card => {
-        if (currentTab === "character") {
-            return (currentAttrFilter === "ALL" || card.attribute.toLowerCase() === currentAttrFilter.toLowerCase())
-                && (currentWeapFilter === "ALL" || card.weapon.toLowerCase() === currentWeapFilter.toLowerCase())
-                && (currentStarFilter === "ALL" || String(card.star) === currentStarFilter);
-        } else {
-            return (currentWeapFilter === "ALL" || card.weapon.toLowerCase() === currentWeapFilter.toLowerCase())
-                && (currentStarFilter === "ALL" || String(card.star) === currentStarFilter);
-        }
-    });
-	
-	filterdData.forEach(card => {
-		const CardBtn = document.createElement("button");
-		CardBtn.classList.add("select-card");
-		
-		let star;
-		if(card.star === 5) star = "star-5";
-		else if(card.star === 4) star = "star-4";
-		else if(card.star === 3) star = "star-3";
-		else if(card.star === 2) star = "star-2";
-		else star = "star-1";
-		
-		if(currentTab === "character") {
-			CardBtn.innerHTML = 
-				`<div class="img-wrapper ${star}">
-					<img src="images/resonator/${card.name}/main.jpg" alt="${card.name}">
-					<img class="attr-icon" src="images/icon/attribute/${card.attribute}.jpg" alt="${card.attribute}">
-					<img class="weap-icon" src="images/icon/weapon/${card.weapon}.jpg" alt="${card.weapon}">
-				</div>
-				<p>${card.KR_name}</p>
-			`;
-		}
-		else {
-			CardBtn.innerHTML = 
-				`<div class="img-wrapper ${star}">
-					<img src="images/weapon/${card.name}.jpg" alt="${card.name}">
-					<img class="weap-icon" src="images/icon/weapon/${card.weapon}.jpg" alt="${card.weapon}">
-				</div>
-				<p>${card.name}</p>
-			`;
-		}
-		CardBtn.onclick = () => Common.BtnClickEvt.MainToDetail(currentTab, card.name);
-		
-		SelectCardGrid.appendChild(CardBtn);
-	});
-	
-	SelectScreen.appendChild(SelectCardGrid);
-}
-*/
-

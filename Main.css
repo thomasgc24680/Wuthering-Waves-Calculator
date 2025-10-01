@@ -47,21 +47,20 @@ nav .tab.active {
 
 /* 필터 컨테이너 */
 .filter-screen {
+  display: flex;
   width: 1100px;  /* 카드랑 같은 폭으로 고정 */
   flex-direction: column;
   justify-content: center;  
 }
-.filter-buttons {
+
+.filter-screen .filter-buttons {
   margin-bottom: 10px;
   display: flex;
   flex-direction: row; /* ✅ 가로 정렬 */
   gap: 10px;
   align-items: center;
 }
-.filter-screen .filter-row {
-  display: grid;
-  gap: 10px;
-}
+
 .filter-screen .filter-buttons button{
   background: rgba(255,255,255,0.2);
   border-radius: 8px;
@@ -103,32 +102,20 @@ nav .tab.active {
   color: #bbb;
 }
 
+
 /* 캐릭터/무기 선택 화면 */
-#select-screen {
+.select-screen {
   display: grid;
   grid-template-columns: repeat(8, 120px);
   gap : 20px;
   justify-content: center;
+  align-items: start;
   overflow: visible;
   height : 100%;
   width : 100%;
 }
 
-#select-screen .main-card p {
-  margin: 6px 0;
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  white-space: normal;
-  word-wrap: break-word; /* 긴 단어도 자동 줄바꿈 */
-
-  /*text-overflow: ellipsis;*/
-  overflow: visible;
-  width: 120px; /* 이미지 폭과 맞추기 */
-}
-
-#select-screen .main-card {
+.select-screen .card {
   display: flex;
   background: rgba(0,0,0,0.6);
   border-radius: 12px;
@@ -144,8 +131,19 @@ nav .tab.active {
   height: auto;
 }
 
+.select-screen .card p {
+  width: 120px; /* 이미지 폭과 맞추기 */
+  margin: 6px 0;
+  text-align: center;
+  word-wrap: break-word; /* 긴 단어도 자동 줄바꿈 */
+  overflow: visible;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
 /* 이미지 전용 박스 */
-#select-screen .img-wrapper {
+.select-screen .img-wrapper {
   align-self: flex-start; /* 부모 flex 안에서 위쪽 고정 */
   width: 120px;
   height: 120px;
@@ -155,7 +153,7 @@ nav .tab.active {
   flex-shrink: 0;   /* 이미지 높이는 줄어들지 않음 */
 }
 
-#select-screen .img-wrapper .attr-icon {
+.select-screen .img-wrapper .attr-icon {
   position: absolute;
   top: 4px;   /* 이미지 하단에서 약간 위 */
   left: 4px;    /* 이미지 오른쪽에서 약간 안쪽 */
@@ -163,7 +161,7 @@ nav .tab.active {
   height: 24px;
 }
 
-#select-screen .img-wrapper .weap-icon {
+.select-screen .img-wrapper .weap-icon {
   position: absolute;
   top: 4px;   /* 이미지 하단에서 약간 위 */
   right: 4px;    /* 이미지 오른쪽에서 약간 안쪽 */
@@ -171,7 +169,7 @@ nav .tab.active {
   height: 24px;
 }
 
-#select-screen .img-wrapper img {
+.select-screen .img-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -179,24 +177,24 @@ nav .tab.active {
 }
 
 /* 등급별 배경 (이미지 뒷부분만 색 입힘) */
-#select-screen .img-wrapper.star-5 {
+.select-screen .img-wrapper.star-5 {
   background: rgba(255, 215, 0, 0.5);
 }
-#select-screen .img-wrapper.star-4 {
+.select-screen .img-wrapper.star-4 {
   background: rgba(128, 0, 128, 0.5);
 }
-#select-screen .img-wrapper.star-3 {
+.select-screen .img-wrapper.star-3 {
   background: rgba(135, 190, 225, 0.6);
 }
-#select-screen .img-wrapper.star-2 {
+.select-screen .img-wrapper.star-2 {
   background: rgba(140, 200, 140, 0.5);
 }
-#select-screen .img-wrapper.star-1 {
+.select-screen .img-wrapper.star-1 {
   background: rgba(128, 128, 128, 0.5);
 }
 
 /* 마우스 올려 있을 때 */
-#select-screen .select-card:hover {
+.select-screen .card:hover {
   transform: scale(1.05);
   background: rgba(255,255,255,0.2);
 }

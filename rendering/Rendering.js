@@ -10,10 +10,8 @@ export function mainPageInitRender() {
 	console.log("mainPageInitRender");
 	
 	Button.createSwitchTab();			//스위치탭 버튼 생성
-	FilterButton.createFilterButton("character", "#main-screen");	//필터 버튼 생성
-	
-	
-	GridButton.renderCardButton("character", "select-screen");
+	FilterButton.createFilterButton("character", "main-screen");	//필터 버튼 생성
+	GridButton.renderCardButton("character", "main-screen");
 }
 
 export function detailPageRender(type, name) {

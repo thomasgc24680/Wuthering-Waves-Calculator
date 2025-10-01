@@ -29,9 +29,9 @@ function FilterButtonStateCheck() {
 	const DOMweapFilter = document.querySelector('.filter-screen .weapon-filters button.active');
 	const DOMstarFilter = document.querySelector('.filter-screen .star-filters button.active');
 
-	let currAttrFilter = DOMattrFilter ? DOMattrFilter.dataset.filter : "ALL";
-	let currWeapFilter = DOMweapFilter ? DOMweapFilter.dataset.filter : "ALL";
-	let currStarFilter = DOMstarFilter ? DOMstarFilter.dataset.filter : "ALL";
+	const currAttrFilter = DOMattrFilter ? DOMattrFilter.dataset.filter : "ALL";
+	const currWeapFilter = DOMweapFilter ? DOMweapFilter.dataset.filter : "ALL";
+	const currStarFilter = DOMstarFilter ? DOMstarFilter.dataset.filter : "ALL";
 	
 	return { currAttrFilter, currWeapFilter, currStarFilter };
 }	

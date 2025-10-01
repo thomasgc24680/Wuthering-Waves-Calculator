@@ -22,7 +22,7 @@ export function createSearchFunc() {
 	searchInput.addEventListener("input", () => {
 		const query = searchInput.value.toLowerCase().trim();
 
-		document.querySelectorAll("#select-screen .select-card").forEach(card => {
+		document.querySelectorAll(".select-screen .card").forEach(card => {
 			const name = card.querySelector("p").textContent.toLowerCase();
 			if (name.includes(query)) {
 				card.style.display = "";   // 검색어 포함 → 보이기
