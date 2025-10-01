@@ -108,13 +108,35 @@ select {
   font-weight: bold;      /* 필요하면 강조 */
 }
 
+
+.skill-connector {
+	width : 100%;
+	padding: 10px;
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+}
+
+/* 버튼 위 텍스트 */
+.skill-title {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom : 10px;
+  color: #fff;
+  position: relative;
+}
+
+
 /* 스킬 연결점 버튼 */
 .skill-buttons {
-  display: grid;
+  display : grid;
+  flex-direction : row;
   grid-template-columns: repeat(5, auto); /* 5개씩 */
+  gap : auto;
   width: 100%; /* character-info 이미지 폭에 맞춤 */
   max-width: 500px;
-  margin: 0px auto 20px;       /*top right bottom left*/
   justify-items: center;
 }
 
@@ -145,7 +167,7 @@ select {
 }
 
 /* 연결선 */
-.skill-col .connector {
+.connector {
   width: 0; /* 세로선 */
   height : 20px;
   flex-grow: 1; /* 버튼 사이를 가득 채움 */
@@ -184,17 +206,6 @@ select {
 .skill-buttons button:hover .tooltip {
   visibility: visible;
   opacity: 1;
-}
-
-/* 버튼 위 텍스트 */
-.skill-title {
-  width: 100%
-  text-align: center;
-  font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #fff;
-  position: relative;
 }
 
 /* 스킬 이미지 영역 */

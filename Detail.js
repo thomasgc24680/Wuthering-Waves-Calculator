@@ -12,50 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-skills_language[0].forEach((skill, index) => {
-  const wrapper = document.createElement("div");
-  wrapper.classList.add("skill");
-
-  //라벨
-  const label = document.createElement("span");
-  label.classList.add("label");
-  label.textContent = skills_language[1][index];
-  
-  const skillId = skill.toLowerCase().replace(/\s+/g, "_");
-
-  // 현재 값 select box
-  const selectCurrent = document.createElement("select");
-  selectCurrent.id = `${skillId}_current`;   // 예: 일반공격_current
-  for (let i=1; i<=10; i++) {
-    const option = document.createElement("option");
-    option.value = i;
-    option.textContent = i;
-    selectCurrent.appendChild(option);
-  }
-  
-  // 화살표
-  const arrow = document.createElement("span");
-  arrow.textContent = ">>";
-  arrow.classList.add("arrow");
-
-  // 목표 값 select
-  const selectGoal = document.createElement("select");
-  selectGoal.id = `${skillId}_goal`;   // 예: 일반공격_current
-  for (let i = 1; i <= 10; i++) {
-    const option = document.createElement("option");
-    option.value = i;
-    option.textContent = i;
-    selectGoal.appendChild(option);
-  }
-
-  wrapper.appendChild(label);
-  wrapper.appendChild(selectCurrent);
-  wrapper.appendChild(arrow);
-  wrapper.appendChild(selectGoal);
-
-  container.appendChild(wrapper);
-});
-
 window.onload = function() {
   const params = new URLSearchParams(window.location.search);
   const characterName = params.get("name"); // 캐릭터 이름 가져오기

@@ -77,3 +77,14 @@ export function toggleSkillButton(buttonElement, isActive) {
     else buttonElement.classList.remove("active");
 }
 
+export function SkillConnectButtonClick(Btn, position) { //chat gpt 코드 참고
+	const pair = Btn.pair;
+	
+	const alreadyActive = Btn.classList.contains("active");
+	if(alreadyActive) {
+		Btn.classList.remove("active");
+	}
+	else {
+		
+	}
+}

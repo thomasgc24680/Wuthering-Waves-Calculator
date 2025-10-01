@@ -4,6 +4,8 @@ import * as FilterButton from './FilterButton.js';
 
 import * as CardInfo from './CardInfo.js';
 
+import * as Data from '../data/Data.js';
+
 export { Button, GridButton, FilterButton, CardInfo };
 
 export function mainPageInitRender() {
@@ -17,8 +19,8 @@ export function mainPageInitRender() {
 export function detailPageRender(type, name) {
 	document.title = `${name} - 육성 계산기`;
 	CardInfo.createSelectCardInfo(type, name);
-}
-
-export function createSkillOrderImg() {
 	
+	const selectCharacter = Data.characterData.find(c => c.name === name);
+	console.log(selectCharacter);
+	Button.createSkillConnectContainer(selectCharacter);
 }
