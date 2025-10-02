@@ -108,7 +108,7 @@ export function createSelectCardInfo(type, name) {
 	container.innerHTML = "";
 	
 	const SelectCardInfo = document.createElement("div");
-	SelectCardInfo.classList.add("character-info");
+	SelectCardInfo.classList.add("select-card-info");
 	
 	createCardImg(type, name, SelectCardInfo);
 	createCardSelectOption(type, SelectCardInfo);

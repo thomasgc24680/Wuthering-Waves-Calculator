@@ -20,7 +20,83 @@ export function detailPageRender(type, name) {
 	document.title = `${name} - 육성 계산기`;
 	CardInfo.createSelectCardInfo(type, name);
 	
-	const selectCharacter = Data.characterData.find(c => c.name === name);
-	console.log(selectCharacter);
-	Button.createSkillConnectContainer(selectCharacter);
+	if(type === "character"){
+		const selectCharacter = Data.characterData.find(c => c.name === name);
+		console.log(selectCharacter);
+		
+		const LeftContainer = document.getElementById("left-container");
+		Button.createSkillConnectContainer(selectCharacter, LeftContainer);
+		createSkillUpgradeOrder(selectCharacter, LeftContainer);
+		Button.createAddWeapon(selectCharacter, LeftContainer);
+	}
+}
+
+function createSkillUpgrade(skill) {
+
+}
+
+function createSkillUpgradeOrder(character, container) {
+	//스킬 업그레이드 순서 컨테이너
+	const SkillUpgradeOrderContainer = document.createElement("div");	
+	SkillUpgradeOrderContainer.id = "skill-upgrade-container";
+	
+	//스킬 업그레이드 순서 타이틀
+	const SkillUpgradeOrderTitle = document.createElement("div");
+	SkillUpgradeOrderTitle.classList.add("skill-title");
+	SkillUpgradeOrderTitle.textContent = "스킬 레벨 업 순서";
+	SkillUpgradeOrderContainer.appendChild(SkillUpgradeOrderTitle);	
+	
+	const skillName = {
+		attack : "일반공격",
+		skill : "공명스킬",
+		circuit : "공명회로",
+		liberation : "공명해방",
+		intro : "변주스킬"
+	};
+	
+	const skills = character.skillLevelUpOrder.match(/[\w]+|＞|≥|=/g);
+	console.log(skills);
+	
+	const skillUpgrade = document.createElement("div");
+	skillUpgrade.classList.add("skill-upgrade");
+	
+	//스킬 업그레이드 각 이미지 및 기호
+	skills.forEach(skillKey => {
+		const skillWrapper = document.createElement("div");
+		skillWrapper.classList.add("skill-wrapper");
+		
+		const img = document.createElement("img");
+		
+		//스킬 기호
+		if(skillKey === "＞" || skillKey === "≥" || skillKey === "=") {
+			const sign = document.createElement("span");
+			sign.classList.add("skill-sign");
+			sign.textContent = skillKey;
+			skillWrapper.appendChild(sign);
+		}
+		
+		//스킬 이미지 및 이름
+		else {
+			if(skillKey === "attack") {
+				img.src = `images/icon/weapon/${character.weapon}_attack.jpg`;
+			}
+			else {
+				img.src = `images/resonator/${character.name}/${skillKey}.jpg`;
+			}
+			img.alt = skillKey;
+			img.classList.add("skill-img");
+			
+			const label = document.createElement("span");
+			label.classList.add("skill-label");
+			label.textContent = skillName[skillKey];
+			
+			skillWrapper.appendChild(img);
+			skillWrapper.appendChild(label);
+		}
+		
+		skillUpgrade.appendChild(skillWrapper);
+	});
+	
+	SkillUpgradeOrderContainer.appendChild(skillUpgrade);
+	container.appendChild(SkillUpgradeOrderContainer);
 }

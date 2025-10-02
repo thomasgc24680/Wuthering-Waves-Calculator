@@ -71,20 +71,25 @@ export function MainToDetail(currentTab, name) {
     window.location.href = url.toString();
 }
 
-// 스킬 버튼 활성/비활성 확인
-export function toggleSkillButton(buttonElement, isActive) {
-    if (isActive) buttonElement.classList.add("active");
-    else buttonElement.classList.remove("active");
-}
-
 export function SkillConnectButtonClick(Btn, position) { //chat gpt 코드 참고
 	const pair = Btn.pair;
 	
-	const alreadyActive = Btn.classList.contains("active");
-	if(alreadyActive) {
-		Btn.classList.remove("active");
+	if(position === "top") {
+		Btn.classList.toggle("active");
+		
+		if(Btn.classList.contains("active") && !pair.classList.contains("active")){
+			pair.classList.add("active");
+		}
 	}
 	else {
+		Btn.classList.toggle("active");
 		
+		if(!Btn.classList.contains("active") && pair.classList.contains("active")){
+			pair.classList.remove("active");
+		}
 	}
+}
+
+export function AddWeaponClick(weapon){
+	
 }

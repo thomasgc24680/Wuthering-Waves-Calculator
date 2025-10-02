@@ -40,7 +40,7 @@ function SkillButtonImg(container, index, name, bonus, position){
 	
 	Btn.innerHTML = `<img src="${Img}" alt="skill">`;
 	
-	Btn.onclick = () => Common.BtnClickEvt.SkillConnectButtonClick(Btn);
+	Btn.onclick = () => Common.BtnClickEvt.SkillConnectButtonClick(Btn, position);
 	
 	return Btn;
 }
@@ -77,8 +77,7 @@ function createSkillButton(character, container) {
 }
 	
 
-export function createSkillConnectContainer(character){
-	const container = document.getElementById("left-container");
+export function createSkillConnectContainer(character, container){
 	
 	//스킬 버튼 컨테이너 - 스킬 타이틀 + 스킬 버튼들
 	const SkillButtonContainer = document.createElement("div");
@@ -103,4 +102,16 @@ export function createSkillConnectContainer(character){
 	//
 	SkillButtonContainer.appendChild(SkillButtons); //스킬 버튼들 -> 컨테이너 추가
 	container.appendChild(SkillButtonContainer); //스킬 버튼 컨테이너 -> left 컨테이너에 추가
+}
+
+export function createAddWeapon(character, container) {
+	const AddWeaponBtn = document.createElement("button");
+	AddWeaponBtn.classList.add("add-weapon");
+	
+	const BtnText = document.createElement("span");
+	BtnText.textContent = "무기 추가";
+	
+	AddWeaponBtn.appendChild(BtnText);	
+	
+	container.appendChild(AddWeaponBtn);
 }
