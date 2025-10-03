@@ -13,7 +13,7 @@ export function mainPageInitRender() {
 	
 	Button.createSwitchTab();			//스위치탭 버튼 생성
 	FilterButton.createFilterButton("character", "main-screen");	//필터 버튼 생성
-	GridButton.renderCardButton("character", "main-screen");
+	GridButton.renderMainCardButton("character", "main-screen");
 }
 
 export function detailPageRender(type, name) {

@@ -1,11 +1,12 @@
 import * as Data from '../data/Data.js';
 import { FilterButtonClickEvent } from './ButtonClickEvent.js';
 
-export function Filtering(currentTab) {
-	console.log("Filtering-", currentTab);
+export function Filtering(currentTab, weapontype = null) {
+	console.log("Filtering-", currentTab, weapontype);
     const CardData = currentTab === "character" ? Data.characterData : Data.weaponData;
 	
-	const { currAttrFilter, currWeapFilter, currStarFilter } = FilterButtonStateCheck();
+	let { currAttrFilter, currWeapFilter, currStarFilter } = FilterButtonStateCheck(weapontype);
+	if(weapontype) currWeapFilter = weapontype;
 	console.log(currAttrFilter, currWeapFilter, currStarFilter);
 	
     const FilterData = CardData.filter(card => {
@@ -24,10 +25,15 @@ export function Filtering(currentTab) {
 	return FilterData;
 }
 
-function FilterButtonStateCheck() {
-	const DOMattrFilter = document.querySelector('.filter-screen .attribute-filters button.active');
-	const DOMweapFilter = document.querySelector('.filter-screen .weapon-filters button.active');
-	const DOMstarFilter = document.querySelector('.filter-screen .star-filters button.active');
+function FilterButtonStateCheck(weapontype = null) {
+	
+	let Selector;
+	if(weapontype) Selector = ".weapon-filter";
+	else Selector = ".filter-screen";
+	
+	const DOMattrFilter = document.querySelector(`${Selector} .attribute-filters button.active`);
+	const DOMweapFilter = document.querySelector(`${Selector} .weapon-filters button.active`);
+	const DOMstarFilter = document.querySelector(`${Selector} .star-filters button.active`);
 
 	const currAttrFilter = DOMattrFilter ? DOMattrFilter.dataset.filter : "ALL";
 	const currWeapFilter = DOMweapFilter ? DOMweapFilter.dataset.filter : "ALL";

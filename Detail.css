@@ -4,6 +4,8 @@ body {
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
   background-color: #111c34;
   color: white;
+  align-items: center;
+  justify-items: center;
 }
 
 header {
@@ -260,6 +262,150 @@ select {
 .add-weapon:hover {
   background-color: rgba(255,255,255,0.3);  /* hover 시 조금 진한 회색 */
   border-color: #fff;                 /* 테두리 색 강조 */
+}
+
+
+
+#add-weapon-popup {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  padding: 10px;
+  width: 850px;
+  max-height: 400px;
+  top : 50%;
+  left : 30%;
+  border: 3px solid #444;
+  border-radius: 10px;
+  background: #222222; /* 반투명 배경 */
+  z-index: 1000;
+}
+
+.close-btn {
+  position: absolute;
+  display: flex;
+  width : 28px;
+  height : 28px;
+  justify-content: center;
+  top : 0px;
+  right : 0px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.weapon-filter {
+  display: flex;
+  width: auto;  /* 카드랑 같은 폭으로 고정 */
+  margin: 10px;
+  flex-direction: column;
+}
+.weapon-filter .filter-buttons {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row; /* ✅ 가로 정렬 */
+  gap: 10px;
+  align-items: center;
+}
+.weapon-filter .filter-buttons button{
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.weapon-filter .filter-buttons img {
+  width: 32px;   /* 아이콘 크기 */
+  height: 32px;
+}
+.weapon-filter .filter-buttons button:hover {
+  background: rgba(255,255,255,0.5);
+}
+.weapon-filter .filter-buttons button.active {
+  background: rgba(255,255,255,0.8);
+}
+/* 검색창 */
+.weapon-filter .filter-search {
+  margin-left: auto;   /* ✅ 오른쪽 끝으로 밀기 */
+}
+.weapon-filter .filter-search input {
+  width: 300px;
+  height : 20px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #3a3a3a;       /* 버튼보다 약간 진한 회색 */
+  color: white;
+  font-size: 14px;
+}
+.weapon-filter .filter-search input::placeholder {
+  color: #bbb;
+}
+
+#weapon-select {
+  display: grid;
+  grid-template-columns: repeat(6, 120px);
+  gap : 20px;
+  margin-bottom: 15px;
+  justify-content: center;
+  align-items: start;
+  overflow: visible;
+  height : 100%;
+  width : 100%;
+}
+
+#weapon-select .card {
+  display: flex;
+  background: rgba(0,0,0,0.6);
+  border-radius: 12px;
+  padding: 0px;
+  flex-direction: column;
+  text-align: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: none;
+  outline: none;
+  
+  height: auto;
+}
+
+#weapon-select .card p {
+  width: 120px; /* 이미지 폭과 맞추기 */
+  margin: 6px 0;
+  text-align: center;
+  word-wrap: break-word; /* 긴 단어도 자동 줄바꿈 */
+  overflow: visible;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* 이미지 전용 박스 */
+#weapon-select .img-wrapper {
+  align-self: flex-start; /* 부모 flex 안에서 위쪽 고정 */
+  width: 120px;
+  height: 120px;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  position: relative;  /* 오버레이 기준점 */  
+  flex-shrink: 0;   /* 이미지 높이는 줄어들지 않음 */
+}
+#weapon-select .img-wrapper .weap-icon {
+  position: absolute;
+  top: 4px;   /* 이미지 하단에서 약간 위 */
+  right: 4px;    /* 이미지 오른쪽에서 약간 안쪽 */
+  width: 24px;   /* 아이콘 크기 */
+  height: 24px;
+}
+#weapon-select .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
 }
 
 

@@ -11,7 +11,7 @@ export function createSearchInput(container) {
 	container.appendChild(searchInput);
 }
 
-export function createSearchFunc() {
+export function createSearchFunc(selector) {
 	const searchInput = document.getElementById("SearchTool");
 	
 	if(!searchInput) {
@@ -22,7 +22,7 @@ export function createSearchFunc() {
 	searchInput.addEventListener("input", () => {
 		const query = searchInput.value.toLowerCase().trim();
 
-		document.querySelectorAll(".select-screen .card").forEach(card => {
+		document.querySelectorAll(`${selector} .card`).forEach(card => {
 			const name = card.querySelector("p").textContent.toLowerCase();
 			if (name.includes(query)) {
 				card.style.display = "";   // 검색어 포함 → 보이기

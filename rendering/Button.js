@@ -105,13 +105,17 @@ export function createSkillConnectContainer(character, container){
 }
 
 export function createAddWeapon(character, container) {
+	console.log("createAddWeapon-",character, container);
 	const AddWeaponBtn = document.createElement("button");
 	AddWeaponBtn.classList.add("add-weapon");
 	
 	const BtnText = document.createElement("span");
 	BtnText.textContent = "무기 추가";
 	
-	AddWeaponBtn.appendChild(BtnText);	
+	
+	
+	AddWeaponBtn.appendChild(BtnText);
 	
 	container.appendChild(AddWeaponBtn);
+	AddWeaponBtn.onclick  = () => Common.BtnClickEvt.AddWeaponClick(character.weapon);
 }

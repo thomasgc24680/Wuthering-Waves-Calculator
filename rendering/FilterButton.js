@@ -29,7 +29,7 @@ export function createFilterButton(currentTab, containerId) {
 	
 	screen.appendChild(container);
 		
-	Common.Search.createSearchFunc(); //검색창이 DOM에 포함된 후 기능 연결.
+	Common.Search.createSearchFunc(".select-screen"); //검색창이 DOM에 포함된 후 기능 연결.
 }
 
 export function createAttrFilter(currentTab, container, containerId) {	//무기 필터 버튼 생성
@@ -74,8 +74,8 @@ export function createWeapFilter(currentTab, container, containerId){	//무기 �
 	container.appendChild(weaponFilter);
 }
 
-export function createStarFilter(currentTab, container, containerId) {	//등급 필터 버튼 생성
-	console.log("createStarFilter");
+export function createStarFilter(currentTab, container, containerId, weapontype = null) {	//등급 필터 버튼 생성
+	console.log("createStarFilter-",currentTab, container, containerId, weapontype);
 	
 	const starFilter = document.createElement("div");
 	starFilter.classList.add("filter-buttons", "star-filters");
@@ -94,13 +94,13 @@ export function createStarFilter(currentTab, container, containerId) {	//등급 
 		img.alt = star;
 		
 		Btn.appendChild(img);
-		Btn.addEventListener("click", () => Common.BtnClickEvt.FilterButtonClickEvent(Btn, currentTab, containerId));
+		Btn.addEventListener("click", () => Common.BtnClickEvt.FilterButtonClickEvent(Btn, currentTab, containerId, weapontype));
 		starFilter.appendChild(Btn);
 	});
 	
 	console.log("createFilterButton-searchInput");
 	
-	Common.Search.createSearchInput(starFilter); //검색창 생성
+	Common.Search.createSearchInput(starFilter, weapontype); //검색창 생성
 	
 	container.appendChild(starFilter);
 }
