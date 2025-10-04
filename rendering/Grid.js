@@ -1,0 +1,109 @@
+export function createPlateCountingContainer(rightcontainer) {
+	console.log("createPlateCountingContainer-",rightcontainer);
+	
+	const plateCounting = document.createElement("section");
+	plateCounting.classList.add("plate-counting");	
+	
+	const countingName = {
+		"all-plate-count" : "총 플레이트 개수",
+		"echoing-area" : "응소의 영역",
+		"rank-boss" : "돌파 보스",
+		"weekly-boss" : "주간 보스"
+	};
+	
+	Object.entries(countingName).forEach(([key, value]) => {
+		const container = document.createElement("div");
+		container.classList.add(key);
+		
+		const label = document.createElement("span");
+		label.classList.add("count-label");
+		label.textContent = value;
+		
+		const count = document.createElement("div");
+		count.classList.add("count");
+		count.textContent = 1000;
+		
+		container.appendChild(label);
+		container.appendChild(count);
+		plateCounting.appendChild(container);		
+	});
+	
+	rightcontainer.appendChild(plateCounting);	
+}
+
+export function cretaeMaterialGrid(card, rightcontainer) {
+	console.log("cretaeMaterialGrid-",card,rightcontainer);
+	
+	const materialGrid = document.createElement("section");
+	materialGrid.classList.add("material-grid");
+	
+	const itemList = [
+		{ name: "Clamcoin", path: "images/item/Clamcoin.jpg", star : 3 },
+		{ name: "rankup", path: `images/item/rankup/${card.rankup}.jpg`, star : 4 },
+		{ name: "collect", path: `images/item/collect/${card.collect}.jpg`, star : 1 },
+		{ name: "weekly Boss", path: `images/item/weekly_boss/${card.weekly_boss}.jpg`, star : 4 },
+
+		{ name: "resonator exp 5", path: "images/item/resonator_exp/resonator_exp5.jpg", star : 5 },
+		{ name: "resonator exp 4", path: "images/item/resonator_exp/resonator_exp4.jpg", star : 4 },
+		{ name: "resonator exp 3", path: "images/item/resonator_exp/resonator_exp3.jpg", star : 3 },
+		{ name: "resonator exp 2", path: "images/item/resonator_exp/resonator_exp2.jpg", star : 2 },
+
+		{ name: "weapon 5", path: `images/item/weapon/${card.weapon}_5.jpg`, star : 5 },
+		{ name: "weapon 4", path: `images/item/weapon/${card.weapon}_4.jpg`, star : 4 },
+		{ name: "weapon 3", path: `images/item/weapon/${card.weapon}_3.jpg`, star : 3 },
+		{ name: "weapon 2", path: `images/item/weapon/${card.weapon}_2.jpg`, star : 2 },
+
+		{ name: "foster 5", path: `images/item/material/${card.material}_5.jpg`, star : 5 },
+		{ name: "foster 4", path: `images/item/material/${card.material}_4.jpg`, star : 4 },
+		{ name: "foster 3", path: `images/item/material/${card.material}_3.jpg`, star : 3 },
+		{ name: "foster 2", path: `images/item/material/${card.material}_2.jpg`, star : 2 },
+	];
+	
+	itemList.forEach(item => {
+		const card = document.createElement("div");
+		card.classList.add("img-card", `star-${item.star}`);
+
+		card.innerHTML = `
+		  <div class="img-wrapper star-${item.star}" >
+			<img src="${item.path}" alt="${item.name}">
+		  </div>
+		  <div class="need-count">
+			<span class="required-count">0</span>
+		  </div>
+		  <div class="have-count">
+				<button class="dec">-</button>
+				<input type="number" value="0" min="0">
+				<button class="inc">+</button>
+		  </div>
+		`;
+
+		materialGrid.appendChild(card);
+		
+		// 카드별 버튼 이벤트
+		const wrapper = card.querySelector('.have-count');
+		const input = wrapper.querySelector('input');
+		const inc = wrapper.querySelector('.inc');
+		const dec = wrapper.querySelector('.dec');
+
+		inc.addEventListener('click', () => {
+			input.value = parseInt(input.value) + 1;
+			input.dispatchEvent(new Event("input"));
+		});
+
+		dec.addEventListener('click', () => {
+			input.value = Math.max(0, parseInt(input.value) - 1);
+			input.dispatchEvent(new Event("input"));
+		});
+		
+	  
+		// 🔥 input 값 변경 시 실시간 계산
+		input.addEventListener("input", () => {
+		});
+	});
+	
+	rightcontainer.appendChild(materialGrid);
+}
+
+function createCounting(type, container) {
+	
+}

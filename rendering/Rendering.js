@@ -1,6 +1,7 @@
 import * as Button from './Button.js';
 import * as GridButton from './GridButton.js';
 import * as FilterButton from './FilterButton.js';
+import * as Grid from './Grid.js';
 
 import * as CardInfo from './CardInfo.js';
 
@@ -18,21 +19,37 @@ export function mainPageInitRender() {
 
 export function detailPageRender(type, name) {
 	document.title = `${name} - 육성 계산기`;
-	CardInfo.createSelectCardInfo(type, name);
+	
+	let selectCard;
+	if(type === "character") {
+		selectCard = Data.characterData.find(c => c.name === name);
+	}
+	else {
+		selectCard = Data.weaponData.find(c => c.name === name);
+	}
+	
+	createLeftContainer(type, selectCard);
+	createRightContainer(type, selectCard);
+}
+
+function createLeftContainer(type, card) {
+	const LeftContainer = document.getElementById("left-container");
+	
+	CardInfo.createSelectCardInfo(type, card);
 	
 	if(type === "character"){
-		const selectCharacter = Data.characterData.find(c => c.name === name);
-		console.log(selectCharacter);
-		
-		const LeftContainer = document.getElementById("left-container");
-		Button.createSkillConnectContainer(selectCharacter, LeftContainer);
-		createSkillUpgradeOrder(selectCharacter, LeftContainer);
-		Button.createAddWeapon(selectCharacter, LeftContainer);
+		Button.createSkillConnectContainer(card, LeftContainer);
+		createSkillUpgradeOrder(card, LeftContainer);
+		Button.createAddWeapon(card, LeftContainer);
 	}
 }
 
-function createSkillUpgrade(skill) {
-
+function createRightContainer(type, card) {
+	const RightContainer = document.getElementById("right-container");
+	Grid.createPlateCountingContainer(RightContainer);
+	console.log(RightContainer);
+	
+	Grid.cretaeMaterialGrid(card, RightContainer);
 }
 
 function createSkillUpgradeOrder(character, container) {

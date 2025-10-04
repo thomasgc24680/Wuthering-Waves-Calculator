@@ -16,7 +16,7 @@ export function createSelectOption(type, container) {
 	
 	//label
 	const label = document.createElement("span");
-	label.classList.add("label");
+	label.classList.add("stauts-label");
 	if(type === "Lv" || type === "Rank") label.textContent = type;
 	else label.textContent = skillKorean[type];
 	SelectOption.appendChild(label);
@@ -101,7 +101,7 @@ export function createCardImg(type, name, container){
 }
 
 //detail screen SelectCardInfo
-export function createSelectCardInfo(type, name) {
+export function createSelectCardInfo(type, card) {
 	console.log("createSelectCardInfo");
 	
 	const container = document.getElementById("left-container");
@@ -110,7 +110,7 @@ export function createSelectCardInfo(type, name) {
 	const SelectCardInfo = document.createElement("div");
 	SelectCardInfo.classList.add("select-card-info");
 	
-	createCardImg(type, name, SelectCardInfo);
+	createCardImg(type, card.name, SelectCardInfo);
 	createCardSelectOption(type, SelectCardInfo);
 	
 	container.appendChild(SelectCardInfo);

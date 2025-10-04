@@ -15,14 +15,16 @@ header {
 
 main {
   display: flex;
+  align-items: center;    /* 가운데 정렬 */
   justify-content: center;
   gap: 10px;
-  align-items: center;    /* 가운데 정렬 */
+  width:100%;
 }
 
 #detail-screen {
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 	width : 80%;
 }
 
@@ -57,7 +59,7 @@ main {
 }
 
 #weapon-image img {
-  height: 300px;
+  max-height : 290px;
   border-radius: 8px;
   display: block;
 }
@@ -69,19 +71,17 @@ main {
   gap: 30px;
 }
 
-.label {
+.lv, .rank {
+  display: flex;
+  align-items: center;
+}
+
+.stauts-label {
   display: inline-block;
   width: 80px;   /* 글자 폭 고정 */
   font-weight: bold;
   text-align : center;
 }
-
-.character_level,
-.character_rank,
-.skill {
-  display: flex;
-  align-items: center;
-}	
 
 select {
   width: 50px;   /* 글자 폭 고정 */
@@ -98,6 +98,7 @@ select {
   color: #fff;            /* >> 색상 */
   font-weight: bold;      /* 필요하면 강조 */
 }
+
 
 /* 버튼 위 텍스트 */
 .skill-title {
@@ -410,15 +411,53 @@ select {
 
 
 
-/* 부모 섹션 조정 */
-#right-container {
-  display: block;       /* flex였다면 제거 */
-  width: auto;          /* grid 내용만 차지 */
-  align-items: flex-start;
+/* 부모 섹션 조정 */#right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 세로 중앙은 자식 flex에서 처리 */
+  margin-left: 20px;
+  width: auto;
+}
+
+/* 전체 카운팅 영역 */
+.plate-counting {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+/* 개별 카운팅 블록 */
+.all-plate-count,
+.echoing-area,
+.rank-boss,
+.weekly-boss {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* label + count 세로 중앙 정렬 */
+  gap: 5px;
+  padding: 3px;
+  border: 1px solid #fff;
+}
+
+/* 텍스트 라벨 */
+.count-label {
+  display:inline-block;
+  text-align:center;
+  width: auto;
+}
+
+/* 숫자 영역 */
+.count {
+  display: inline-block;             /* 내부 텍스트를 flex 아이템으로 만들기 */
+  width: 40px;           /* 최소 넓이 지정, 필요에 따라 조정 */
+  height: 1em;             /* 숫자 높이에 맞춤 */
+  font-weight: bold;         /* 강조 스타일 */
+  color: #fff;               /* 텍스트 색상 */
 }
 
 /* 그리드 컨테이너 */
-#right-container.card-grid {
+#right-container .material-grid {
   display: grid;
   grid-template-columns: repeat(4, 120px); /* 카드 가로 수 자동 */
   gap: 20px; /* 카드 간 간격 */

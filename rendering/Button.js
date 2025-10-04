@@ -26,23 +26,32 @@ export function createSwitchTab() {
 	nav.appendChild(weaponTab);
 }
 
-function SkillButtonImg(container, index, name, bonus, position){
-	const Btn = document.createElement("button");
+export function createSkillConnectContainer(character, container){
+	console.log("createSkillConnectContainer-",character, container);
 	
-	let Img;
-	if(index === 2)	{
-		if( position === "top") Img = `images/resonator/${name}/inherent2.jpg`;
-		else Img = `images/resonator/${name}/inherent1.jpg`;
-	}
-	else {
-		Img = `images/icon/skill/${bonus}.jpg`;
-	}
+	//스킬 버튼 컨테이너 - 스킬 타이틀 + 스킬 버튼들
+	const SkillButtonContainer = document.createElement("div");
+	SkillButtonContainer.classList.add("skill-connector");
 	
-	Btn.innerHTML = `<img src="${Img}" alt="skill">`;
+	//스킬 타이틀
+	const SkillButtonTitle = document.createElement("div");
+	SkillButtonTitle.classList.add("skill-title");
+	SkillButtonTitle.id = "skill-button-title";
+	SkillButtonTitle.textContent = "스킬 연결점 버튼";
 	
-	Btn.onclick = () => Common.BtnClickEvt.SkillConnectButtonClick(Btn, position);
+	SkillButtonContainer.appendChild(SkillButtonTitle);
 	
-	return Btn;
+	//스킬 버튼들 전체 컨테이너
+	const SkillButtons = document.createElement("div");
+	SkillButtons.classList.add("skill-buttons");
+	SkillButtons.id = "skill-buttons";
+	
+	//스킬 연결점 버튼 생성 및 컨테이너(SkillButtons)에 추가
+	createSkillButton(character, SkillButtons);
+	
+	//
+	SkillButtonContainer.appendChild(SkillButtons); //스킬 버튼들 -> 컨테이너 추가
+	container.appendChild(SkillButtonContainer); //스킬 버튼 컨테이너 -> left 컨테이너에 추가
 }
 
 function createSkillButton(character, container) {
@@ -75,34 +84,26 @@ function createSkillButton(character, container) {
 		container.appendChild(SkillCol);
 	}
 }
-	
 
-export function createSkillConnectContainer(character, container){
+function SkillButtonImg(container, index, name, bonus, position){
+	const Btn = document.createElement("button");
 	
-	//스킬 버튼 컨테이너 - 스킬 타이틀 + 스킬 버튼들
-	const SkillButtonContainer = document.createElement("div");
-	SkillButtonContainer.classList.add("skill-connector");
+	let Img;
+	if(index === 2)	{
+		if( position === "top") Img = `images/resonator/${name}/inherent2.jpg`;
+		else Img = `images/resonator/${name}/inherent1.jpg`;
+	}
+	else {
+		Img = `images/icon/skill/${bonus}.jpg`;
+	}
 	
-	//스킬 타이틀
-	const SkillButtonTitle = document.createElement("div");
-	SkillButtonTitle.classList.add("skill-title");
-	SkillButtonTitle.id = "skill-button-title";
-	SkillButtonTitle.textContent = "스킬 연결점 버튼";
+	Btn.innerHTML = `<img src="${Img}" alt="skill">`;
 	
-	SkillButtonContainer.appendChild(SkillButtonTitle);
+	Btn.onclick = () => Common.BtnClickEvt.SkillConnectButtonClick(Btn, position);
 	
-	//스킬 버튼들 전체 컨테이너
-	const SkillButtons = document.createElement("div");
-	SkillButtons.classList.add("skill-buttons");
-	SkillButtons.id = "skill-buttons";
-	
-	//스킬 연결점 버튼 생성 및 컨테이너(SkillButtons)에 추가
-	createSkillButton(character, SkillButtons);
-	
-	//
-	SkillButtonContainer.appendChild(SkillButtons); //스킬 버튼들 -> 컨테이너 추가
-	container.appendChild(SkillButtonContainer); //스킬 버튼 컨테이너 -> left 컨테이너에 추가
+	return Btn;
 }
+	
 
 export function createAddWeapon(character, container) {
 	console.log("createAddWeapon-",character, container);
