@@ -49,7 +49,7 @@ function createRightContainer(type, card) {
 	Grid.createPlateCountingContainer(RightContainer);
 	console.log(RightContainer);
 	
-	Grid.cretaeMaterialGrid(card, RightContainer);
+	Grid.cretaeMaterialGrid(type, card, RightContainer);
 }
 
 function createSkillUpgradeOrder(character, container) {

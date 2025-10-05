@@ -6,9 +6,9 @@ export function createPlateCountingContainer(rightcontainer) {
 	
 	const countingName = {
 		"all-plate-count" : "총 플레이트 개수",
-		"echoing-area" : "응소의 영역",
-		"rank-boss" : "돌파 보스",
-		"weekly-boss" : "주간 보스"
+		"forgery" : "응소의 영역",
+		"ascension" : "돌파 보스",
+		"weekly" : "주간 보스"
 	};
 	
 	Object.entries(countingName).forEach(([key, value]) => {
@@ -17,11 +17,11 @@ export function createPlateCountingContainer(rightcontainer) {
 		
 		const label = document.createElement("span");
 		label.classList.add("count-label");
-		label.textContent = value;
+		label.textContent = `${value} : `;
 		
 		const count = document.createElement("div");
 		count.classList.add("count");
-		count.textContent = 1000;
+		count.textContent = 0;
 		
 		container.appendChild(label);
 		container.appendChild(count);
@@ -31,33 +31,57 @@ export function createPlateCountingContainer(rightcontainer) {
 	rightcontainer.appendChild(plateCounting);	
 }
 
-export function cretaeMaterialGrid(card, rightcontainer) {
+export function cretaeMaterialGrid(type, card, rightcontainer) {
 	console.log("cretaeMaterialGrid-",card,rightcontainer);
 	
 	const materialGrid = document.createElement("section");
 	materialGrid.classList.add("material-grid");
 	
-	const itemList = [
-		{ name: "Clamcoin", path: "images/item/Clamcoin.jpg", star : 3 },
-		{ name: "rankup", path: `images/item/rankup/${card.rankup}.jpg`, star : 4 },
-		{ name: "collect", path: `images/item/collect/${card.collect}.jpg`, star : 1 },
-		{ name: "weekly Boss", path: `images/item/weekly_boss/${card.weekly_boss}.jpg`, star : 4 },
+	let itemList;
+	
+	//캐릭터 육성 재료
+	if(type === "character") {
+		itemList = [
+			{ name: "Clamcoin", path: "images/item/Clamcoin.jpg", star : 3 },
+			{ name: "rankup", path: `images/item/rankup/${card.rankup}.jpg`, star : 4 },
+			{ name: "collect", path: `images/item/collect/${card.collect}.jpg`, star : 1 },
+			{ name: "weekly Boss", path: `images/item/weekly_boss/${card.weekly_boss}.jpg`, star : 4 },
 
-		{ name: "resonator exp 5", path: "images/item/resonator_exp/resonator_exp5.jpg", star : 5 },
-		{ name: "resonator exp 4", path: "images/item/resonator_exp/resonator_exp4.jpg", star : 4 },
-		{ name: "resonator exp 3", path: "images/item/resonator_exp/resonator_exp3.jpg", star : 3 },
-		{ name: "resonator exp 2", path: "images/item/resonator_exp/resonator_exp2.jpg", star : 2 },
+			{ name: "resonator exp 5", path: "images/item/exp/resonator_5.jpg", star : 5 },
+			{ name: "resonator exp 4", path: "images/item/exp/resonator_4.jpg", star : 4 },
+			{ name: "resonator exp 3", path: "images/item/exp/resonator_3.jpg", star : 3 },
+			{ name: "resonator exp 2", path: "images/item/exp/resonator_2.jpg", star : 2 },
 
-		{ name: "weapon 5", path: `images/item/weapon/${card.weapon}_5.jpg`, star : 5 },
-		{ name: "weapon 4", path: `images/item/weapon/${card.weapon}_4.jpg`, star : 4 },
-		{ name: "weapon 3", path: `images/item/weapon/${card.weapon}_3.jpg`, star : 3 },
-		{ name: "weapon 2", path: `images/item/weapon/${card.weapon}_2.jpg`, star : 2 },
+			{ name: "weapon 5", path: `images/item/weapon/${card.weapon}_5.jpg`, star : 5 },
+			{ name: "weapon 4", path: `images/item/weapon/${card.weapon}_4.jpg`, star : 4 },
+			{ name: "weapon 3", path: `images/item/weapon/${card.weapon}_3.jpg`, star : 3 },
+			{ name: "weapon 2", path: `images/item/weapon/${card.weapon}_2.jpg`, star : 2 },
 
-		{ name: "foster 5", path: `images/item/material/${card.material}_5.jpg`, star : 5 },
-		{ name: "foster 4", path: `images/item/material/${card.material}_4.jpg`, star : 4 },
-		{ name: "foster 3", path: `images/item/material/${card.material}_3.jpg`, star : 3 },
-		{ name: "foster 2", path: `images/item/material/${card.material}_2.jpg`, star : 2 },
-	];
+			{ name: "foster 5", path: `images/item/material/${card.material}_5.jpg`, star : 5 },
+			{ name: "foster 4", path: `images/item/material/${card.material}_4.jpg`, star : 4 },
+			{ name: "foster 3", path: `images/item/material/${card.material}_3.jpg`, star : 3 },
+			{ name: "foster 2", path: `images/item/material/${card.material}_2.jpg`, star : 2 },
+		];
+	}
+	else{	//무기 육성 재료
+		itemList = [
+			{ name: "resonator exp 5", path: "images/item/exp/weapon_5.jpg", star : 5 },
+			{ name: "resonator exp 4", path: "images/item/exp/weapon_4.jpg", star : 4 },
+			{ name: "resonator exp 3", path: "images/item/exp/weapon_3.jpg", star : 3 },
+			{ name: "resonator exp 2", path: "images/item/exp/weapon_2.jpg", star : 2 },
+
+			{ name: "weapon 5", path: `images/item/weapon/${card.weapon}_5.jpg`, star : 5 },
+			{ name: "weapon 4", path: `images/item/weapon/${card.weapon}_4.jpg`, star : 4 },
+			{ name: "weapon 3", path: `images/item/weapon/${card.weapon}_3.jpg`, star : 3 },
+			{ name: "weapon 2", path: `images/item/weapon/${card.weapon}_2.jpg`, star : 2 },
+
+			{ name: "foster 5", path: `images/item/material/${card.material}_5.jpg`, star : 5 },
+			{ name: "foster 4", path: `images/item/material/${card.material}_4.jpg`, star : 4 },
+			{ name: "foster 3", path: `images/item/material/${card.material}_3.jpg`, star : 3 },
+			{ name: "foster 2", path: `images/item/material/${card.material}_2.jpg`, star : 2 },
+		];
+	}
+	
 	
 	itemList.forEach(item => {
 		const card = document.createElement("div");

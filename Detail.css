@@ -42,6 +42,7 @@ main {
   display: flex;
   flex-direction: column;
   margin-right: 20px;
+  flex-wrap : wrap;
   align-items: center;
 }
 
@@ -59,7 +60,7 @@ main {
 }
 
 #weapon-image img {
-  max-height : 290px;
+  height : 290px;
   border-radius: 8px;
   display: block;
 }
@@ -411,7 +412,8 @@ select {
 
 
 
-/* 부모 섹션 조정 */#right-container {
+/* 부모 섹션 조정 */
+#right-container {
   display: flex;
   flex-direction: column;
   align-items: center; /* 세로 중앙은 자식 flex에서 처리 */
@@ -423,21 +425,22 @@ select {
 .plate-counting {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
+  gap: 5px;
 }
 
 /* 개별 카운팅 블록 */
+
 .all-plate-count,
-.echoing-area,
-.rank-boss,
-.weekly-boss {
+.forgery,
+.ascension,
+.weekly {
   display: flex;
   flex-direction: row;
-  align-items: center; /* label + count 세로 중앙 정렬 */
-  gap: 5px;
-  padding: 3px;
-  border: 1px solid #fff;
+  align-items: right; /* label + count 세로 중앙 정렬 */
+  white-space: nowrap;
+  gap : 5px;
 }
 
 /* 텍스트 라벨 */
@@ -445,13 +448,14 @@ select {
   display:inline-block;
   text-align:center;
   width: auto;
+  font-weight: bold;
 }
 
 /* 숫자 영역 */
 .count {
   display: inline-block;             /* 내부 텍스트를 flex 아이템으로 만들기 */
   width: 40px;           /* 최소 넓이 지정, 필요에 따라 조정 */
-  height: 1em;             /* 숫자 높이에 맞춤 */
+  height: 1.5em;             /* 숫자 높이에 맞춤 */
   font-weight: bold;         /* 강조 스타일 */
   color: #fff;               /* 텍스트 색상 */
 }
@@ -462,7 +466,6 @@ select {
   grid-template-columns: repeat(4, 120px); /* 카드 가로 수 자동 */
   gap: 20px; /* 카드 간 간격 */
   padding: 10px;
-  justify-content: start; /* 왼쪽 정렬 */
   width: max-content;     /* 내용 폭만 차지 */
 }
 
