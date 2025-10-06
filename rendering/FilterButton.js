@@ -23,6 +23,7 @@ export function createFilterButton(currentTab, containerId) {
 		createStarFilter(currentTab, container, containerId);
 	}
 	else {
+		createWeaponOptionFilter(currentTab, container, containerId);
 		createWeapFilter(currentTab, container, containerId);
 		createStarFilter(currentTab, container, containerId);
 	}
@@ -32,7 +33,7 @@ export function createFilterButton(currentTab, containerId) {
 	Common.Search.createSearchFunc(".select-screen"); //검색창이 DOM에 포함된 후 기능 연결.
 }
 
-export function createAttrFilter(currentTab, container, containerId) {	//무기 필터 버튼 생성
+function createAttrFilter(currentTab, container, containerId) {	//속성 필터 버튼 생성
 	console.log("createAttrFilter");
 	
 	const attributeFilter = document.createElement("div");
@@ -53,7 +54,28 @@ export function createAttrFilter(currentTab, container, containerId) {	//무기 
 	container.appendChild(attributeFilter);
 }
 
-export function createWeapFilter(currentTab, container, containerId){	//무기 필터 버튼 생성
+function createWeaponOptionFilter(currentTab, container, containerId) {	//무기 주옵 필터 버튼 생성
+	console.log("createWeaponOptionFilter");
+	
+	const WeaponOptionFilter = document.createElement("div");
+	WeaponOptionFilter.classList.add("filter-buttons", "weaponoption-filters");
+	Data.weapon_option.forEach(weaponoption => {
+		const Btn = document.createElement("button");
+		Btn.dataset.type = "weapon-option";
+		Btn.dataset.filter = weaponoption;
+		
+		const img = document.createElement("img");
+		img.src = `images/icon/skill/${weaponoption}.jpg`;
+		img.alt = weaponoption;
+		
+		Btn.appendChild(img);
+		Btn.addEventListener("click", () => Common.BtnClickEvt.FilterButtonClickEvent(Btn, currentTab, containerId));
+		WeaponOptionFilter.appendChild(Btn);
+	});
+	container.appendChild(WeaponOptionFilter);
+}
+
+function createWeapFilter(currentTab, container, containerId){	//무기 필터 버튼 생성
 	console.log("createWeapFilter");
 	
 	const weaponFilter = document.createElement("div");
