@@ -463,8 +463,8 @@ select {
 /* 그리드 컨테이너 */
 #right-container .material-grid {
   display: grid;
-  grid-template-columns: repeat(4, 120px); /* 카드 가로 수 자동 */
-  gap: 20px; /* 카드 간 간격 */
+  grid-template-columns: repeat(4, 150px); /* 카드 가로 수 자동 */
+  gap: 10px; /* 카드 간 간격 */
   padding: 10px;
   width: max-content;     /* 내용 폭만 차지 */
 }
@@ -478,8 +478,8 @@ select {
 
 /* 이미지 영역 */
 .img-wrapper {
-  width: 100px;
-  height: 100px;
+  width: 80%;
+  height: 80%;
   overflow: hidden;
   border-radius: 8px;
 }

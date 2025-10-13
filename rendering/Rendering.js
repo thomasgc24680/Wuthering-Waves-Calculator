@@ -1,11 +1,12 @@
 import * as Button from './Button.js';
 import * as GridButton from './GridButton.js';
 import * as FilterButton from './FilterButton.js';
-import * as Grid from './Grid.js';
 
 import * as CardInfo from './CardInfo.js';
+import * as Grid from './Grid.js';
 
 import * as Data from '../data/Data.js';
+import * as Common from '../Common/Common.js';
 
 export { Button, GridButton, FilterButton, CardInfo };
 
@@ -43,6 +44,16 @@ function createLeftContainer(type, card) {
 		Grid.createSkillUpgradeOrder(card, LeftContainer);
 		Button.createAddWeapon(card, LeftContainer);
 	}
+	
+	const statusContainer = document.getElementById("status-container");
+	const statusSelect = statusContainer.querySelectorAll("select");
+	
+	const skillConnectContainer = document.getElementById("skill-buttons");
+	const skillConnectSelect = skillConnectContainer.querySelectorAll("button");
+	
+	Common.Calculator.CalculatorProcess(statusSelect, skillConnectSelect);
+	
+	//const SkillConnect = document.getE
 }
 
 function createRightContainer(type, card) {

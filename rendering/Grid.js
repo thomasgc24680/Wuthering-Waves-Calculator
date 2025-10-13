@@ -149,46 +149,53 @@ export function cretaeMaterialGrid(type, card, rightcontainer) {
 	}
 	
 	
-	itemList.forEach(item => {
+	itemList.forEach((item, index) => {
 		const card = document.createElement("div");
 		card.classList.add("img-card", `star-${item.star}`);
-
+		
 		card.innerHTML = `
-		  <div class="img-wrapper star-${item.star}" >
+			<div class="img-wrapper star-${item.star}" >
 			<img src="${item.path}" alt="${item.name}">
-		  </div>
-		  <div class="need-count">
+			</div>
+			<div class="need-count">
 			<span class="required-count">0</span>
-		  </div>
-		  <div class="have-count">
+			</div>
+		`;
+
+		if(index >= 8){
+			card.innerHTML += `
+				<div class="have-count">
 				<button class="dec">-</button>
 				<input type="number" value="0" min="0">
 				<button class="inc">+</button>
-		  </div>
-		`;
+				</div>
+			`;
+		}
 
 		materialGrid.appendChild(card);
 		
 		// 카드별 버튼 이벤트
-		const wrapper = card.querySelector('.have-count');
-		const input = wrapper.querySelector('input');
-		const inc = wrapper.querySelector('.inc');
-		const dec = wrapper.querySelector('.dec');
-
-		inc.addEventListener('click', () => {
-			input.value = parseInt(input.value) + 1;
-			input.dispatchEvent(new Event("input"));
-		});
-
-		dec.addEventListener('click', () => {
-			input.value = Math.max(0, parseInt(input.value) - 1);
-			input.dispatchEvent(new Event("input"));
-		});
 		
-	  
-		// 🔥 input 값 변경 시 실시간 계산
-		input.addEventListener("input", () => {
-		});
+		if(index >= 8){
+			const wrapper = card.querySelector('.have-count');
+			const input = wrapper.querySelector('input');
+			const inc = wrapper.querySelector('.inc');
+			const dec = wrapper.querySelector('.dec');
+			
+			inc.addEventListener('click', () => {
+				input.value = parseInt(input.value) + 1;
+				input.dispatchEvent(new Event("input"));
+			});
+
+			dec.addEventListener('click', () => {
+				input.value = Math.max(0, parseInt(input.value) - 1);
+				input.dispatchEvent(new Event("input"));
+			});
+			
+			// 🔥 input 값 변경 시 실시간 계산
+			input.addEventListener("input", () => {
+			});
+		}
 	});
 	
 	rightcontainer.appendChild(materialGrid);

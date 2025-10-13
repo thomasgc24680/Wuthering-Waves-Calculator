@@ -23,11 +23,11 @@ export function createSelectOption(type, container) {
 	
 	//첫 번째 선택 상자
 	const currentOption = document.createElement("select");
-	currentOption.id = `${type}_current`; //Lv_current, rank_current, skill_current
+	currentOption.id = `${type.toLowerCase()}_current`; //Lv_current, rank_current, skill_current
 	
-	array.forEach(value => {
+	array.forEach((value, index) => {
 		const option = document.createElement("option");
-		option.value = value;
+		option.value = index;
 		option.textContent = value;
 		currentOption.appendChild(option);
 	});
@@ -41,11 +41,11 @@ export function createSelectOption(type, container) {
 	
 	//두 번째 선택 상자
 	const goalOption = document.createElement("select");
-	goalOption.id = `${type}_goal`; //Lv_current, rank_current, skill_current
+	goalOption.id = `${type.toLowerCase()}_goal`; //Lv_current, rank_current, skill_current
 	
-	array.forEach(value => {
+	array.forEach((value, index) => {
 		const option = document.createElement("option");
-		option.value = value;
+		option.value = index;
 		option.textContent = value;
 		goalOption.appendChild(option);
 	});
