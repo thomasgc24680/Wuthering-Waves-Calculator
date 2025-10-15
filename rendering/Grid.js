@@ -108,43 +108,43 @@ export function cretaeMaterialGrid(type, card, rightcontainer) {
 	//캐릭터 육성 재료
 	if(type === "character") {
 		itemList = [
-			{ name: "Clamcoin", path: "images/item/Clamcoin.jpg", star : 3 },
+			{ name: "clamcoin", path: "images/item/Clamcoin.jpg", star : 3 },
 			{ name: "rankup", path: `images/item/rankup/${card.rankup}.jpg`, star : 4 },
 			{ name: "collect", path: `images/item/collect/${card.collect}.jpg`, star : 1 },
-			{ name: "weekly Boss", path: `images/item/weekly_boss/${card.weekly_boss}.jpg`, star : 4 },
+			{ name: "weekly_boss", path: `images/item/weekly_boss/${card.weekly_boss}.jpg`, star : 4 },
 
-			{ name: "resonator exp 5", path: "images/item/exp/resonator_5.jpg", star : 5 },
-			{ name: "resonator exp 4", path: "images/item/exp/resonator_4.jpg", star : 4 },
-			{ name: "resonator exp 3", path: "images/item/exp/resonator_3.jpg", star : 3 },
-			{ name: "resonator exp 2", path: "images/item/exp/resonator_2.jpg", star : 2 },
+			{ name: "resonator_exp_5", path: "images/item/exp/resonator_5.jpg", star : 5 },
+			{ name: "resonator_exp_4", path: "images/item/exp/resonator_4.jpg", star : 4 },
+			{ name: "resonator_exp_3", path: "images/item/exp/resonator_3.jpg", star : 3 },
+			{ name: "resonator_exp_2", path: "images/item/exp/resonator_2.jpg", star : 2 },
 
-			{ name: "weapon 5", path: `images/item/weapon/${card.weapon}_5.jpg`, star : 5 },
-			{ name: "weapon 4", path: `images/item/weapon/${card.weapon}_4.jpg`, star : 4 },
-			{ name: "weapon 3", path: `images/item/weapon/${card.weapon}_3.jpg`, star : 3 },
-			{ name: "weapon 2", path: `images/item/weapon/${card.weapon}_2.jpg`, star : 2 },
+			{ name: "weapon_5", path: `images/item/weapon/${card.weapon}_5.jpg`, star : 5 },
+			{ name: "weapon_4", path: `images/item/weapon/${card.weapon}_4.jpg`, star : 4 },
+			{ name: "weapon_3", path: `images/item/weapon/${card.weapon}_3.jpg`, star : 3 },
+			{ name: "weapon_2", path: `images/item/weapon/${card.weapon}_2.jpg`, star : 2 },
 
-			{ name: "foster 5", path: `images/item/material/${card.material}_5.jpg`, star : 5 },
-			{ name: "foster 4", path: `images/item/material/${card.material}_4.jpg`, star : 4 },
-			{ name: "foster 3", path: `images/item/material/${card.material}_3.jpg`, star : 3 },
-			{ name: "foster 2", path: `images/item/material/${card.material}_2.jpg`, star : 2 },
+			{ name: "material_5", path: `images/item/material/${card.material}_5.jpg`, star : 5 },
+			{ name: "material_4", path: `images/item/material/${card.material}_4.jpg`, star : 4 },
+			{ name: "material_3", path: `images/item/material/${card.material}_3.jpg`, star : 3 },
+			{ name: "material_2", path: `images/item/material/${card.material}_2.jpg`, star : 2 },
 		];
 	}
 	else{	//무기 육성 재료
 		itemList = [
-			{ name: "resonator exp 5", path: "images/item/exp/weapon_5.jpg", star : 5 },
-			{ name: "resonator exp 4", path: "images/item/exp/weapon_4.jpg", star : 4 },
-			{ name: "resonator exp 3", path: "images/item/exp/weapon_3.jpg", star : 3 },
-			{ name: "resonator exp 2", path: "images/item/exp/weapon_2.jpg", star : 2 },
+			{ name: "weapon_exp_5", path: "images/item/exp/weapon_5.jpg", star : 5 },
+			{ name: "weapon_exp_4", path: "images/item/exp/weapon_4.jpg", star : 4 },
+			{ name: "weapon_exp_3", path: "images/item/exp/weapon_3.jpg", star : 3 },
+			{ name: "weapon_exp_2", path: "images/item/exp/weapon_2.jpg", star : 2 },
 
-			{ name: "weapon 5", path: `images/item/weapon/${card.weapon}_5.jpg`, star : 5 },
-			{ name: "weapon 4", path: `images/item/weapon/${card.weapon}_4.jpg`, star : 4 },
-			{ name: "weapon 3", path: `images/item/weapon/${card.weapon}_3.jpg`, star : 3 },
-			{ name: "weapon 2", path: `images/item/weapon/${card.weapon}_2.jpg`, star : 2 },
+			{ name: "weapon_5", path: `images/item/weapon/${card.weapon}_5.jpg`, star : 5 },
+			{ name: "weapon_4", path: `images/item/weapon/${card.weapon}_4.jpg`, star : 4 },
+			{ name: "weapon_3", path: `images/item/weapon/${card.weapon}_3.jpg`, star : 3 },
+			{ name: "weapon_2", path: `images/item/weapon/${card.weapon}_2.jpg`, star : 2 },
 
-			{ name: "foster 5", path: `images/item/material/${card.material}_5.jpg`, star : 5 },
-			{ name: "foster 4", path: `images/item/material/${card.material}_4.jpg`, star : 4 },
-			{ name: "foster 3", path: `images/item/material/${card.material}_3.jpg`, star : 3 },
-			{ name: "foster 2", path: `images/item/material/${card.material}_2.jpg`, star : 2 },
+			{ name: "material_5", path: `images/item/material/${card.material}_5.jpg`, star : 5 },
+			{ name: "material_4", path: `images/item/material/${card.material}_4.jpg`, star : 4 },
+			{ name: "material_3", path: `images/item/material/${card.material}_3.jpg`, star : 3 },
+			{ name: "material_2", path: `images/item/material/${card.material}_2.jpg`, star : 2 },
 		];
 	}
 	
@@ -157,7 +157,7 @@ export function cretaeMaterialGrid(type, card, rightcontainer) {
 			<div class="img-wrapper star-${item.star}" >
 			<img src="${item.path}" alt="${item.name}">
 			</div>
-			<div class="need-count">
+			<div class="need-count" id="${item.name}">
 			<span class="required-count">0</span>
 			</div>
 		`;
@@ -199,8 +199,4 @@ export function cretaeMaterialGrid(type, card, rightcontainer) {
 	});
 	
 	rightcontainer.appendChild(materialGrid);
-}
-
-function createCounting(type, container) {
-	
 }

@@ -1,5 +1,16 @@
 import * as Data from '../data/Data.js';
 
+const materials = {
+		lv: {clamcoin : 0, resonator_exp : [0,0,0,0] },
+		rank : {clamcoin : 0, rankup : 0, collect : [0,0,0,0] , material : [0,0,0,0] },
+		attack : {clamcoin : 0, weapon : [0,0,0,0] , material : [0,0,0,0] },
+		skill : {clamcoin : 0, weapon : [0,0,0,0] , material : [0,0,0,0] },
+		circuit : {clamcoin : 0, weapon : [0,0,0,0] , material : [0,0,0,0] },
+		liberation : {clamcoin : 0, weapon : [0,0,0,0] , material : [0,0,0,0] },
+		intro : {clamcoin : 0, weapon : [0,0,0,0] , material : [0,0,0,0] },
+		total : {}
+	};
+
 export function CalculatorProcess(statusSelect, skillButton){
 	statusSelect.forEach(select => {
 		select.addEventListener("change", (event) => {
@@ -19,6 +30,7 @@ function statusChangeProcess(selectDom) {
 	const selectId = selectDom.id;
 	const [ type, role ] = selectId.split("_");
 	const target = Number(selectDom.value);
+	
 	const { curr, goal } = getValue(type);
 	
 	console.log(selectId, type, role, target);
@@ -30,20 +42,13 @@ function statusChangeProcess(selectDom) {
 	}
 	
 
-	let changeCount = {
-		clamcoin : 0,
-		resonator_exp : [0, 0, 0, 0],
-		rankup : 0,
-		weekly_boss : 0,
-		collect : 0,
-		material : 0,
-		weapon : 0,
-		weapon_exp : 0
-	};
-	
 	if(type == "lv" || type === "rank") {
 		setLvRank(type, target, role);
 	}
+	
+	counting(type, curr, goal);
+	
+	update();
 }
 
 function getValue(type) {
@@ -72,65 +77,140 @@ function setLvRank(type, target, role) {
 	console.log("setLvRank2-", type, target, Lv.value, Rank.value);
 }
 
-function countLvRank(total, curr, goal) {
-	const LvCalData = Data.characterLvUp;
-	const RankCalData = Data.rankUp;
+function counting(type, curr, goal) {
+	if(type === "lv" || type === "rank") {
+		materials.lv = countLv(curr, goal);
+		materials.rank = countRank(curr, goal);
+	}
+	else {
+		switch(type){
+			case "attack" 		: materials.attack = countSkill(curr, goal); break;
+			case "skill" 		: materials.skill = countSkill(curr, goal); break;
+			case "circuit" 		: materials.circuit = countSkill(curr, goal); break;
+			case "liberation" 	: materials.liberation = countSkill(curr, goal); break;
+			case "intro" 		: materials.intro = countSkill(curr, goal); break;
+		}
+	}
+	
+	console.log(materials);
+}
+
+function countLv(curr, goal) {
+	const calData = Data.characterLvUp;
+	const LvData = { clamcoin : 0, resonator_exp : [0,0,0,0] };
 	
 	for(let i = curr; i < goal; i++){
-		//클램코인
-		total.clamcoin += LvCalData[0][i];
-		total.clamcoin += RankCalData[0][i];
-		
-		//공명자 경험치 재료
+		LvData.clamcoin += calData[0][i];
 		for(let j = 0; j < 4; j++){
-			total.resonator_exp[j] = LvCalData[1][i][j];
+			LvData.resonator_exp[j] += calData[1][i][j];
 		}
+	}
+	
+	console.log(LvData);
+	
+	return LvData;
 		
-		total.rankup += RankCalData[1][i];		//돌파 재료
-		total.collect += RankCalData[2][i];		//채집 재료
-		total.material += RankCalData[3][i];	//육성 재료
-	}
+}	
+
+function countRank(curr, goal) {
+	const calData = Data.rankUp;
+	const RankData = {
+		clamcoin : 0,
+		rankup : 0,
+		collect : 0,
+		material : [0,0,0,0]
+	};
 	
-	return total;
+	for(let i = curr; i < goal; i++){
+		RankData.clamcoin += calData[0][i];
+		RankData.rankup += calData[1][i];
+		RankData.collect += calData[2][i];
+		
+		let index;
+		if(i <= 1) index = 0;
+		else if(i <= 3) index = 1;
+		else if(i <= 5) index = 2;
+		else index = 3;
+		
+		RankData.material[index] += calData[3][i];
+	}
+	console.log(RankData);
+	return RankData;
 }
 
-function countSkill(type, curr, goal){}
-
-function lv_counting(type, curr, goal) {
-	const CalculatorData = Data.characterLvUp;
+function countSkill(curr, goal){
+	const calData = Data.skillLvUp;
+	const SkillData = {
+		clamcoin : 0,
+		material : [0,0,0,0],
+		weapon : [0,0,0,0],
+		weekly_boss : 0
+	};
 	
-	console.log("lv_counting 1-",CalculatorData, curr, goal);
-	
-	let Clamcoin_lv = 0;
-	
-	for(let i = curr; i<goal; i++){
-		Clamcoin_lv += CalculatorData[0][i];
+	for(let i = curr; i < goal; i++){
+		SkillData.clamcoin += calData[0][i];
+		SkillData.weekly_boss += calData[1][i];
+		
+		let index;
+		if(i <= 1) index = 0;
+		else if(i <= 3) index = 1;
+		else if(i <= 5) index = 2;
+		else index = 3;
+		
+		SkillData.material[index] += calData[2][i];
+		SkillData.weapon[index] += calData[3][i];
 	}
-	console.log("lv_counting 2-",Clamcoin_lv);
+	console.log(SkillData);
+	return SkillData;
 }
 
-function update(changeCount, curr, goal, role){
-	console.log("update-", changeCount, curr, goal, role);
+function update() {
+    const sections = ["lv","rank","attack","skill","circuit","liberation","intro"];
+    const total = {}; // 항목별 합계를 담을 객체
+
+    sections.forEach(section => {
+        Object.keys(materials[section]).forEach(key => {
+            const value = materials[section][key];
+
+            if(Array.isArray(value)) { // 4칸 배열 처리
+                value.forEach((count, idx) => {
+                    if(count > 0){
+                        const itemKey = `${key}_${idx + 2}`; // 0→2, 1→3, 2→4, 3→5
+                        if(!total[itemKey]) total[itemKey] = 0;
+                        total[itemKey] += count;
+                    }
+                });
+            } else { // 단일 값 처리
+                if(value > 0){
+                    if(!total[key]) total[key] = 0;
+                    total[key] += value;
+                }
+            }
+        });
+    });
+
+    console.log(materials);
 	
-	const LvSelect = document.getElementById(`lv_${role}`);	
-	const RankSelect = document.getElementById(`rank_${role}`);
-	console.log("update2-", LvSelect.value, RankSelect.value);
-	if(role === "current") {
-		if(LvSelect.value - curr > 1 || curr - LvSelect.value > 1)	LvSelect.value = String(curr);
-		if(RankSelect.value - curr > 1 || curr - RankSelect.value > 1)	{
-			console.log("curr");
-			RankSelect.value = String(curr);
+	const allItems = document.querySelectorAll(".material-grid .img-card .need-count");
+
+    allItems.forEach(container => {
+        const key = container.id;
+        const span = container.querySelector(".required-count");
+        if(span){
+            // groupedMaterials에 값이 있으면 넣고, 없으면 0
+            span.textContent = total[key] || 0;
+        }
+    });
+	
+	Object.keys(total).forEach(key => {
+		const count = total[key];
+		const container = document.getElementById(key);
+		if(container){
+			const span = container.querySelector(".required-count");
+			if(span){
+				span.textContent = count;
+			}
 		}
-	}
-	else{
-		if(LvSelect.value - goal > 1)	LvSelect.value = String(goal);
-		if(RankSelect.value - goal > 1)	RankSelect.value = String(goal);
-	}
-	console.log("update3-", LvSelect.value, RankSelect.value);
-}
-
-function updateLvRank(item, curr, goal) {
-	const LvSelect = document.getElementById("lv_select");
-	const RankSelect = document.getElementById("rank_select");
-	
+		console.log(key, container);
+    });
 }
