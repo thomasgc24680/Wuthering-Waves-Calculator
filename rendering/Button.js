@@ -87,7 +87,7 @@ function createSkillButton(character, container) {
 
 function SkillButtonImg(container, index, name, bonus, position){
 	const Btn = document.createElement("button");
-	Btn.id = `skill-${position}-${index}`;
+	Btn.id = `${position}-${index}`;
 	
 	let Img;
 	if(index === 2)	{
@@ -98,7 +98,7 @@ function SkillButtonImg(container, index, name, bonus, position){
 		Img = `images/icon/skill/${bonus}.jpg`;
 	}
 	
-	Btn.innerHTML = `<img src="${Img}" alt="skill">`;
+	Btn.innerHTML = `<img src="${Img}">`;
 	
 	Btn.onclick = () => Common.BtnClickEvt.SkillConnectButtonClick(Btn, position);
 	
