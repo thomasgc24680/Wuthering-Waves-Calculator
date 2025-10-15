@@ -15,18 +15,21 @@ export function CalculatorProcess(statusSelect, skillButton){
 
 function statusChangeProcess(selectDom) {
 	console.log("statusSelectChange-",selectDom);
+	
 	const selectId = selectDom.id;
 	const [ type, role ] = selectId.split("_");
-	
+	const target = Number(selectDom.value);
 	const { curr, goal } = getValue(type);
 	
-	console.log(selectId, type, role, curr, goal);
+	console.log(selectId, type, role, target);
 	
+	//정합성 검사
 	if(curr > goal) {
 		console.log("현재 레벨이 목표 레벨보다 큽니다!!");
 		return;
 	}
 	
+
 	let changeCount = {
 		clamcoin : 0,
 		resonator_exp : [0, 0, 0, 0],
@@ -38,16 +41,35 @@ function statusChangeProcess(selectDom) {
 		weapon_exp : 0
 	};
 	
-	if(type == "lv" || type === "rank") changeCount = countLvRank(changeCount, curr, goal);
-	else countSkill(curr, goal);
-	
-	update(changeCount, curr, goal, role);
+	if(type == "lv" || type === "rank") {
+		setLvRank(type, target, role);
+	}
 }
 
 function getValue(type) {
 	const curr = Number(document.querySelector(`select[id="${type}_current"]`).value);
 	const goal = Number(document.querySelector(`select[id="${type}_goal"]`).value);
 	return { curr, goal };
+}
+
+function setLvRank(type, target, role) {
+	const Lv = document.getElementById(`lv_${role}`);
+	const Rank = document.getElementById(`rank_${role}`);
+	
+	console.log("setLvRank1-", type, target, Lv.value, Rank.value);
+	
+	if(type === "lv"){
+		if(target - Rank.value < 0 || target - Rank.value > 1){
+			Rank.value = String(target-1 > 0 ? target-1 : 0);
+		}
+	}
+	else {
+		if(target - Lv.value < 0 || target - Lv.value > 1){
+			Lv.value = String(target+1 > 0 ? target+1 : 0);
+			console.log(target+1);
+		}
+	}
+	console.log("setLvRank2-", type, target, Lv.value, Rank.value);
 }
 
 function countLvRank(total, curr, goal) {
