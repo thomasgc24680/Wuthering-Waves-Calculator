@@ -88,6 +88,7 @@ function createSkillButton(character, container) {
 function SkillButtonImg(container, index, name, bonus, position){
 	const Btn = document.createElement("button");
 	Btn.id = `${position}-${index}`;
+	Btn.disabled = true;
 	
 	let Img;
 	if(index === 2)	{

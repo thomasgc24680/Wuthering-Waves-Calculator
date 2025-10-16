@@ -5,23 +5,70 @@ export function statusChangeProcess(selectDom) {
 	
 	const selectId = selectDom.id;
 	const [ type, role ] = selectId.split("_");
-	const target = Number(selectDom.value);	
+	const target = Number(selectDom.value);
 	const { curr, goal } = getValue(type);
 	
 	//정합성 검사
 	if(curr > goal) {
 		console.log("현재 레벨이 목표 레벨보다 큽니다!!");
-		return;
+		return true;
 	}
-	
 
+	//Lv Rank 동기화
 	if(type == "lv" || type === "rank") {
-		setLvRank(type, target, role);
+		const RankValue = Number(setLvRank(type, target, role));
+		updateSkillOption(RankValue);
 	}
 	
 	counting(type, curr, goal);
 	
 	update();
+}
+
+function updateSkillOption(Rank) {
+	const skill = ["attack", "skill", "circuit", "liberation", "intro"];
+	const SkillLv = Data.rankUp[4][Rank];
+	
+	skill.forEach(name => {
+		["current", "goal"].forEach(role => {			
+			const skillSelect = document.getElementById(`${name}_${role}`);
+			skillSelect.innerHTML = "";
+			
+			for(let i = 0; i < SkillLv; i++) {
+				const option = document.createElement("option");
+				option.value = i;
+				option.textContent = i+1;
+				skillSelect.appendChild(option);
+			}
+			skillSelect.value = 0;
+		});
+	});
+	
+	const position = ["top", "bottom"];
+	
+	position.forEach(pos => {
+		for(let i = 0; i<5; i++){
+			const Btn = document.getElementById(`${pos}-${i}`);
+			console.log(Btn);
+			
+			if(Rank < 3) {
+				Btn.disabled = true;
+				skillConnectButton(Btn);
+				Btn.classList.remove("active");
+			}
+			else if(Rank === 3) {
+				if(pos === "bottom") {
+					Btn.disabled = false;
+				}
+				else{
+					Btn.disabled = true;
+					skillConnectButton(Btn);
+					Btn.classList.remove("active");
+				}
+			}
+			else Btn.disabled = false;
+		}
+	});
 }
 
 function getValue(type) {
@@ -47,6 +94,7 @@ function setLvRank(type, target, role) {
 		}
 	}
 	console.log("setLvRank2-", type, target, Lv.value, Rank.value);
+	return Rank.value;
 }
 
 function counting(type, curr, goal) {
