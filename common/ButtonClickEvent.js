@@ -77,6 +77,8 @@ export function MainToDetail(currentTab, name) {
 export function SkillConnectButtonClick(Btn, position) { //chat gpt 코드 참고
 	const pair = Btn.pair;
 	
+	Common.Calculator.skillConnectButton(Btn);
+	
 	if(position === "top") {
 		Btn.classList.toggle("active");
 		

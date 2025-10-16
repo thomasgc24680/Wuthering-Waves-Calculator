@@ -1,39 +1,12 @@
 import * as Data from '../data/Data.js';
 
-const materials = {
-		lv: {clamcoin : 0, resonator_exp : [0,0,0,0] },
-		rank : {clamcoin : 0, rankup : 0, collect : [0,0,0,0] , material : [0,0,0,0] },
-		attack : {clamcoin : 0, weapon : [0,0,0,0] , material : [0,0,0,0] },
-		skill : {clamcoin : 0, weapon : [0,0,0,0] , material : [0,0,0,0] },
-		circuit : {clamcoin : 0, weapon : [0,0,0,0] , material : [0,0,0,0] },
-		liberation : {clamcoin : 0, weapon : [0,0,0,0] , material : [0,0,0,0] },
-		intro : {clamcoin : 0, weapon : [0,0,0,0] , material : [0,0,0,0] },
-		total : {}
-	};
-
-export function CalculatorProcess(statusSelect, skillButton){
-	statusSelect.forEach(select => {
-		select.addEventListener("change", (event) => {
-			statusChangeProcess(event.target);
-		});
-	});
-	skillButton.forEach(button => {
-		button.addEventListener("change", (event) => {
-			skillConnectButtonChange(event.target);
-		});
-	});
-}
-
-function statusChangeProcess(selectDom) {
+export function statusChangeProcess(selectDom) {
 	console.log("statusSelectChange-",selectDom);
 	
 	const selectId = selectDom.id;
 	const [ type, role ] = selectId.split("_");
-	const target = Number(selectDom.value);
-	
+	const target = Number(selectDom.value);	
 	const { curr, goal } = getValue(type);
-	
-	console.log(selectId, type, role, target);
 	
 	//정합성 검사
 	if(curr > goal) {
@@ -71,7 +44,6 @@ function setLvRank(type, target, role) {
 	else {
 		if(target - Lv.value < 0 || target - Lv.value > 1){
 			Lv.value = String(target+1 > 0 ? target+1 : 0);
-			console.log(target+1);
 		}
 	}
 	console.log("setLvRank2-", type, target, Lv.value, Rank.value);
@@ -79,23 +51,21 @@ function setLvRank(type, target, role) {
 
 function counting(type, curr, goal) {
 	if(type === "lv" || type === "rank") {
-		materials.lv = countLv(curr, goal);
-		materials.rank = countRank(curr, goal);
+		Data.materials.lv = calLv(curr, goal);
+		Data.materials.rank = calRank(curr, goal);
 	}
 	else {
 		switch(type){
-			case "attack" 		: materials.attack = countSkill(curr, goal); break;
-			case "skill" 		: materials.skill = countSkill(curr, goal); break;
-			case "circuit" 		: materials.circuit = countSkill(curr, goal); break;
-			case "liberation" 	: materials.liberation = countSkill(curr, goal); break;
-			case "intro" 		: materials.intro = countSkill(curr, goal); break;
+			case "attack" 		: Data.materials.attack = calSkill(curr, goal); break;
+			case "skill" 		: Data.materials.skill = calSkill(curr, goal); break;
+			case "circuit" 		: Data.materials.circuit = calSkill(curr, goal); break;
+			case "liberation" 	: Data.materials.liberation = calSkill(curr, goal); break;
+			case "intro" 		: Data.materials.intro = calSkill(curr, goal); break;
 		}
 	}
-	
-	console.log(materials);
 }
 
-function countLv(curr, goal) {
+function calLv(curr, goal) {
 	const calData = Data.characterLvUp;
 	const LvData = { clamcoin : 0, resonator_exp : [0,0,0,0] };
 	
@@ -106,13 +76,13 @@ function countLv(curr, goal) {
 		}
 	}
 	
-	console.log(LvData);
+	console.log("calLv",LvData);
 	
 	return LvData;
 		
 }	
 
-function countRank(curr, goal) {
+function calRank(curr, goal) {
 	const calData = Data.rankUp;
 	const RankData = {
 		clamcoin : 0,
@@ -134,11 +104,11 @@ function countRank(curr, goal) {
 		
 		RankData.material[index] += calData[3][i];
 	}
-	console.log(RankData);
+	console.log("calRank",RankData);
 	return RankData;
 }
 
-function countSkill(curr, goal){
+function calSkill(curr, goal){
 	const calData = Data.skillLvUp;
 	const SkillData = {
 		clamcoin : 0,
@@ -160,17 +130,99 @@ function countSkill(curr, goal){
 		SkillData.material[index] += calData[2][i];
 		SkillData.weapon[index] += calData[3][i];
 	}
-	console.log(SkillData);
+	console.log("calSkill",SkillData);
 	return SkillData;
+}
+//////////////////////////////////
+
+//스킬 연결점 계산 코드
+export function skillConnectButton(buttonDom) {
+	
+	console.log("skillConnectButton");
+	
+	const total = {
+		clamcoin : 0,
+		material : [0,0,0,0],
+		weapon : [0,0,0,0],
+		weekly_boss : 0
+	};
+	
+	const buttonId = buttonDom.id;
+	const [ positionBtn, indexBtn ] = buttonId.split("-");
+	const activeBtn = buttonDom.classList.contains("active");
+	
+	const pairBtn = buttonDom.pair;
+	const pairId = pairBtn.id;
+	const [ positionPair, indexPair ] = pairId.split("-");
+	const activePair = pairBtn.classList.contains("active");
+	
+	const currentBtnData = calSkillConnect(positionBtn, indexBtn, activeBtn);
+	addSkillConnectData(total, currentBtnData);
+	
+	if(positionBtn === "top") {
+		if(activeBtn === false && activePair === false){
+			const pairData = calSkillConnect(positionPair, indexPair, activePair);
+			addSkillConnectData(total, pairData);
+		}			
+	}
+	if(positionBtn === "bottom") {
+		if(activeBtn === true && activePair === true){
+			const pairData = calSkillConnect(positionPair, indexPair, activePair);
+			addSkillConnectData(total, pairData);
+		}			
+	}
+	
+	addSkillConnectData(Data.materials.skillconnect, total);
+	
+	update();
+}
+
+function calSkillConnect(position, index, active){	
+	const calData = Data.skillConnect;
+	const sign = active ? -1 : 1;
+	const skillConnectData = {
+		clamcoin : 0,
+		material : [0,0,0,0],
+		weapon : [0,0,0,0],
+		weekly_boss : 0
+	};
+	
+	const itemIndex = index === "2" ? (position === "top" ? 2 : 1) : (position === "top" ? 3 : 2);
+	
+	let col;
+	if(position === "top"){
+		if(index === "2") col = 3;
+		else col = 1;
+	}
+	else{
+		if(index === "2") col = 2;
+		else col = 0;
+	}
+	
+	skillConnectData.clamcoin = calData[0][col] * sign;
+	skillConnectData.material[itemIndex] = calData[1][col] * sign;
+	skillConnectData.weapon[itemIndex] = calData[2][col] * sign;
+	skillConnectData.weekly_boss = calData[3][col] * sign;
+	
+	return skillConnectData;
+}
+
+function addSkillConnectData(total, add) {
+	total.clamcoin += add.clamcoin;
+	total.weekly_boss += add.weekly_boss;
+	for(let i = 0; i<4; i++){
+		total.weapon[i] += add.weapon[i];
+		total.material[i] += add.material[i];
+	}
 }
 
 function update() {
-    const sections = ["lv","rank","attack","skill","circuit","liberation","intro"];
+    const sections = ["lv","rank","attack","skill","circuit","liberation","intro", "skillconnect"];
     const total = {}; // 항목별 합계를 담을 객체
 
     sections.forEach(section => {
-        Object.keys(materials[section]).forEach(key => {
-            const value = materials[section][key];
+        Object.keys(Data.materials[section]).forEach(key => {
+            const value = Data.materials[section][key];
 
             if(Array.isArray(value)) { // 4칸 배열 처리
                 value.forEach((count, idx) => {
@@ -189,7 +241,7 @@ function update() {
         });
     });
 
-    console.log(materials);
+    console.log("update", Data.materials);
 	
 	const allItems = document.querySelectorAll(".material-grid .img-card .need-count");
 
@@ -211,6 +263,5 @@ function update() {
 				span.textContent = count;
 			}
 		}
-		console.log(key, container);
     });
 }

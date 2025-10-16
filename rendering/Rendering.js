@@ -47,13 +47,11 @@ function createLeftContainer(type, card) {
 	
 	const statusContainer = document.getElementById("status-container");
 	const statusSelect = statusContainer.querySelectorAll("select");
-	
-	const skillConnectContainer = document.getElementById("skill-buttons");
-	const skillConnectSelect = skillConnectContainer.querySelectorAll("button");
-	
-	Common.Calculator.CalculatorProcess(statusSelect, skillConnectSelect);
-	
-	//const SkillConnect = document.getE
+	statusSelect.forEach(select => {
+		select.addEventListener("change", (event) => {
+			Common.Calculator.statusChangeProcess(event.target);
+		});
+	});
 }
 
 function createRightContainer(type, card) {
