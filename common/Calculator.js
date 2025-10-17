@@ -53,8 +53,10 @@ function updateSkillOption(Rank) {
 			
 			if(Rank < 3) {
 				Btn.disabled = true;
-				skillConnectButton(Btn);
-				Btn.classList.remove("active");
+				if(Btn.classList.contains("active")) {
+					skillConnectButton(Btn);
+					Btn.classList.remove("active");	
+				}
 			}
 			else if(Rank === 3) {
 				if(pos === "bottom") {
@@ -62,8 +64,10 @@ function updateSkillOption(Rank) {
 				}
 				else{
 					Btn.disabled = true;
-					skillConnectButton(Btn);
-					Btn.classList.remove("active");
+					if(Btn.classList.contains("active")) {
+						skillConnectButton(Btn);
+						Btn.classList.remove("active");	
+					}
 				}
 			}
 			else Btn.disabled = false;
