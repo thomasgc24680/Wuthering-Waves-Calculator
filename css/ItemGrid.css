@@ -1,0 +1,140 @@
+/* 전체 카운팅 영역 */
+.plate-counting {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 5px;
+}
+
+/* 개별 카운팅 블록 */
+
+.all-plate-count,
+.forgery,
+.ascension,
+.weekly {
+  display: flex;
+  flex-direction: row;
+  align-items: right; /* label + count 세로 중앙 정렬 */
+  white-space: nowrap;
+  gap : 5px;
+}
+
+/* 텍스트 라벨 */
+.count-label {
+  display:inline-block;
+  text-align:center;
+  width: auto;
+  font-weight: bold;
+}
+
+/* 숫자 영역 */
+.count {
+  display: inline-block;             /* 내부 텍스트를 flex 아이템으로 만들기 */
+  width: 40px;           /* 최소 넓이 지정, 필요에 따라 조정 */
+  height: 1.5em;             /* 숫자 높이에 맞춤 */
+  font-weight: bold;         /* 강조 스타일 */
+  color: #fff;               /* 텍스트 색상 */
+}
+
+/* 그리드 컨테이너 */
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 150px); /* 카드 가로 수 자동 */
+  gap: 10px; /* 카드 간 간격 */
+  padding: 10px;
+  width: max-content;     /* 내용 폭만 차지 */
+}
+
+/* 카드 기본 스타일 */
+.item-img-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 이미지 영역 */
+.item-img-wrapper {
+  width: 80%;
+  height: 80%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* 이미지 크기 맞춤 */
+.item-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 필요/현재 개수 영역 */
+.need-count {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  align-items: center;       /* 세로 가운데 */
+  justify-content: center;   /* 가로 가운데 */
+}
+
+.have-count {
+  display: flex;
+  align-items: center;        /* 세로 중앙 */
+  justify-content: center;    /* 가운데 정렬 */
+  width: 100%;               /* 이미지 폭과 동일 */
+  height: 30px;
+  gap: 2px;                   /* 버튼과 input 간격 */
+}
+
+.have-count button {
+  width: 24px;
+  height: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.have-count input {
+  flex: 1;
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 1);
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.have-count input::-webkit-inner-spin-button,
+.have-count input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* 등급별 배경색 */
+.item-img-wrapper.star-5 {
+  background: rgba(255, 215, 0, 0.5);
+}
+
+.item-img-wrapper.star-4 {
+  background: rgba(128, 0, 128, 0.5);
+}
+
+.item-img-wrapper.star-3 {
+  background: rgba(135, 190, 225, 0.6);
+}
+
+.item-img-wrapper.star-2 {
+  background: rgba(140, 200, 140, 0.5);
+}
+
+.item-img-wrapper.star-1 {
+  background: rgba(128, 128, 128, 0.5);
+}

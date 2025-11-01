@@ -1,0 +1,52 @@
+.select-card-info {
+  display: flex;              /* 가로 배치 */
+  align-items: center;        /* 세로 가운데 정렬 */
+  gap: 10px;                  /* 이미지와 텍스트 간격 */
+}
+
+#character-image img {
+  height: 400px;
+  border-radius: 8px;
+  display: block;
+}
+
+#weapon-image img {
+  height : 290px;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Lv과 Rank 묶음 */
+.status {
+  display: flex;
+  flex-direction: column;     /* 세로로 배치 (Lv 위, Rank 아래) */
+  gap: 30px;
+}
+
+.lv, .rank {
+  display: flex;
+  align-items: center;
+}
+
+.stauts-label {
+  display: inline-block;
+  width: 80px;   /* 글자 폭 고정 */
+  font-weight: bold;
+  text-align : center;
+}
+
+select {
+  width: 50px;   /* 글자 폭 고정 */
+  padding: 4px 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.arrow {
+  display: inline-block;  /* flex 말고 텍스트용 */
+  margin: 0 8px;
+  color: #fff;            /* >> 색상 */
+  font-weight: bold;      /* 필요하면 강조 */
+}

@@ -1,0 +1,106 @@
+/* 버튼 위 텍스트 */
+.skill-title {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom : 10px;
+  color: #fff;
+  position: relative;
+}
+
+
+.skill-connector {
+  width : 100%;
+  max-width: 500px;
+  padding: 10px;
+  display : flex;
+  flex-direction : column;
+  align-items : center;
+}
+
+
+/* 스킬 연결점 버튼 */
+.skill-buttons {
+  display : grid;
+  flex-direction : row;
+  grid-template-columns: repeat(5, auto); /* 5개씩 */
+  gap : auto;
+  width: 100%; /* character-info 이미지 폭에 맞춤 */
+  justify-items: center;
+}
+
+.skill-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skill-buttons button {
+  display:flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;       /* 세로 중앙 */
+  justify-content: center;   /* 가로 중앙 */
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background: rgba(255,255,255,0.2); /*#1e2a44;*/
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.skill-buttons button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 연결선 */
+.connector {
+  width: 0; /* 세로선 */
+  height : 20px;
+  flex-grow: 1; /* 버튼 사이를 가득 채움 */
+  border-left: 2px solid #ccc; /* 버튼 border와 동일 */
+}
+
+.skill-buttons button:hover {
+  border-color: #66aaff;
+  transform: scale(1.05);
+}
+
+/* 활성화 효과 */
+.skill-buttons button.active {
+  border-color: #00f;
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.6);
+}
+
+/* 활성화 효과 */
+.skill-buttons button:disabled {
+  opacity: 0.5; /* 밝기 낮춤 */
+  cursor: not-allowed; /* 마우스 커서 변경 */
+  pointer-events: none;
+}
+
+/* 툴팁 */
+.skill-buttons button .tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 12px;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+
+.skill-buttons button:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}

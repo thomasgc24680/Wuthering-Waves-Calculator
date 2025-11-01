@@ -1,0 +1,48 @@
+.filter-buttons {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row; /* ✅ 가로 정렬 */
+  gap: 10px;
+  align-items: center;
+}
+
+.filter-buttons button{
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.filter-buttons img {
+  width: 32px;   /* 아이콘 크기 */
+  height: 32px;
+}
+.filter-buttons button:hover {
+  background: rgba(255,255,255,0.5);
+}
+.filter-buttons button.active {
+  background: rgba(255,255,255,0.8);
+}
+/* 검색창 */
+.filter-search {
+  margin-left: auto;   /* ✅ 오른쪽 끝으로 밀기 */
+}
+
+.filter-search input {
+  width: 300px;
+  height : 20px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #3a3a3a;       /* 버튼보다 약간 진한 회색 */
+  color: white;
+  font-size: 14px;
+}
+
+.filter-search input::placeholder {
+  color: #bbb;
+}

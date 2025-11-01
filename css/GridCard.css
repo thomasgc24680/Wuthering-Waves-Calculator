@@ -1,0 +1,83 @@
+.card {
+  display: flex;
+  background: rgba(0,0,0,0.6);
+  border-radius: 12px;
+  padding: 0px;
+  flex-direction: column;
+  text-align: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: none;
+  outline: none;
+  
+  height: auto;
+}
+
+.card p {
+  width: 120px; /* 이미지 폭과 맞추기 */
+  margin: 6px 0;
+  text-align: center;
+  word-wrap: break-word; /* 긴 단어도 자동 줄바꿈 */
+  overflow: visible;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* 이미지 전용 박스 */
+.button-img-wrapper {
+  align-self: flex-start; /* 부모 flex 안에서 위쪽 고정 */
+  width: 120px;
+  height: 120px;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  position: relative;  /* 오버레이 기준점 */  
+  flex-shrink: 0;   /* 이미지 높이는 줄어들지 않음 */
+}
+
+.button-img-wrapper .attr-icon {
+  position: absolute;
+  top: 4px;   /* 이미지 하단에서 약간 위 */
+  left: 4px;    /* 이미지 오른쪽에서 약간 안쪽 */
+  width: 24px;   /* 아이콘 크기 */
+  height: 24px;
+}
+
+.button-img-wrapper .weap-icon {
+  position: absolute;
+  top: 4px;   /* 이미지 하단에서 약간 위 */
+  right: 4px;    /* 이미지 오른쪽에서 약간 안쪽 */
+  width: 24px;   /* 아이콘 크기 */
+  height: 24px;
+}
+
+.button-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* 등급별 배경 (이미지 뒷부분만 색 입힘) */
+.button-img-wrapper.star-5 {
+  background: rgba(255, 215, 0, 0.5);
+}
+.button-img-wrapper.star-4 {
+  background: rgba(128, 0, 128, 0.5);
+}
+.button-img-wrapper.star-3 {
+  background: rgba(135, 190, 225, 0.6);
+}
+.button-img-wrapper.star-2 {
+  background: rgba(140, 200, 140, 0.5);
+}
+.button-img-wrapper.star-1 {
+  background: rgba(128, 128, 128, 0.5);
+}
+
+/* 마우스 올려 있을 때 */
+.card:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.2);
+}

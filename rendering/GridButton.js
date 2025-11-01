@@ -9,25 +9,7 @@ import * as Common from '../common/Common.js';
  - detail 페이지의 우측 컨테이너(재화 모음)
 */
 
-export function renderMainCardButton(currentTab, containerId) {
-	console.log("renderCardButton-", currentTab, containerId);
-	
-	const screen = document.getElementById(containerId);	
-	
-	const container = screen.querySelector(".select-screen");
-	container.innerHTML = "";
-	
-	const CardData = Common.Filtering(currentTab);
-	
-	CardData.forEach(card => {
-		const btn = createCardButton(currentTab, card);
-		container.appendChild(btn);
-	});
-	
-	screen.appendChild(container);
-}
-
-export function createCardButton(currentTab, card, addweapon = null){
+function createCardButton(currentTab, card, addweapon = null){
 	const btn = document.createElement("button");
 	btn.classList.add("card");
 	
@@ -35,7 +17,7 @@ export function createCardButton(currentTab, card, addweapon = null){
 
 	if(currentTab === "character") {
 		btn.innerHTML = 
-			`<div class="img-wrapper ${star}">
+			`<div class="button-img-wrapper ${star}">
 				<img src="images/resonator/${card.name}/main.jpg" alt="${card.name}">
 				<img class="attr-icon" src="images/icon/attribute/${card.attribute}.jpg" alt="${card.attribute}">
 				<img class="weap-icon" src="images/icon/weapon/${card.weapon}.jpg" alt="${card.weapon}">
@@ -57,6 +39,24 @@ export function createCardButton(currentTab, card, addweapon = null){
 	else
 		btn.onclick = () => Common.BtnClickEvt.MainToDetail(currentTab, card.name);
 	return btn;
+}
+
+export function renderMainCardButton(currentTab, containerId) {
+	console.log("renderCardButton-", currentTab, containerId);
+	
+	const screen = document.getElementById(containerId);	
+	
+	const container = screen.querySelector(".select-screen");
+	container.innerHTML = "";
+	
+	const CardData = Common.Filtering(currentTab);
+	
+	CardData.forEach(card => {
+		const btn = createCardButton(currentTab, card);
+		container.appendChild(btn);
+	});
+	
+	screen.appendChild(container);
 }
 
 export function renderAddWeaponCardButton(weapontype){

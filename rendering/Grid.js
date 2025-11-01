@@ -151,10 +151,10 @@ export function cretaeMaterialGrid(type, card, rightcontainer) {
 	
 	itemList.forEach((item, index) => {
 		const card = document.createElement("div");
-		card.classList.add("img-card", `star-${item.star}`);
+		card.classList.add("item-img-card", `star-${item.star}`);
 		
 		card.innerHTML = `
-			<div class="img-wrapper star-${item.star}" >
+			<div class="item-img-wrapper star-${item.star}" >
 			<img src="${item.path}" alt="${item.name}">
 			</div>
 			<div class="need-count" id="${item.name}">

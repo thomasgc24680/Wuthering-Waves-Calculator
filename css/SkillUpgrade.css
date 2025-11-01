@@ -1,0 +1,39 @@
+/* 스킬 이미지 영역 */
+#skill-upgrade-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  align-items: center;
+}
+
+.skill-upgrade {	/*스킬 이미지 및 기호*/
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+}
+
+.skill-wrapper {	/*단일 이미지+스킬 이름*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap : 10px;
+}
+
+.skill-img {	/*스킬 이미지*/
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #555;
+}
+
+.skill-sign {	/*기호 - 부등호, 등호*/
+  font-size: 20px;
+  color: #ddd;
+  font-weight: bold;
+  margin-bottom: 30px;
+}

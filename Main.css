@@ -1,3 +1,6 @@
+@import url('./css/FilterButton.css');
+@import url('./css/GridCard.css');
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -37,7 +40,6 @@ nav .tab.active {
   color: black;
 }
 
-
 #main-screen {
 	display: flex;
 	flex-direction: column;
@@ -53,56 +55,6 @@ nav .tab.active {
   justify-content: center;  
 }
 
-.filter-screen .filter-buttons {
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row; /* ✅ 가로 정렬 */
-  gap: 10px;
-  align-items: center;
-}
-
-.filter-screen .filter-buttons button{
-  background: rgba(255,255,255,0.2);
-  border-radius: 8px;
-  padding: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.filter-screen .filter-buttons img {
-  width: 32px;   /* 아이콘 크기 */
-  height: 32px;
-}
-.filter-screen .filter-buttons button:hover {
-  background: rgba(255,255,255,0.5);
-}
-.filter-screen .filter-buttons button.active {
-  background: rgba(255,255,255,0.8);
-}
-/* 검색창 */
-.filter-screen .filter-search {
-  margin-left: auto;   /* ✅ 오른쪽 끝으로 밀기 */
-}
-
-.filter-screen .filter-search input {
-  width: 300px;
-  height : 20px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  background: #3a3a3a;       /* 버튼보다 약간 진한 회색 */
-  color: white;
-  font-size: 14px;
-}
-
-.filter-screen .filter-search input::placeholder {
-  color: #bbb;
-}
-
-
 /* 캐릭터/무기 선택 화면 */
 .select-screen {
   display: grid;
@@ -113,88 +65,4 @@ nav .tab.active {
   overflow: visible;
   height : 100%;
   width : 100%;
-}
-
-.select-screen .card {
-  display: flex;
-  background: rgba(0,0,0,0.6);
-  border-radius: 12px;
-  padding: 0px;
-  flex-direction: column;
-  text-align: center;
-  justify-content: flex-start;
-  cursor: pointer;
-  transition: transform 0.2s;
-  border: none;
-  outline: none;
-  
-  height: auto;
-}
-
-.select-screen .card p {
-  width: 120px; /* 이미지 폭과 맞추기 */
-  margin: 6px 0;
-  text-align: center;
-  word-wrap: break-word; /* 긴 단어도 자동 줄바꿈 */
-  overflow: visible;
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
-}
-
-/* 이미지 전용 박스 */
-.select-screen .img-wrapper {
-  align-self: flex-start; /* 부모 flex 안에서 위쪽 고정 */
-  width: 120px;
-  height: 120px;
-  border-radius: 8px 8px 0 0;
-  overflow: hidden;
-  position: relative;  /* 오버레이 기준점 */  
-  flex-shrink: 0;   /* 이미지 높이는 줄어들지 않음 */
-}
-
-.select-screen .img-wrapper .attr-icon {
-  position: absolute;
-  top: 4px;   /* 이미지 하단에서 약간 위 */
-  left: 4px;    /* 이미지 오른쪽에서 약간 안쪽 */
-  width: 24px;   /* 아이콘 크기 */
-  height: 24px;
-}
-
-.select-screen .img-wrapper .weap-icon {
-  position: absolute;
-  top: 4px;   /* 이미지 하단에서 약간 위 */
-  right: 4px;    /* 이미지 오른쪽에서 약간 안쪽 */
-  width: 24px;   /* 아이콘 크기 */
-  height: 24px;
-}
-
-.select-screen .img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 0;
-}
-
-/* 등급별 배경 (이미지 뒷부분만 색 입힘) */
-.select-screen .img-wrapper.star-5 {
-  background: rgba(255, 215, 0, 0.5);
-}
-.select-screen .img-wrapper.star-4 {
-  background: rgba(128, 0, 128, 0.5);
-}
-.select-screen .img-wrapper.star-3 {
-  background: rgba(135, 190, 225, 0.6);
-}
-.select-screen .img-wrapper.star-2 {
-  background: rgba(140, 200, 140, 0.5);
-}
-.select-screen .img-wrapper.star-1 {
-  background: rgba(128, 128, 128, 0.5);
-}
-
-/* 마우스 올려 있을 때 */
-.select-screen .card:hover {
-  transform: scale(1.05);
-  background: rgba(255,255,255,0.2);
 }
